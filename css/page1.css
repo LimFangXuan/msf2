@@ -26,7 +26,7 @@ body {
 .hero {
     height: 100vh;
     background: linear-gradient(rgba(7, 30, 10, 0.4), rgba(7, 30, 10, 0.4)),
-        url(./images_page1&5/homepage背景图.png) center/cover no-repeat;
+        url(images/homepage背景图.png) center/cover no-repeat;
     display: flex;
     align-items: center;
     justify-content: center;
@@ -139,7 +139,7 @@ body {
     margin-bottom: 1rem;
 }
 
-footer {
+.footer {
     background-color: var(--color2);
     color: var(--color8);
     padding: 3rem 2rem 1rem;
@@ -643,7 +643,7 @@ footer {
     opacity: 0.8;
 }
 
-.footer {
+footer {
     background-color: var(--color2);
     color: var(--color8);
     padding: 3rem 1rem 1rem;
@@ -718,6 +718,7 @@ footer {
 }
 
 
+
 /* 美食展示区域 */
 .food-showcase {
     padding: 6rem 1rem;
@@ -736,10 +737,9 @@ footer {
 }
 
 .showcase-header h2 {
-    font-size: var(--font-size-3xl);
     color: var(--color1);
     margin-bottom: 1rem;
-    font-weight: var(--font-weight-bold);
+    font-weight: bold;
 }
 
 .showcase-header p {
