@@ -1,71 +1,159 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
-  <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Street Food Collective - Map Explorer</title>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Street Food Collective - Map Explorer</title>
 
-  <!-- Fonts -->
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;700;800&family=Playfair+Display:wght@400;700&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
-  <!-- Styles (keep as-is, do not modify these files) -->
-  <link rel="stylesheet" href="css/colors.css">
-  <link rel="stylesheet" href="css/common.css">
-  <link rel="stylesheet" href="css/page6.css">
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;700;800&family=Playfair+Display:wght@400;700&display=swap"
+        rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <!-- Styles (keep as-is, do not modify these files) -->
+    <link rel="stylesheet" href="css/colors.css">
+    <link rel="stylesheet" href="css/common.css">
+    <link rel="stylesheet" href="css/page6.css">
 
-  <!-- TikTok Embed Script -->
-  <script async src="https://www.tiktok.com/embed.js"></script>
+    <!-- TikTok Embed Script -->
+    <script async src="https://www.tiktok.com/embed.js"></script>
 
-  <style>
-    /* 少量补充样式（不覆盖 common/colors），只为马来西亚州列表与布局 */
-    .state-list{ display:grid; grid-template-columns:repeat(auto-fit,minmax(200px,1fr)); gap:10px; margin-top:10px; }
-    .chip{ border:1px solid rgba(0,0,0,.12); padding:10px 12px; border-radius:12px; background:#fff; text-align:left; cursor:pointer; }
-    .chip strong{ color: var(--color2, #1c2f20); }
-    .chip small{ opacity:.8; }
-    #msia-wrap{ width:min(1200px,92%); margin-inline:auto; }
-    #msia-head{ display:flex; align-items:center; justify-content:space-between; gap:12px; margin:0 0 20px; }
-    #msia-states-container{ padding:20px 0; }
+    <style>
+        /* 少量补充样式（不覆盖 common/colors），只为马来西亚州列表与布局 */
+        .state-list {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 10px;
+            margin-top: 10px;
+        }
 
-    .state-list{ display:grid; grid-template-columns:repeat(auto-fit,minmax(280px,1fr)); gap:16px; margin-top:20px; }
-    .chip{ border:1px solid rgba(0,0,0,.12); padding:16px; border-radius:12px; background:#fff; text-align:left; cursor:pointer; transition: all 0.3s ease; }
-    .chip:hover{ transform:translateY(-2px); box-shadow: 0 4px 12px rgba(0,0,0,.15); }
-    .chip strong{ color: var(--color2, #1c2f20); display:block; margin-bottom:4px; }
-    .chip small{ opacity:.7; font-size:14px; }
-    .state-action{ margin-top:12px; }
-    .btn-small{ padding:6px 12px; font-size:12px; background:var(--color4, #DDA15E); color:white; border:none; border-radius:6px; cursor:pointer; }
-    .btn-small:hover{ background:var(--color5, #e77409); }
-    @media (max-width: 768px){ .state-list{ grid-template-columns:1fr; gap:12px; } }
+        .chip {
+            border: 1px solid rgba(0, 0, 0, .12);
+            padding: 10px 12px;
+            border-radius: 12px;
+            background: #fff;
+            text-align: left;
+            cursor: pointer;
+        }
 
-    /* Responsive Video Container */
-    .video-container {
-      position: relative;
-      padding-bottom: 56.25%; /* 16:9 aspect ratio */
-      height: 0;
-      overflow: hidden;
-      max-width: 100%;
-      background: #000;
-      border-radius: 12px;
-      margin: 20px auto; /* Center the container */
-    }
-    .video-container iframe {
-      position: absolute;
-      top: 0;
-      left: 0;
-      width: 100%;
-      height: 100%;
-    }
-  </style>
+        .chip strong {
+            color: var(--color2, #1c2f20);
+        }
+
+        .chip small {
+            opacity: .8;
+        }
+
+        #msia-wrap {
+            width: min(1200px, 92%);
+            margin-inline: auto;
+        }
+
+        #msia-head {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 12px;
+            margin: 0 0 20px;
+        }
+
+        #msia-states-container {
+            padding: 20px 0;
+        }
+
+        .state-list {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 16px;
+            margin-top: 20px;
+        }
+
+        .chip {
+            border: 1px solid rgba(0, 0, 0, .12);
+            padding: 16px;
+            border-radius: 12px;
+            background: #fff;
+            text-align: left;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .chip:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 4px 12px rgba(0, 0, 0, .15);
+        }
+
+        .chip strong {
+            color: var(--color2, #1c2f20);
+            display: block;
+            margin-bottom: 4px;
+        }
+
+        .chip small {
+            opacity: .7;
+            font-size: 14px;
+        }
+
+        .state-action {
+            margin-top: 12px;
+        }
+
+        .btn-small {
+            padding: 6px 12px;
+            font-size: 12px;
+            background: var(--color4, #DDA15E);
+            color: white;
+            border: none;
+            border-radius: 6px;
+            cursor: pointer;
+        }
+
+        .btn-small:hover {
+            background: var(--color5, #e77409);
+        }
+
+        @media (max-width: 768px) {
+            .state-list {
+                grid-template-columns: 1fr;
+                gap: 12px;
+            }
+        }
+
+        /* Responsive Video Container */
+        .video-container {
+            position: relative;
+            padding-bottom: 56.25%;
+            /* 16:9 aspect ratio */
+            height: 0;
+            overflow: hidden;
+            max-width: 100%;
+            background: #000;
+            border-radius: 12px;
+            margin: 20px auto;
+            /* Center the container */
+        }
+
+        .video-container iframe {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+        }
+    </style>
 </head>
-<body>
-  <a class="skip-link" href="#main">Skip to content</a>
 
-  <!-- ===== Header ===== -->
-  <header >
-    
-      <nav class="glass-nav">
+<body>
+    <a class="skip-link" href="#main">Skip to content</a>
+
+    <!-- ===== Header ===== -->
+    <header>
+
+        <nav class="glass-nav">
             <ul>
 
                 <li><a href="page1.html" class="active">Home</a></li>
@@ -78,79 +166,83 @@
                 <li><a href="page8.html">Contact us</a></li>
             </ul>
 
-            
+
         </nav>
-  </header>
+    </header>
 
-  <main id="main">
-    <!-- ===================== WORLD MAP (image + custom markers) ===================== -->
-    <section id="maps" class="page-section active">
-      <div class="container">
-        <div class="home-hero">
-          <h1>Discover Authentic Street Food Culture</h1>
-
-
-          <div class="world-map">
-            <div class="interactive-map" id="interactive-map">
+    <main id="main">
+        <!-- ===================== WORLD MAP (image + custom markers) ===================== -->
+        <section id="maps" class="page-section active">
+            <div class="container">
+                <div class="home-hero">
+                    <h1>Discover Authentic Street Food Culture</h1>
 
 
-              <!-- World Map Image (keep your asset path) -->
-              <img src="images/Map.jpg" alt="World Map" class="map-image" id="map-image"/>
+                    <div class="world-map">
+                        <div class="interactive-map" id="interactive-map">
 
-              <!-- Markers -->
-              <div class="map-markers">
-                <!-- Malaysia → open dedicated states page (Featured) -->
-                <div class="map-marker featured" style="left:77%;top:45%;" onclick="window.location.href='malaysia.html'">
-                  <div class="marker-tooltip">🇲🇾 Malaysia<br><small>Click to explore states</small></div>
+
+                            <!-- World Map Image (keep your asset path) -->
+                            <img src="images/Map.jpg" alt="World Map" class="map-image" id="map-image" />
+
+                            <!-- Markers -->
+                            <div class="map-markers">
+                                <!-- Malaysia → open dedicated states page (Featured) -->
+                                <div class="map-marker featured" style="left:77%;top:45%;"
+                                    onclick="window.location.href='malaysia.html'">
+                                    <div class="marker-tooltip">🇲🇾 Malaysia<br><small>Click to explore states</small>
+                                    </div>
+                                </div>
+
+                                <!-- Continental Markers -->
+                                <div class="map-marker" style="left:18%;top:25%;" onclick="showRegionInfo('america')">
+                                    <div class="marker-tooltip">America</div>
+                                </div>
+                                <div class="map-marker" style="left:48%;top:20%;" onclick="showRegionInfo('europe')">
+                                    <div class="marker-tooltip">Europe</div>
+                                </div>
+                                <div class="map-marker" style="left:50%;top:40%;" onclick="showRegionInfo('africa')">
+                                    <div class="marker-tooltip">Africa</div>
+                                </div>
+                                <div class="map-marker" style="left:75%;top:28%;" onclick="showRegionInfo('asia')">
+                                    <div class="marker-tooltip">Asia</div>
+                                </div>
+                                <div class="map-marker" style="left:85%;top:65%;" onclick="showRegionInfo('oceania')">
+                                    <div class="marker-tooltip">Oceania</div>
+                                </div>
+                            </div>
+
+
+
+                        </div>
+                    </div>
+
+                    <div class="cta-buttons">
+                        <a href="malaysia.html" class="btn btn-large btn-ghost">Open Malaysia States</a>
+                    </div>
                 </div>
-
-                <!-- Continental Markers -->
-                <div class="map-marker" style="left:18%;top:25%;" onclick="showRegionInfo('america')">
-                  <div class="marker-tooltip">America</div>
-                </div>
-                <div class="map-marker" style="left:48%;top:20%;" onclick="showRegionInfo('europe')">
-                  <div class="marker-tooltip">Europe</div>
-                </div>
-                <div class="map-marker" style="left:50%;top:40%;" onclick="showRegionInfo('africa')">
-                  <div class="marker-tooltip">Africa</div>
-                </div>
-                <div class="map-marker" style="left:75%;top:28%;" onclick="showRegionInfo('asia')">
-                  <div class="marker-tooltip">Asia</div>
-                </div>
-                <div class="map-marker" style="left:85%;top:65%;" onclick="showRegionInfo('oceania')">
-                  <div class="marker-tooltip">Oceania</div>
-                </div>
-              </div>
-
-
-
             </div>
-          </div>
+        </section>
 
-          <div class="cta-buttons">
-            <a href="malaysia.html" class="btn btn-large btn-ghost">Open Malaysia States</a>
-          </div>
-        </div>
-      </div>
-    </section>
+        <!-- ===================== MALAYSIA STATES MAP (embedded, same page) ===================== -->
+        <section id="malaysia-map" class="page-section" style="display:none">
+            <div id="msia-wrap">
+                <div id="msia-head">
+                    <h2>🇲🇾 Malaysia — States & Capitals</h2>
+                    <button class="btn" type="button" onclick="backToWorld()">← Back to World Map</button>
+                </div>
 
-    <!-- ===================== MALAYSIA STATES MAP (embedded, same page) ===================== -->
-    <section id="malaysia-map" class="page-section" style="display:none">
-      <div id="msia-wrap">
-        <div id="msia-head">
-          <h2>🇲🇾 Malaysia — States & Capitals</h2>
-          <button class="btn" type="button" onclick="backToWorld()">← Back to World Map</button>
-        </div>
+                <div id="msia-states-container">
+                    <h3
+                        style="margin:20px 0 16px; text-align:center; font-family: 'Playfair Display', serif; color: var(--color2, #1c2f20);">
+                        Malaysian States & Federal Territories</h3>
+                    <div id="msia-states" class="state-list"></div>
+                </div>
+            </div>
+        </section>
+    </main>
 
-        <div id="msia-states-container">
-          <h3 style="margin:20px 0 16px; text-align:center; font-family: 'Playfair Display', serif; color: var(--color2, #1c2f20);">Malaysian States & Federal Territories</h3>
-          <div id="msia-states" class="state-list"></div>
-        </div>
-      </div>
-    </section>
-  </main>
-
-  <!-- Scripts -->
+    <!-- Scripts -->
 
     <!-- ===================== Region Content Sections ===================== -->
     <section id="america-content" class="page-section region-content" style="display:none;">
@@ -168,7 +260,7 @@
             </div>
             <h3>Featured Video</h3>
             <div class="video-container">
-              <iframe src="https://www.youtube.com/embed/eYDydQHBmKI" frameborder="0" allowfullscreen></iframe>
+                <iframe src="https://www.youtube.com/embed/eYDydQHBmKI" frameborder="0" allowfullscreen></iframe>
             </div>
         </div>
     </section>
@@ -178,7 +270,7 @@
             <h2>European Street Food</h2>
             <div class="food-gallery">
                 <div class="food-item">
-                    <img src="iamges/European Street Food1.jpg" alt="European Street Food 1">
+                    <img src="images/European Street Food1.jpg" alt="European Street Food 1">
                     <p>European Street Delicacies</p>
                 </div>
                 <div class="food-item">
@@ -188,7 +280,7 @@
             </div>
             <h3>Featured Video</h3>
             <div class="video-container">
-              <iframe src="https://www.youtube.com/embed/IYTQLrT4yS8" frameborder="0" allowfullscreen></iframe>
+                <iframe src="https://www.youtube.com/embed/IYTQLrT4yS8" frameborder="0" allowfullscreen></iframe>
             </div>
         </div>
     </section>
@@ -208,7 +300,7 @@
             </div>
             <h3>Featured Video</h3>
             <div class="video-container">
-              <iframe src="https://www.youtube.com/embed/nLW_nN6qWi4" frameborder="0" allowfullscreen></iframe>
+                <iframe src="https://www.youtube.com/embed/nLW_nN6qWi4" frameborder="0" allowfullscreen></iframe>
             </div>
         </div>
     </section>
@@ -228,7 +320,7 @@
             </div>
             <h3>Featured Video</h3>
             <div class="video-container">
-              <iframe src="https://www.youtube.com/embed/NE5PZYxFHrA" frameborder="0" allowfullscreen></iframe>
+                <iframe src="https://www.youtube.com/embed/NE5PZYxFHrA" frameborder="0" allowfullscreen></iframe>
             </div>
         </div>
     </section>
@@ -248,203 +340,11 @@
             </div>
             <h3>Featured Video</h3>
             <div class="video-container">
-              <iframe src="https://www.youtube.com/embed/yOvIiI1ogx0" frameborder="0" allowfullscreen></iframe>
+                <iframe src="https://www.youtube.com/embed/yOvIiI1ogx0" frameborder="0" allowfullscreen></iframe>
             </div>
         </div>
     </section>
 
-    <section id="malaysia-content" class="page-section region-content" style="display:none;">
-        <div class="container">
-            <h2>Malaysian Street Food</h2>
-            <p class="region-intro">Malaysia is a melting pot of cultures, offering an incredible diversity of street food that reflects its Malay, Chinese, Indian, and indigenous influences.</p>
-            <div class="food-gallery">
-                <div class="food-item">
-                    <img src="images/kl_food1.jpg" alt="Nasi Lemak">
-                    <p>Nasi Lemak - Malaysia's National Dish</p>
-                </div>
-                <div class="food-item">
-                    <img src="images/penang_food1.jpg" alt="Char Kway Teow">
-                    <p>Char Kway Teow - Penang's Famous Stir-fried Noodles</p>
-                </div>
-                <div class="food-item">
-                    <img src="images/johor_food1.jpg" alt="Laksa Johor">
-                    <p>Laksa Johor - Southern Malaysia's Specialty</p>
-                </div>
-                <div class="food-item">
-                    <img src="images/sarawak_food1.jpg" alt="Sarawak Laksa">
-                    <p>Sarawak Laksa - East Malaysia's Pride</p>
-                </div>
-            </div>
-            <h3>Featured Video</h3>
-            <div class="video-container">
-              <iframe src="https://www.youtube.com/embed/dQw4w9WgXcQ" frameborder="0" allowfullscreen></iframe>
-            </div>
-
-            <div class="explore-states" style="margin-top: 40px; text-align: center;">
-                <h3>Explore Malaysian States</h3>
-                <p>Discover the unique street food culture of each Malaysian state and federal territory.</p>
-                <button class="btn btn-large btn-primary" onclick="showMalaysiaMap()">View States & Territories</button>
-            </div>
-        </div>
-    </section>
-
-    <!-- ===================== MALAYSIA STATE CONTENT SECTIONS ===================== -->
-
-    <!-- Johor State Content -->
-    <section id="johor-content" class="page-section state-content" style="display:none;">
-        <div class="container">
-            <h2>🇲🇾 Johor Street Food</h2>
-            <p class="state-intro">Johor, the southern gateway to Malaysia, offers a rich blend of Malay, Chinese, and Indian street food influences.</p>
-            <div class="food-gallery">
-                <div class="food-item">
-                    <img src="images/johor_food1.jpg" alt="Laksa Johor">
-                    <p>Laksa Johor</p>
-                </div>
-                <div class="food-item">
-                    <img src="images/johor_food2.jpg" alt="Mee Rebus">
-                    <p>Mee Rebus</p>
-                </div>
-                <div class="food-item">
-                    <img src="images/johor_food1.jpg" alt="Otak-Otak">
-                    <p>Otak-Otak</p>
-                </div>
-            </div>
-            <h3>Featured Video</h3>
-            <div class="video-container">
-              <iframe src="https://www.youtube.com/embed/dQw4w9WgXcQ" frameborder="0" allowfullscreen></iframe>
-            </div>
-        </div>
-    </section>
-
-    <!-- Penang State Content -->
-    <section id="penang-content" class="page-section state-content" style="display:none;">
-        <div class="container">
-            <h2>🇲🇾 Penang Street Food</h2>
-            <p class="state-intro">Penang is renowned as Malaysia's food capital, famous for its diverse and flavorful street food scene.</p>
-            <div class="food-gallery">
-                <div class="food-item">
-                    <img src="images/penang_food1.jpg" alt="Char Kway Teow">
-                    <p>Char Kway Teow</p>
-                </div>
-                <div class="food-item">
-                    <img src="images/penang_food2.jpg" alt="Assam Laksa">
-                    <p>Assam Laksa</p>
-                </div>
-                <div class="food-item">
-                    <img src="images/penang_food1.jpg" alt="Cendol">
-                    <p>Cendol</p>
-                </div>
-            </div>
-            <h3>Featured Video</h3>
-            <div class="video-container">
-              <iframe src="https://www.youtube.com/embed/dQw4w9WgXcQ" frameborder="0" allowfullscreen></iframe>
-            </div>
-        </div>
-    </section>
-
-    <!-- Kuala Lumpur Content -->
-    <section id="kuala-lumpur-content" class="page-section state-content" style="display:none;">
-        <div class="container">
-            <h2>🇲🇾 Kuala Lumpur Street Food</h2>
-            <p class="state-intro">Malaysia's capital city offers an incredible variety of street food from all cultures and regions.</p>
-            <div class="food-gallery">
-                <div class="food-item">
-                    <img src="images/kl_food1.jpg" alt="Nasi Lemak">
-                    <p>Nasi Lemak</p>
-                </div>
-                <div class="food-item">
-                    <img src="images/kl_food2.jpg" alt="Satay">
-                    <p>Satay</p>
-                </div>
-                <div class="food-item">
-                    <img src="images/kl_food1.jpg" alt="Roti Canai">
-                    <p>Roti Canai</p>
-                </div>
-            </div>
-            <h3>Featured Video</h3>
-            <div class="video-container">
-              <iframe src="https://www.youtube.com/embed/dQw4w9WgXcQ" frameborder="0" allowfullscreen></iframe>
-            </div>
-        </div>
-    </section>
-
-    <!-- Sabah State Content -->
-    <section id="sabah-content" class="page-section state-content" style="display:none;">
-        <div class="container">
-            <h2>🇲🇾 Sabah Street Food</h2>
-            <p class="state-intro">Sabah, in East Malaysia, offers unique indigenous and seafood-based street food specialties.</p>
-            <div class="food-gallery">
-                <div class="food-item">
-                    <img src="images/sabah_food1.jpg" alt="Hinava">
-                    <p>Hinava (Raw Fish Salad)</p>
-                </div>
-                <div class="food-item">
-                    <img src="images/sabah_food2.jpg" alt="Tuaran Mee">
-                    <p>Tuaran Mee</p>
-                </div>
-                <div class="food-item">
-                    <img src="images/sabah_food1.jpg" alt="Ambuyat">
-                    <p>Ambuyat</p>
-                </div>
-            </div>
-            <h3>Featured Video</h3>
-            <div class="video-container">
-              <iframe src="https://www.youtube.com/embed/dQw4w9WgXcQ" frameborder="0" allowfullscreen></iframe>
-            </div>
-        </div>
-    </section>
-
-    <!-- Sarawak State Content -->
-    <section id="sarawak-content" class="page-section state-content" style="display:none;">
-        <div class="container">
-            <h2>🇲🇾 Sarawak Street Food</h2>
-            <p class="state-intro">Sarawak is famous for its unique noodle dishes and indigenous Dayak cuisine influences.</p>
-            <div class="food-gallery">
-                <div class="food-item">
-                    <img src="images/sarawak_food1.jpg" alt="Sarawak Laksa">
-                    <p>Sarawak Laksa</p>
-                </div>
-                <div class="food-item">
-                    <img src="images/sarawak_food2.jpg" alt="Kolo Mee">
-                    <p>Kolo Mee</p>
-                </div>
-                <div class="food-item">
-                    <img src="images/sarawak_food1.jpg" alt="Midin">
-                    <p>Midin (Jungle Fern)</p>
-                </div>
-            </div>
-            <h3>Featured Video</h3>
-            <div class="video-container">
-              <iframe src="https://www.youtube.com/embed/dQw4w9WgXcQ" frameborder="0" allowfullscreen></iframe>
-            </div>
-        </div>
-    </section>
-
-    <!-- Malacca State Content -->
-    <section id="malacca-content" class="page-section state-content" style="display:none;">
-        <div class="container">
-            <h2>🇲🇾 Malacca Street Food</h2>
-            <p class="state-intro">Historic Malacca offers a unique blend of Peranakan, Portuguese, and traditional Malay flavors.</p>
-            <div class="food-gallery">
-                <div class="food-item">
-                    <img src="images/malacca_food1.jpg" alt="Chicken Rice Ball">
-                    <p>Chicken Rice Ball</p>
-                </div>
-                <div class="food-item">
-                    <img src="images/malacca_food2.jpg" alt="Nyonya Laksa">
-                    <p>Nyonya Laksa</p>
-                </div>
-                <div class="food-item">
-                    <img src="images/malacca_food1.jpg" alt="Cendol">
-                    <p>Cendol</p>
-                </div>
-            </div>
-            <h3>Featured Video</h3>
-            <div class="video-container">
-              <iframe src="https://www.youtube.com/embed/dQw4w9WgXcQ" frameborder="0" allowfullscreen></iframe>
-            </div>
-        </div>
-    </section>
 
     <footer>
         <div class="footer-container">
@@ -481,6 +381,7 @@
             <p>&copy; 2025 Street Food Explorer. All rights reserved.</p>
         </div>
     </footer>
-  <script src="js/page6.js"></script>
+    <script src="js/page6.js"></script>
 </body>
+
 </html>
