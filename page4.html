@@ -16,7 +16,7 @@
     /* ======= 食物卡片分享按钮 ======= */
     .share-icons {
       display: flex;
-      justify-content: flex-start; /* 靠左 */
+      justify-content: flex-start;
       align-items: center;
       margin-top: 6px;
       gap: 6px;
@@ -34,26 +34,82 @@
     }
 
     .share-icons i {
-      font-size: 14px; /* icon 更小 */
+      font-size: 14px;
       color: #fff;
       pointer-events: none;
     }
 
-    /* hover 时彩色效果 */
     .share-icons a:nth-child(1):hover {
-      background: #1877f2; /* Facebook 蓝 */
+      background: #1877f2;
     }
 
     .share-icons a:nth-child(2):hover {
-      background: #1da1f2; /* Twitter 蓝 */
+      background: #1da1f2;
     }
 
     .share-icons a:nth-child(3):hover {
-      background: #25d366; /* WhatsApp 绿 */
+      background: #25d366;
     }
 
     .share-icons a:hover {
       transform: scale(1.2);
+    }
+
+    /* ======= Modal 样式 ======= */
+    .modal {
+      display: none;
+      position: fixed;
+      z-index: 1000;
+      left: 0;
+      top: 0;
+      width: 100%;
+      height: 100%;
+      overflow-y: auto;
+      background-color: rgba(0, 0, 0, 0.7);
+    }
+
+    .modal-content {
+      background: #fff;
+      margin: 5% auto;
+      padding: 20px;
+      width: 80%;
+      max-width: 900px;
+      border-radius: 10px;
+      position: relative;
+    }
+
+    .modal-close {
+      position: absolute;
+      top: 10px;
+      right: 15px;
+      font-size: 24px;
+      cursor: pointer;
+    }
+
+    .nutrition-box {
+      display: flex;
+      gap: 20px;
+      margin-top: 10px;
+    }
+
+    .nutrition-box div {
+      background: #f1f1f1;
+      padding: 10px;
+      border-radius: 8px;
+      flex: 1;
+      text-align: center;
+    }
+
+    .recommend-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+      gap: 10px;
+      margin-top: 15px;
+    }
+
+    .recommend-card img {
+      width: 100%;
+      border-radius: 8px;
     }
   </style>
 </head>
@@ -75,15 +131,13 @@
     </nav>
   </header>
 
+  <!-- banner -->
   <div class="part2">
     <div class="banner">
-      <!-- 背景轮播 -->
       <div class="banner-slides">
         <img src="images/p4cover1.jpg" alt="Slide 1">
         <img src="images/p4cover2.jpg" alt="Slide 2">
       </div>
-
-      <!-- 保持不变的文字 -->
       <div class="hero-content">
         <h1>Welcome to World Street Food</h1>
         <p>Embark on a journey of taste and culture with flavors from every corner of the globe.</p>
@@ -91,13 +145,10 @@
     </div>
   </div>
 
+  <!-- 搜索 & 筛选 -->
   <div class="top-nav">
     <button id="menu-toggle" class="menu-btn">
-      <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-funnel-fill"
-        viewBox="0 0 16 16">
-        <path
-          d="M1.5 1.5A.5.5 0 0 1 2 1h12a.5.5 0 0 1 .5.5v2a.5.5 0 0 1-.128.334L10 8.692V13.5a.5.5 0 0 1-.342.474l-3 1A.5.5 0 0 1 6 14.5V8.692L1.628 3.834A.5.5 0 0 1 1.5 3.5z" />
-      </svg>
+      <i class="bi bi-funnel-fill"></i>
     </button>
     <div class="search-bar">
       <input type="text" id="search-input" placeholder="Search food...">
@@ -105,9 +156,7 @@
   </div>
 
   <section class="section1">
-    <!-- 页面主体 -->
     <div class="page-container">
-      <!-- 左侧筛选栏 -->
       <div class="filter-panel">
         <h4>Country</h4>
         <select id="country-select"></select>
@@ -119,48 +168,32 @@
         <select id="ingredient-select"></select>
       </div>
 
-      <!-- 右侧内容 -->
       <div class="content-area">
         <div id="food-container" class="food-grid"></div>
       </div>
     </div>
   </section>
 
-  <!-- 页脚 -->
-  <footer>
-    <div class="footer-container">
-      <div class="footer-section">
-        <h3>Street Food Explorer</h3>
-        <p>Your guide to the world's most delicious street food and their cultural stories.</p>
+  <!-- ======= Modal 弹窗 ======= -->
+  <div id="foodModal" class="modal">
+    <div class="modal-content">
+      <span class="modal-close">&times;</span>
+      <h2 id="modal-title"></h2>
+      <img id="modal-img" src="" alt="" style="width:100%; border-radius:10px;">
+      <p id="modal-instructions"></p>
+
+      <h3>Ingredients</h3>
+      <ul id="modal-ingredients"></ul>
+
+      <h3>Nutrition Info</h3>
+      <div class="nutrition-box" id="modal-nutrition">
+        <p>Loading nutrition data...</p>
       </div>
-      <div class="footer-section">
-        <h3>Quick Links</h3>
-        <ul class="footer-links">
-          <li><a href="page1.html">Home</a></li>
-          <li><a href="page2.html">About us</a></li>
-          <li><a href="page3.html">Malaysia</a></li>
-          <li><a href="page4.html">Global</a></li>
-          <li><a href="page5.html">Cultural Stories</a></li>
-          <li><a href="page6.html">Maps</a></li>
-          <li><a href="page7.html">Review</a></li>
-          <li><a href="page8.html">Contact us</a></li>
-        </ul>
-      </div>
-      <div class="footer-section">
-        <h3>Follow Us</h3>
-        <p>Stay updated with our latest discoveries and recipes.</p>
-        <div class="social-icons">
-          <a href="https://www.facebook.com/"><i class="fab fa-facebook-f"></i></a>
-          <a href="https://www.instagram.com/"><i class="fab fa-instagram"></i></a>
-          <a href="https://twitter.com/"><i class="fab fa-twitter"></i></a>
-          <a href="https://www.youtube.com/channel/"><i class="fab fa-youtube"></i></a>
-        </div>
-      </div>
+
+      <h3>Recommended</h3>
+      <div class="recommend-grid" id="modal-recommend"></div>
     </div>
-    <div class="copyright">
-      <p>&copy; 2025 Street Food Explorer. All rights reserved.</p>
-    </div>
-  </footer>
+  </div>
 
   <!-- 脚本 -->
   <script>
@@ -173,7 +206,7 @@
 
       let currentMeals = [];
 
-      // 加载国家列表
+      // ======= 初始化下拉选项 =======
       $.get("https://www.themealdb.com/api/json/v1/1/list.php?a=list", function (data) {
         if (data.meals) {
           $countrySelect.append(`<option value="">All</option>`);
@@ -183,7 +216,6 @@
         }
       });
 
-      // 加载分类列表
       $.get("https://www.themealdb.com/api/json/v1/1/list.php?c=list", function (data) {
         if (data.meals) {
           $categorySelect.append(`<option value="">All</option>`);
@@ -193,7 +225,6 @@
         }
       });
 
-      // 加载 ingredient 列表
       $.get("https://www.themealdb.com/api/json/v1/1/list.php?i=list", function (data) {
         if (data.meals) {
           $ingredientSelect.append(`<option value="">All</option>`);
@@ -203,7 +234,7 @@
         }
       });
 
-      // 获取并渲染食物
+      // ======= 拉取并显示食物 =======
       function fetchFoods() {
         $foodContainer.html("<p>Loading...</p>");
         const country = $countrySelect.val();
@@ -249,40 +280,83 @@
           .forEach(item => {
             $.get(`https://www.themealdb.com/api/json/v1/1/lookup.php?i=${item.idMeal}`, function (detailData) {
               const detail = detailData.meals[0];
-              const shareText = encodeURIComponent(detail.strMeal);
-              const shareUrl = encodeURIComponent(detail.strMealThumb);
-
               const card = $(`
-                <div class="food-card">
+                <div class="food-card" style="cursor:pointer;">
                   <div class="food-img-wrapper">
                     <img src="${detail.strMealThumb}" alt="${detail.strMeal}">
                   </div>
                   <div class="food-content">
-                    <div class="food-header">
-                      <h4>${detail.strMeal}</h4>
-                    </div>
+                    <h4>${detail.strMeal}</h4>
                     <p><strong>Category:</strong> ${detail.strCategory}</p>
                     <p><strong>Area:</strong> ${detail.strArea}</p>
-
-                    <!-- 分享按钮 -->
-                    <div class="share-icons">
-                      <a href="https://www.facebook.com/sharer/sharer.php?u=${shareUrl}" target="_blank">
-                        <i class="fab fa-facebook-f"></i>
-                      </a>
-                      <a href="https://twitter.com/intent/tweet?text=${shareText}&url=${shareUrl}" target="_blank">
-                        <i class="fab fa-twitter"></i>
-                      </a>
-                      <a href="https://wa.me/?text=${shareText} ${shareUrl}" target="_blank">
-                        <i class="fab fa-whatsapp"></i>
-                      </a>
-                    </div>
                   </div>
                 </div>
               `);
+
+              // 点击打开详情
+              card.click(() => showFoodDetail(detail));
               $foodContainer.append(card);
             });
           });
       }
+
+      // ======= 显示 Modal 详情 =======
+      function showFoodDetail(detail) {
+        $("#modal-title").text(detail.strMeal);
+        $("#modal-img").attr("src", detail.strMealThumb);
+        $("#modal-instructions").text(detail.strInstructions);
+
+        // 食材清单
+        const $ingredients = $("#modal-ingredients");
+        $ingredients.empty();
+        for (let i = 1; i <= 20; i++) {
+          const ing = detail[`strIngredient${i}`];
+          const measure = detail[`strMeasure${i}`];
+          if (ing && ing.trim() !== "") {
+            $ingredients.append(`<li>${ing} - ${measure}</li>`);
+          }
+        }
+
+        // 营养信息 (Edamam API)
+        const query = encodeURIComponent(detail.strMeal);
+        const app_id = "YOUR_APP_ID";
+        const app_key = "YOUR_APP_KEY";
+        $("#modal-nutrition").html("<p>Loading nutrition data...</p>");
+
+        $.get(`https://api.edamam.com/api/nutrition-data?app_id=${app_id}&app_key=${app_key}&ingr=${query}`, function (nutri) {
+          if (nutri.calories) {
+            $("#modal-nutrition").html(`
+              <div>Calories<br><strong>${nutri.calories}</strong></div>
+              <div>Protein<br><strong>${nutri.totalNutrients.PROCNT?.quantity.toFixed(1)} g</strong></div>
+              <div>Fat<br><strong>${nutri.totalNutrients.FAT?.quantity.toFixed(1)} g</strong></div>
+              <div>Carbs<br><strong>${nutri.totalNutrients.CHOCDF?.quantity.toFixed(1)} g</strong></div>
+            `);
+          } else {
+            $("#modal-nutrition").html("<p>No nutrition data available.</p>");
+          }
+        });
+
+        // 推荐食物
+        $("#modal-recommend").html("<p>Loading recommendations...</p>");
+        $.get(`https://www.themealdb.com/api/json/v1/1/filter.php?c=${detail.strCategory}`, function (recData) {
+          if (recData.meals) {
+            const recs = recData.meals.filter(m => m.idMeal !== detail.idMeal).slice(0, 4);
+            $("#modal-recommend").empty();
+            recs.forEach(rec => {
+              $("#modal-recommend").append(`
+                <div class="recommend-card">
+                  <img src="${rec.strMealThumb}" alt="${rec.strMeal}">
+                  <p>${rec.strMeal}</p>
+                </div>
+              `);
+            });
+          }
+        });
+
+        $("#foodModal").fadeIn();
+      }
+
+      $(".modal-close").click(() => $("#foodModal").fadeOut());
 
       $countrySelect.change(fetchFoods);
       $categorySelect.change(fetchFoods);
@@ -294,7 +368,5 @@
   </script>
 
   <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.6.0/dist/confetti.browser.min.js"></script>
-  <script src="js/page4.js"></script>
 </body>
-
 </html>
