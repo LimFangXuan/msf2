@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Malaysia Street Food - States Explorer</title>
+
+  <!-- Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;700;800&family=Playfair+Display:wght@400;700&display=swap" rel="stylesheet">
+
+  <!-- Styles -->
+  <link rel="stylesheet" href="css/colors.css">
+  <link rel="stylesheet" href="css/common.css">
+  <link rel="stylesheet" href="css/page6.css">
+
+  <style>
+    /* Additional styles for state content layout */
+    .state-content-section { display: none; padding: 40px 0; border-top: 1px solid #ddd; }
+    .food-gallery { display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 20px; margin-bottom: 40px; }
+    .food-item { background: #fff; border-radius: 12px; overflow: hidden; box-shadow: 0 4px 15px rgba(0,0,0,.1); transition: transform .3s ease; }
+    .food-item:hover { transform: translateY(-5px); }
+    .food-item img { width: 100%; height: 200px; object-fit: cover; }
+    .food-item p { padding: 15px; text-align: center; font-weight: 600; color: #333; }
+    .video-section { text-align: center; }
+    .video-section h2 { font-family: 'Playfair Display', serif; margin-bottom: 20px; }
+    .video-container { position: relative; padding-bottom: 56.25%; height: 0; overflow: hidden; max-width: 100%; background: #000; border-radius: 12px; box-shadow: 0 4px 15px rgba(0,0,0,.1); }
+    .video-container iframe { position: absolute; top: 0; left: 0; width: 100%; height: 100%; }
+    .state-list { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 20px; }
+    .chip { background: #fff; border: 1px solid rgba(0,0,0,.1); border-radius: 12px; padding: 20px; cursor: pointer; transition: all .3s ease; text-align: left; box-shadow: 0 2px 8px rgba(0,0,0,.05); }
+    .chip:hover { transform: translateY(-4px); box-shadow: 0 6px 20px rgba(0,0,0,.12); }
+    .chip strong { font-family: 'Playfair Display', serif; font-size: 1.5rem; color: var(--color2, #1c2f20); display: block; margin-bottom: 8px; }
+    .chip small { font-size: 1rem; color: #666; }
+  </style>
+</head>
+<body>
+  <a class="skip-link" href="#main">Skip to content</a>
+
+  <!-- ===== Header ===== -->
+  <header>
+      <nav class="glass-nav">
+        <ul>
+            <li><a href="page1.html" class="active">Home</a></li>
+            <li><a href="page2.html">About us</a></li>
+            <li><a href="page3.html">Malaysia</a></li>
+            <li><a href="page4.html">Global</a></li>
+            <li><a href="page5.html">Cultural Stories</a></li>
+            <li><a href="page6.html">Maps</a></li>
+            <li><a href="page7.html">Review</a></li>
+            <li><a href="page8.html">Contact us</a></li>
+        </ul>
+        <a href="#" class="login-btn" id="loginBtn">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16" class="bi bi-person-circle">
+                <path d="M11 6a3 3 0 1 1-6 0 3 3 0 0 1 6 0" />
+                <path fill-rule="evenodd"
+                    d="M0 8a8 8 0 1 1 16 0A8 8 0 0 1 0 8m8-7a7 7 0 0 0-5.468 11.37C3.242 11.226 4.805 10 8 10s4.757 1.225 5.468 2.37A7 7 0 0 0 8 1" />
+            </svg>
+        </a>
+    </nav>
+  </header>
+
+<main id="main">
+    <div class="container" style="padding-top: 40px; padding-bottom: 40px;">
+        <div class="state-list-header" style="text-align: center; margin-bottom: 40px;">
+            <h1 style="font-family: 'Playfair Display', serif; font-size: 2.8rem;">Malaysian Street Food</h1>
+            <p>Select a state or federal territory to discover its unique street food culture.</p>
+        </div>
+        <a href="page6.html" class="btn" style="margin-top: 20px; display: inline-block;">← Back to World Map</a>
+        <div id="states-list" class="state-list"></div>
+    </div>
+
+    <!-- State Content Sections -->
+    <div id="state-content-wrapper"></div>
+</main>
+
+<script>
+    const malaysiaStates = [
+        { id: "johor", name: "Johor", capital: "Johor Bahru", video: "Vv--jcD85nU", intro: "Johor, the southern gateway to Malaysia, offers a unique culinary landscape influenced by its history and proximity to Singapore, featuring iconic dishes like Laksa Johor and Mee Rebus.", foods: [{img:"johor_food1.jpg", name:"Laksa Johor"}, {img:"johor_food2.jpg", name:"Mee Rebus"}, {img:"kacang-pool-3.jpg", name:"Kacang Pool"}, {img:"otak-otak.jpg", name:"Otak-Otak"}] },
+        { id: "kedah", name: "Kedah", capital: "Alor Setar", video: "KycQtJxaSCA", intro: "Known as the 'Rice Bowl of Malaysia,' Kedah's cuisine is heavily based on rice products, featuring savory and sweet dishes that are beloved throughout the country.", foods: [{img:"kedah_food1.jpg", name:"Nasi Ulam"}, {img:"kedah_food2.jpg", name:"Laksa Kedah"}, {img:"Gulai_Nangka.jpg", name:"Gulai Nangka"}, {img:"Pek_Nga.jpg", name:"Pek Nga"}] },
+        { id: "kelantan", name: "Kelantan", capital: "Kota Bharu", video: "CAo3l-5etN0", intro: "Kelantanese cuisine is known for its distinctively sweet and savory flavors, with popular dishes like Nasi Kerabu and Ayam Percik showcasing the state's rich culinary traditions.", foods: [{img:"nasi kerabu.jpg", name:"Nasi Kerabu"}, {img:"Ayam Percik.jpg", name:"Ayam Percik"}, {img:"Laksam.jpg", name:"Laksam"}, {img:"nasi tumpang.jpg", name:"Nasi Tumpang"}] },
+        { id: "kuala-lumpur", name: "Kuala Lumpur", capital: "Kuala Lumpur", video: "77tk7eaCVCE", intro: "As the vibrant capital, Kuala Lumpur is a melting pot of flavors, offering everything from traditional Malay dishes to Chinese and Indian street food in bustling areas like Jalan Alor.", foods: [{img:"kl_food1.jpg", name:"Hokkien Mee"}, {img:"kl_food2.jpg", name:"Satay"}, {img:"nasilemak.jpg", name:"Nasi Lemak"}, {img:"ikan bakar.jpg", name:"Ikan Bakar"}] },
+        { id: "malacca", name: "Malacca", capital: "Malacca City", video: "A5JZHAoLzb4", intro: "The historic state of Malacca offers a rich Peranakan (Baba-Nyonya) culinary heritage, with unique dishes like Chicken Rice Balls and Nyonya Laksa.", foods: [{img:"malacca_food1.jpg", name:"Chicken Rice Balls"}, {img:"malacca_food2.jpg", name:"Nyonya Laksa"}, {img:"cendol.jpg", name:"Cendol"}, {img:"satay celup.jpg", name:"Satay Celup"}] },
+        { id: "negeri-sembilan", name: "Negeri Sembilan", capital: "Seremban", video: "_hCVd9yV2oM", intro: "Famous for its Minangkabau-influenced cuisine, Negeri Sembilan is known for spicy and savory dishes, particularly 'masak lemak cili api,' a rich, coconut-based curry.", foods: [{img:"Masak Lemak Cili Api.jpg", name:"Masak Lemak Cili Api"}, {img:"Siew Pau.jpg", name:"Siew Pau"}, {img:"Rendang Minang.jpg", name:"Rendang Minang"}, {img:"Apam Johol.jpg", name:"Apam Johol"}] },
+        { id: "pahang", name: "Pahang", capital: "Kuantan", video: "sWtRPKb4tSQ", intro: "The largest state in Peninsular Malaysia, Pahang offers a diverse culinary landscape with specialties like Patin Tempoyak and traditional Malay dishes.", foods: [{img:"pahang_food1.jpg", name:"Patin Tempoyak"}, {img:"pahang_food2.jpg", name:"Gulai Kawah"}, {img:"Keropok Lekor.jpg", name:"Keropok Lekor"}, {img:"Ikan Bakar_pahang.jpg", name:"Ikan Bakar"}] },
+        { id: "penang", name: "Penang", capital: "George Town", video: "iVsn8X5K7pw", intro: "Often hailed as the food capital of Malaysia, Penang is a paradise for food lovers, offering iconic dishes like Char Kway Teow, Assam Laksa, and Hokkien Mee.", foods: [{img:"penang_food1.jpg", name:"Char Kway Teow"}, {img:"penang_food2.jpg", name:"Assam Laksa"}, {img:"Hokkien Mee.jpg", name:"Hokkien Mee"}, {img:"Cendol_penang.jpg", name:"Cendol"}] },
+        { id: "perak", name: "Perak", capital: "Ipoh", video: "EYou7CsjHKc", intro: "Perak, particularly its capital Ipoh, is famous for its white coffee and noodle dishes like Hor Hee and Kai Si Hor Fun, drawing foodies from all over the country.", foods: [{img:"perak_food1.jpg", name:"Ipoh Hor Fun"}, {img:"perak_food2.jpg", name:"Nga Choi Kai"}, {img:"Salted Chicken.jpg", name:"Salted Chicken"}, {img:"White Coffee.jpg", name:"White Coffee"}] },
+        { id: "perlis", name: "Perlis", capital: "Kangar", video: "VsknE7A3K_4", intro: "As the smallest state in Malaysia, Perlis has a culinary scene influenced by its northern neighbors, offering unique local delights and a taste of traditional Malay village cuisine.", foods: [{img:"perlis_food1.jpg", name:"Ikan Bakar"}, {img:"perlis_food2.jpg", name:"Laksa Perlis"}, {img:"Harum Manis Mango.jpg", name:"Harum Manis Mango"}, {img:"Sira Pulut.jpg", name:"Sira Pulut"}] },
+        { id: "sabah", name: "Sabah", capital: "Kota Kinabalu", video: "35hkj9dZ2XE", intro: "Located on the island of Borneo, Sabah's cuisine is unique, with a strong emphasis on fresh seafood and indigenous ingredients, offering exotic dishes you won't find in the peninsula.", foods: [{img:"sabah_food1.jpg", name:"Hinava"}, {img:"sabah_food2.jpg", name:"Tuaran Mee"}, {img:"Sang Nyuk Mian.jpg", name:"Sang Nyuk Mian"}, {img:"Pinjaram.jpg", name:"Pinjaram"}] },
+        { id: "sarawak", name: "Sarawak", capital: "Kuching", video: "5oj6OQw546g", intro: "Home to the iconic Sarawak Laksa and Kolo Mee, Sarawak offers a distinct culinary experience with flavors and dishes that are unique to this large Bornean state.", foods: [{img:"sarawak_food1.jpg", name:"Sarawak Laksa"}, {img:"sarawak_food2.jpg", name:"Kolo Mee"}, {img:"Manok Pansuh.jpg", name:"Manok Pansuh"}, {img:"Kek-lapis-Sarawak1-1.jpg", name:"Kek Lapis"}] },
+        { id: "selangor", name: "Selangor", capital: "Shah Alam", video: "ZGKes--_V00", intro: "As Malaysia's most developed state surrounding Kuala Lumpur, Selangor offers a diverse range of street food, from bustling night markets to iconic local eateries.", foods: [{img:"selangor_food1.jpg", name:"Bak Kut Teh"}, {img:"selangor_food2.jpg", name:"Satay Kajang"}, {img:"Rojak.jpg", name:"Rojak"}, {img:"Cendol_selangor.jpg", name:"Cendol"}] }
+    ];
+
+    function showStateContent(stateId) {
+        const wrapper = document.getElementById('state-content-wrapper');
+        const state = malaysiaStates.find(s => s.id === stateId);
+        if (!state) return;
+
+        // Hide any currently shown content
+        const allContent = wrapper.querySelectorAll('.state-content-section');
+        allContent.forEach(c => c.style.display = 'none');
+
+        // Check if content is already generated
+        let stateSection = document.getElementById(`${stateId}-content`);
+        if (!stateSection) {
+            stateSection = document.createElement('section');
+            stateSection.id = `${stateId}-content`;
+            stateSection.className = 'state-content-section';
+
+            let foodItems = state.foods.map(food => `
+                <div class="food-item">
+                    <img src="../images/${food.img}" alt="${food.name}">
+                    <p>${food.name}</p>
+                </div>`).join('');
+
+            stateSection.innerHTML = `
+                <div class="container">
+                    <div class="state-header" style="text-align: center; margin-bottom: 30px;">
+                        <h1 style="font-family: 'Playfair Display', serif;">${state.name} Street Food</h1>
+                    </div>
+                    <p style="text-align: center; max-width: 800px; margin: 0 auto 40px;">${state.intro}</p>
+                    <div class="food-gallery">${foodItems}</div>
+                    <div class="video-section">
+                        <h2>Featured Video</h2>
+                        <div class="video-container">
+                            <iframe src="https://www.youtube.com/embed/${state.video}" frameborder="0" allowfullscreen></iframe>
+                        </div>
+                    </div>
+                </div>`;
+            wrapper.appendChild(stateSection);
+        }
+
+        stateSection.style.display = 'block';
+        stateSection.scrollIntoView({ behavior: 'smooth', block: 'start' });
+    }
+
+    document.addEventListener('DOMContentLoaded', () => {
+        const statesList = document.getElementById('states-list');
+        malaysiaStates.sort((a, b) => a.name.localeCompare(b.name)).forEach(state => {
+            const stateChip = document.createElement('div');
+            stateChip.className = 'chip';
+            stateChip.innerHTML = `<strong>${state.name}</strong><br><small>Capital: ${state.capital}</small>`;
+            stateChip.onclick = () => showStateContent(state.id);
+            statesList.appendChild(stateChip);
+        });
+    });
+
+    function toggleMenu() {
+        const menu = document.getElementById('main-nav');
+        menu.classList.toggle('active');
+    }
+</script>
+</body>
+</html>

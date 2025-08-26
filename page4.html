@@ -1,0 +1,300 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <title>World Street Food</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+  <link rel="stylesheet" href="css/colors.css">
+  <link rel="stylesheet" href="css/common.css">
+  <link rel="stylesheet" href="css/page4.css">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.css">
+  <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+
+  <style>
+    /* ======= 食物卡片分享按钮 ======= */
+    .share-icons {
+      display: flex;
+      justify-content: flex-start; /* 靠左 */
+      align-items: center;
+      margin-top: 6px;
+      gap: 6px;
+    }
+
+    .share-icons a {
+      width: 32px;
+      height: 32px;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background: #a7c9a6;
+      transition: 0.25s;
+    }
+
+    .share-icons i {
+      font-size: 14px; /* icon 更小 */
+      color: #fff;
+      pointer-events: none;
+    }
+
+    /* hover 时彩色效果 */
+    .share-icons a:nth-child(1):hover {
+      background: #1877f2; /* Facebook 蓝 */
+    }
+
+    .share-icons a:nth-child(2):hover {
+      background: #1da1f2; /* Twitter 蓝 */
+    }
+
+    .share-icons a:nth-child(3):hover {
+      background: #25d366; /* WhatsApp 绿 */
+    }
+
+    .share-icons a:hover {
+      transform: scale(1.2);
+    }
+  </style>
+</head>
+
+<body>
+  <!-- 顶部导航 -->
+  <header>
+    <nav class="glass-nav">
+      <ul>
+        <li><a href="page1.html" class="active">Home</a></li>
+        <li><a href="page2.html">About us</a></li>
+        <li><a href="page3.html">Malaysia</a></li>
+        <li><a href="page4.html">World</a></li>
+        <li><a href="page5.html">Cultural Stories</a></li>
+        <li><a href="page6.html">Maps</a></li>
+        <li><a href="page7.html">Review</a></li>
+        <li><a href="page8.html">Contact us</a></li>
+      </ul>
+    </nav>
+  </header>
+
+  <div class="part2">
+    <div class="banner">
+      <!-- 背景轮播 -->
+      <div class="banner-slides">
+        <img src="../images/p4cover1.jpg" alt="Slide 1">
+        <img src="../images/p4cover2.jpg" alt="Slide 2">
+      </div>
+
+      <!-- 保持不变的文字 -->
+      <div class="hero-content">
+        <h1>Welcome to World Street Food</h1>
+        <p>Embark on a journey of taste and culture with flavors from every corner of the globe.</p>
+      </div>
+    </div>
+  </div>
+
+  <div class="top-nav">
+    <button id="menu-toggle" class="menu-btn">
+      <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-funnel-fill"
+        viewBox="0 0 16 16">
+        <path
+          d="M1.5 1.5A.5.5 0 0 1 2 1h12a.5.5 0 0 1 .5.5v2a.5.5 0 0 1-.128.334L10 8.692V13.5a.5.5 0 0 1-.342.474l-3 1A.5.5 0 0 1 6 14.5V8.692L1.628 3.834A.5.5 0 0 1 1.5 3.5z" />
+      </svg>
+    </button>
+    <div class="search-bar">
+      <input type="text" id="search-input" placeholder="Search food...">
+    </div>
+  </div>
+
+  <section class="section1">
+    <!-- 页面主体 -->
+    <div class="page-container">
+      <!-- 左侧筛选栏 -->
+      <div class="filter-panel">
+        <h4>Country</h4>
+        <select id="country-select"></select>
+
+        <h4>Category</h4>
+        <select id="category-select"></select>
+
+        <h4>Ingredient</h4>
+        <select id="ingredient-select"></select>
+      </div>
+
+      <!-- 右侧内容 -->
+      <div class="content-area">
+        <div id="food-container" class="food-grid"></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 页脚 -->
+  <footer>
+    <div class="footer-container">
+      <div class="footer-section">
+        <h3>Street Food Explorer</h3>
+        <p>Your guide to the world's most delicious street food and their cultural stories.</p>
+      </div>
+      <div class="footer-section">
+        <h3>Quick Links</h3>
+        <ul class="footer-links">
+          <li><a href="page1.html">Home</a></li>
+          <li><a href="page2.html">About us</a></li>
+          <li><a href="page3.html">Malaysia</a></li>
+          <li><a href="page4.html">Global</a></li>
+          <li><a href="page5.html">Cultural Stories</a></li>
+          <li><a href="page6.html">Maps</a></li>
+          <li><a href="page7.html">Review</a></li>
+          <li><a href="page8.html">Contact us</a></li>
+        </ul>
+      </div>
+      <div class="footer-section">
+        <h3>Follow Us</h3>
+        <p>Stay updated with our latest discoveries and recipes.</p>
+        <div class="social-icons">
+          <a href="https://www.facebook.com/"><i class="fab fa-facebook-f"></i></a>
+          <a href="https://www.instagram.com/"><i class="fab fa-instagram"></i></a>
+          <a href="https://twitter.com/"><i class="fab fa-twitter"></i></a>
+          <a href="https://www.youtube.com/channel/"><i class="fab fa-youtube"></i></a>
+        </div>
+      </div>
+    </div>
+    <div class="copyright">
+      <p>&copy; 2025 Street Food Explorer. All rights reserved.</p>
+    </div>
+  </footer>
+
+  <!-- 脚本 -->
+  <script>
+    $(document).ready(function () {
+      const $countrySelect = $("#country-select");
+      const $categorySelect = $("#category-select");
+      const $ingredientSelect = $("#ingredient-select");
+      const $foodContainer = $("#food-container");
+      const $searchInput = $("#search-input");
+
+      let currentMeals = [];
+
+      // 加载国家列表
+      $.get("https://www.themealdb.com/api/json/v1/1/list.php?a=list", function (data) {
+        if (data.meals) {
+          $countrySelect.append(`<option value="">All</option>`);
+          data.meals.forEach(item => {
+            $countrySelect.append(`<option value="${item.strArea}">${item.strArea}</option>`);
+          });
+        }
+      });
+
+      // 加载分类列表
+      $.get("https://www.themealdb.com/api/json/v1/1/list.php?c=list", function (data) {
+        if (data.meals) {
+          $categorySelect.append(`<option value="">All</option>`);
+          data.meals.forEach(item => {
+            $categorySelect.append(`<option value="${item.strCategory}">${item.strCategory}</option>`);
+          });
+        }
+      });
+
+      // 加载 ingredient 列表
+      $.get("https://www.themealdb.com/api/json/v1/1/list.php?i=list", function (data) {
+        if (data.meals) {
+          $ingredientSelect.append(`<option value="">All</option>`);
+          data.meals.slice(0, 50).forEach(item => {
+            $ingredientSelect.append(`<option value="${item.strIngredient}">${item.strIngredient}</option>`);
+          });
+        }
+      });
+
+      // 获取并渲染食物
+      function fetchFoods() {
+        $foodContainer.html("<p>Loading...</p>");
+        const country = $countrySelect.val();
+        const category = $categorySelect.val();
+        const ingredient = $ingredientSelect.val();
+        const requests = [];
+
+        if (country) requests.push($.get(`https://www.themealdb.com/api/json/v1/1/filter.php?a=${country}`));
+        if (category) requests.push($.get(`https://www.themealdb.com/api/json/v1/1/filter.php?c=${category}`));
+        if (ingredient) requests.push($.get(`https://www.themealdb.com/api/json/v1/1/filter.php?i=${ingredient}`));
+
+        if (requests.length === 0) {
+          $.get("https://www.themealdb.com/api/json/v1/1/filter.php?a=American", handleMeals);
+        } else if (requests.length === 1) {
+          requests[0].done(handleMeals);
+        } else {
+          $.when(...requests).done(function (...responses) {
+            const mealsArrays = responses.map(r => r[0].meals || []);
+            let intersection = mealsArrays[0];
+            for (let i = 1; i < mealsArrays.length; i++) {
+              const ids = mealsArrays[i].map(m => m.idMeal);
+              intersection = intersection.filter(m => ids.includes(m.idMeal));
+            }
+            handleMeals({ meals: intersection });
+          });
+        }
+      }
+
+      function handleMeals(data) {
+        if (data.meals) {
+          currentMeals = data.meals;
+          renderFood();
+        } else {
+          $foodContainer.html("<p>No meals found.</p>");
+        }
+      }
+
+      function renderFood() {
+        const searchVal = $searchInput.val().toLowerCase();
+        $foodContainer.empty();
+        currentMeals
+          .filter(item => item.strMeal.toLowerCase().includes(searchVal))
+          .forEach(item => {
+            $.get(`https://www.themealdb.com/api/json/v1/1/lookup.php?i=${item.idMeal}`, function (detailData) {
+              const detail = detailData.meals[0];
+              const shareText = encodeURIComponent(detail.strMeal);
+              const shareUrl = encodeURIComponent(detail.strMealThumb);
+
+              const card = $(`
+                <div class="food-card">
+                  <div class="food-img-wrapper">
+                    <img src="${detail.strMealThumb}" alt="${detail.strMeal}">
+                  </div>
+                  <div class="food-content">
+                    <div class="food-header">
+                      <h4>${detail.strMeal}</h4>
+                    </div>
+                    <p><strong>Category:</strong> ${detail.strCategory}</p>
+                    <p><strong>Area:</strong> ${detail.strArea}</p>
+
+                    <!-- 分享按钮 -->
+                    <div class="share-icons">
+                      <a href="https://www.facebook.com/sharer/sharer.php?u=${shareUrl}" target="_blank">
+                        <i class="fab fa-facebook-f"></i>
+                      </a>
+                      <a href="https://twitter.com/intent/tweet?text=${shareText}&url=${shareUrl}" target="_blank">
+                        <i class="fab fa-twitter"></i>
+                      </a>
+                      <a href="https://wa.me/?text=${shareText} ${shareUrl}" target="_blank">
+                        <i class="fab fa-whatsapp"></i>
+                      </a>
+                    </div>
+                  </div>
+                </div>
+              `);
+              $foodContainer.append(card);
+            });
+          });
+      }
+
+      $countrySelect.change(fetchFoods);
+      $categorySelect.change(fetchFoods);
+      $ingredientSelect.change(fetchFoods);
+      $searchInput.on("input", renderFood);
+
+      fetchFoods();
+    });
+  </script>
+
+  <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.6.0/dist/confetti.browser.min.js"></script>
+  <script src="js/page4.js"></script>
+</body>
+
+</html>

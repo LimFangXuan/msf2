@@ -1,0 +1,256 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>About Us • Malaysia Street Food</title>
+
+  <!-- Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Playfair+Display:wght@400;700&display=swap" rel="stylesheet">
+
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.css">
+  <!-- Styles -->
+  <link rel="stylesheet" href="css/page2.css">
+  <link rel="stylesheet" href="css/common.css">
+  <link rel="stylesheet" href="css/colors.css">
+</head>
+<body>
+  <a class="skip-link" href="#main">Skip to content</a>
+
+  <header>
+      <nav class="glass-nav">
+            <ul>
+
+                <li><a href="page1.html">Home</a></li>
+                <li><a href="page2.html">About us</a></li>
+                <li><a href="page3.html">Malaysia</a></li>
+                <li><a href="page4.html">World</a></li>
+                <li><a href="page5.html">Cultural Stories</a></li>
+                <li><a href="page6.html">Maps</a></li>
+                <li><a href="page7.html">Review</a></li>
+                <li><a href="page8.html">Contact us</a></li>
+            </ul>
+
+            
+        </nav>
+  </header>
+
+  <main id="main">
+    <!-- Hero -->
+    <section class="hero">
+      <div class="container hero-grid">
+        <div class="hero-copy">
+          <h1>We tell street‑food stories—through design, code, and taste.</h1>
+          <p>From the morning nasi lemak stall to late‑night char kuey teow, we map flavors and makers, then craft user‑friendly experiences so people can find their next favorite bite.</p>
+
+        </div>
+        <div class="hero-visual"><img src="../images/char-koay-teow.jpg"></div>
+      </div>
+    </section>
+
+    <!-- Scope -->
+    <section id="scope" class="section section-pad scope-white">
+      <div class="container">
+        <header class="section-head">
+          <h2><span class="star-icon">⭐</span> Website Purpose</h2>
+          <p class="muted">Clear goals for visitors and how this site supports Malaysia's hawker culture.</p>
+        </header>
+        <div class="purpose-grid-new">
+          <article class="purpose-card-new">
+            <h3>Share the Diversity</h3>
+            <p>Showcase Malay, Chinese, Indian & indigenous influences.</p>
+            <p>Introduce famous dishes and their origin stories.</p>
+          </article>
+          <article class="purpose-card-new">
+            <h3>Guide Locals & Tourists</h3>
+            <p>Highlight must-try foods with photos and tips.</p>
+            <p>Point to popular spots and hawker areas.</p>
+          </article>
+          <article class="purpose-card-new">
+            <h3>Preserve Food Heritage</h3>
+            <p>Celebrate multi-generational family stalls.</p>
+            <p>Support small businesses with visibility.</p>
+          </article>
+          <article class="purpose-card-new">
+            <h3>Encourage Cultural Unity</h3>
+            <p>Show how food brings communities together.</p>
+            <p>Promote respect and appreciation across cultures.</p>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <!-- Team -->
+    <section id="team" class="section section-pad">
+      <div class="container">
+        <header class="section-head">
+          <h2>Meet Our Team</h2>
+          <div class="filters" role="group" aria-label="Filter team members by specialty">
+            <button class="pill is-active" data-filter="all" onclick="filterTeam('all', event)">All</button>
+            <button class="pill" data-filter="Member1" onclick="filterTeam('Member1', event)">Member1</button>
+            <button class="pill" data-filter="Member2" onclick="filterTeam('Member2', event)">Member2</button>
+            <button class="pill" data-filter="Member3" onclick="filterTeam('Member3', event)">Member3</button>
+            <button class="pill" data-filter="Member4" onclick="filterTeam('Member4', event)">Member4</button>
+          </div>
+        </header>
+        <div class="team-grid">
+          <article class="member" data-role="Member1">
+            <div class="avatar"><img src="../images/OOI.png" alt="Ooi Sze Shou"></div>
+            <h3>Lim Fang Xuan</h3>
+            <div class="role">Member 1</div>
+            <p class="bio">Students are responsible for "Malaysia Street Food" and "World Street Food"</p>
+          </article>
+          <article class="member" data-role="Member2">
+            <div class="avatar"><img src="../images/OOI.png" alt="Ooi Sze Shou"></div>
+            <h3>Liu Yi Qiu</h3>
+            <div class="role">Member 2</div>
+            <p class="bio">Students are responsible for "Home" and "Cultural Stories"</p>
+          </article>
+          <article class="member" data-role="Member3">
+            <div class="avatar"><img src="../images/OOI2.png" alt="Ooi Sze Shou"></div>
+            <h3>Ooi Sze Shou</h3>
+            <div class="role">Member 3</div>
+            <p class="bio">Students are responsible for "About us" and "Maps"</p>
+          </article>
+          <article class="member" data-role="Member4">
+            <div class="avatar"><img src="../images/OOI.png" alt="Ooi Sze Shou"></div>
+            <h3>Law Ying Yee</h3>
+            <div class="role">Member 4</div>
+            <p class="bio">Students are responsible for "Review" and "Contact us"</p>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <!-- 登录表单容器 -->
+    <div class="login-container" id="loginContainer">
+        <button class="close-btn" id="closeBtn">&times;</button>
+        <h2>Welcome</h2>
+        <div id="loginForm" class="login-form">
+            <div class="form-group">
+                <label for="name">Your Name</label>
+                <input type="text" id="name" required>
+            </div>
+            <div class="form-group">
+                <label for="email">Email</label>
+                <input type="email" id="email" required>
+            </div>
+            <div class="form-group">
+                <label for="password">Password</label>
+                <input type="password" id="password" required>
+            </div>
+            <div class="form-actions">
+                <button id="submitLogin">Sign In</button>
+            </div>
+        </div>
+        <div id="welcomeMessage" class="welcome-message" style="display: none;"></div>
+    </div>
+
+    <!-- Story -->
+    <section id="story" class="section section-pad story">
+      <div class="container story-grid">
+        <div class="story-copy">
+          <h2>Our Story</h2>
+          <p>We grew up surrounded by the rich aroma of hawker stalls and the lively atmosphere of pasar malam (night markets) across Malaysia. From sizzling satay grills to steaming bowls of noodles, these food spaces became more than just places to eat — they became part of our identity, our celebrations, and our everyday life.</p>
+          <p>Our journey began with a simple love for street food. Over time, we realized that each dish tells a story: the Nasi Lemak that unites breakfast tables, the smoky Char Kway Teow that captures Penang’s spirit, or the comforting Roti Canai that brings friends together at midnight.</p>
+          <p>Through this project, we aim to share the diversity and heritage of Malaysian street food with both locals and travelers. We want to preserve traditional recipes, honor generations of hawkers, and celebrate how food continues to unite people from different cultures.</p>
+          <p>Our story is Malaysia’s story — one of diversity, unity, and flavors passed down through generations.</p>
+        </div>
+        <div class="story-visual">
+          <img src="../images/Malaysian-street-food.jpg" alt="Malaysian street food" />
+        </div>
+      </div>
+
+      <!-- About Malaysian Street Food -->
+      <div class="container about-section">
+        <header class="about-header">
+          <h2><span class="icon-square">🍜</span> About Malaysian Street Food</h2>
+          <p class="about-subtitle">Why street food is part of Malaysia's identity.</p>
+        </header>
+
+        <div class="about-grid">
+          <div class="about-card">
+            <h3>Roots & Traditions</h3>
+            <p>Started as small family businesses, passed down through generations.</p>
+            <p>Stalls became social spaces with affordable, delicious meals.</p>
+          </div>
+
+          <div class="about-card">
+            <h3>Global Recognition</h3>
+            <p>Cities like Penang, Kuala Lumpur & Malacca are Asian food capitals.</p>
+            <p>Visitors worldwide come for hawker flavors and variety.</p>
+          </div>
+        </div>
+
+        <div class="expandable-content">
+          <button class="expand-btn" onclick="toggleExpand(this)">
+            <span class="expand-icon">▼</span> Read more background (storytelling style)
+          </button>
+          <div class="expanded-text">
+            <p>Street food in Malaysia is more than just a meal; it is a daily ritual that connects people of all walks of life. From bustling morning markets to lively night bazaars, food stalls bring communities together.</p>
+            <p>Early traders and immigrants introduced flavors that blended into unique Malaysian dishes.</p>
+            <p>Hawker stalls often reflect family passion, perfected recipes, and a sense of history.</p>
+            <p>Tourists travel worldwide to taste Penang's Char Kway Teow, Malacca's Nyonya Laksa, or KL's Jalan Alor specialties.</p>
+            <p>Street food represents affordability, authenticity, and unity in diversity.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- CTA -->
+    <section id="contact" class="cta">
+      <div class="container cta-inner">
+        <div>
+          <h2>Want to follow our progress?</h2>
+          <p>Come to contact us!!!</p>
+        </div>
+        <div class="actions">
+          <a class="btn btn-ghost" href="page7.html">Contact Our Team</a>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+        <div class="footer-container">
+            <div class="footer-section">
+                <h3>Street Food Explorer</h3>
+                <p>Your guide to the world's most delicious street food and their cultural stories.</p>
+            </div>
+            <div class="footer-section">
+                <h3>Quick Links</h3>
+                <ul class="footer-links">
+                    <li><a href="page1.html">Home</a></li>
+                    <li><a href="page2.html">About us</a></li>
+                    <li><a href="page3.html">Malaysia</a></li>
+                    <li><a href="page4.html">Global</a></li>
+                    <li><a href="page5.html">Cultural Stories</a></li>
+                    <li><a href="page6.html">Maps</a></li>
+                    <li><a href="page7.html">Review</a></li>
+                    <li><a href="page8.html">Contact us</a></li>
+                </ul>
+                </ul>
+            </div>
+            <div class="footer-section">
+                <h3>Follow Us</h3>
+                <p>Stay updated with our latest discoveries and recipes.</p>
+                <div class="social-icons">
+                    <a href="https://www.facebook.com/"><i class="fab fa-facebook-f"></i></a>
+                    <a href="https://www.instagram.com/"><i class="fab fa-instagram"></i></a>
+                    <a href="https://twitter.com/"><i class="fab fa-twitter"></i></a>
+                    <a href="https://www.youtube.com/channel/"><i class="fab fa-youtube"></i></a>
+                </div>
+            </div>
+        </div>
+        <div class="copyright">
+            <p>&copy; 2025 Street Food Explorer. All rights reserved.</p>
+        </div>
+    </footer>
+
+  <!-- Scripts -->
+  <script src="js/page2.js"></script>
+</body>
+</html>

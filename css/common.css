@@ -1,0 +1,83 @@
+/* 引入高级字体（Google Fonts） */
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;700&family=Playfair+Display:wght@400;700&family=Noto+Serif+SC:wght@400;700&family=Noto+Sans+SC:wght@400;500;700&display=swap');
+
+/* 通用样式：字体、背景、布局、标题、按钮形状 */
+body {
+    font-family: 'Noto Sans SC', 'Inter', sans-serif; /* 英文用Inter */
+    font-size: 16px; /* 正文字号 */
+    margin: 0;
+    padding: 0;
+    background-color: var(--color12);
+}
+
+/* 导航菜单（镂空 + 磨砂玻璃） */
+.glass-nav {
+    position: fixed;
+    top: 0;
+    width: 100%;
+    backdrop-filter: blur(10px); /* 磨砂效果 */
+    background-color: rgba(255, 255, 255, 0.3); /* 半透明背景 */
+    border-bottom: 1px solid rgba(255, 255, 255, 0.2);
+    padding: 10px 0;
+    z-index: 1000;
+}
+
+.glass-nav ul {
+    display: flex;
+    justify-content: center;
+    list-style: none;
+    margin: 0;
+    padding: 0;
+}
+
+.glass-nav li {
+    margin: 0 20px;
+}
+
+.glass-nav a {
+    text-decoration: none;
+    font-size: 14px;
+    color: black; /* 黑色字体 */
+    transition: color 0.3s ease;
+}
+
+.glass-nav a:hover {
+    color: orange;
+}
+
+/* 标题字体与大小 */
+h1 {
+    font-family: 'Noto Serif SC', 'Playfair Display', serif; /* 英文标题用Playfair Display */
+    font-size: 40px; /* 大标题 */
+}
+h2 {
+    font-family: 'Noto Serif SC', 'Playfair Display', serif;
+    font-size: 28px; /* 中标题 */
+}
+h3 {
+    font-family: 'Noto Sans SC', 'Inter', sans-serif;
+    font-size: 22px; /* 小标题 */
+}
+
+/* 按钮（不知道要设计什么样的按钮可以用这个统一按钮） */
+button {
+    border: 2px solid orange; /* 镂空边框 */
+    background-color: transparent; /* 透明背景 */
+    color: orange; /* 字体颜色与边框一致 */
+    border-radius: 999px; /* 椭圆形 */
+    cursor: pointer;
+    font-size: 1rem;
+    font-family: 'Noto Sans SC', 'Inter', sans-serif;
+    padding: 0.5rem 1.2rem; /* 内边距更好看 */
+    transition: all 0.2s ease;
+}
+
+/* 悬停变亮橙色 */
+button:hover {
+    background-color: orange; /* 橙色背景 */
+    color: white; /* 悬停时字体变白 */
+    transform: scale(1.05); /* 放大效果 */
+}
+
+
+

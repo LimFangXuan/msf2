@@ -1,0 +1,1906 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cultural Stories - Street Food Explorer</title>
+    <link rel="stylesheet" href="css/colors.css">
+    <link rel="stylesheet" href="css/common.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <style>
+        /* 第五页特定样式 */
+        body {
+            background-color: var(--color8);
+            color: var(--color2);
+            padding-top: 60px;
+        }
+
+        .login-btn {
+            position: absolute;
+            right: 40px;
+            top: 10px;
+            color: #000000;
+            /* 默认黑色 */
+            text-decoration: none;
+            cursor: pointer;
+        }
+
+        /* 仅变色，不改大小 */
+        .login-btn:hover {
+            color: orange;
+        }
+
+        /* B. 如果用 <svg>，用宽高控制大小（SVG 不吃 font-size） */
+        .login-btn svg {
+            width: 28px;
+            height: 28px;
+            fill: currentColor;
+            /* 继承 color，hover 时会跟着变色 */
+        }
+
+        .page-header {
+            background: linear-gradient(135deg, var(--color1) 0%, var(--color6) 100%);
+            color: var(--color8);
+            padding: 6rem 1rem;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        /* 添加动态背景装饰 */
+        .page-header::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><circle cx="50" cy="50" r="1" fill="%23ffffff" opacity="0.1"/></svg>') repeat;
+            background-size: 30px 30px;
+            animation: floatBackground 15s linear infinite;
+        }
+
+        @keyframes floatBackground {
+            from {
+                transform: translate(0, 0);
+            }
+
+            to {
+                transform: translate(30px, 30px);
+            }
+        }
+
+        .page-header h1 {
+            margin-bottom: 1rem;
+            color: var(--color3);
+            font-weight: var(--font-weight-bold);
+            letter-spacing: var(--letter-spacing-tight);
+            position: relative;
+            z-index: 2;
+            animation: fadeInDown 1s ease-out;
+        }
+
+        .page-header p {
+            font-size: var(--font-size-lg);
+            line-height: var(--line-height-loose);
+            position: relative;
+            z-index: 2;
+            animation: fadeInUp 1s ease-out 0.3s both;
+        }
+
+        @keyframes fadeInDown {
+            from {
+                opacity: 0;
+                transform: translateY(-30px);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        /* 添加装饰性波浪 */
+        .page-header::after {
+            content: '';
+            position: absolute;
+            bottom: -50px;
+            left: 0;
+            right: 0;
+            height: 100px;
+            background: linear-gradient(135deg,
+                    transparent 0%,
+                    rgba(255, 255, 255, 0.1) 50%,
+                    transparent 100%);
+            transform: skewY(-3deg);
+            z-index: 1;
+        }
+
+        .section-intro {
+            max-width: 95%;
+            margin: 2rem auto;
+            text-align: center;
+            padding: 0 1rem;
+        }
+
+        .section-intro p {
+            font-size: var(--font-size-lg);
+            line-height: var(--line-height-loose);
+            color: var(--color2);
+            font-weight: var(--font-weight-normal);
+        }
+
+        .cultural-stories {
+            padding: 4rem 1rem;
+        }
+
+        .story-container {
+            max-width: 95%;
+            margin: 0 auto;
+        }
+
+        .story-section {
+            margin-bottom: 6rem;
+        }
+
+        .story-section h2 {
+            text-align: center;
+            margin-bottom: 3rem;
+            color: var(--color1);
+            position: relative;
+            padding-bottom: 1rem;
+            font-weight: var(--font-weight-semibold);
+            letter-spacing: var(--letter-spacing-tight);
+        }
+
+        .story-section h2::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 80px;
+            height: 3px;
+            background-color: var(--color5);
+        }
+
+        .stories-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+        }
+
+        .story-card {
+            background: linear-gradient(135deg, var(--color8) 0%, rgba(255, 255, 255, 0.95) 100%);
+            border-radius: 20px;
+            overflow: hidden;
+            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.1);
+            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+            position: relative;
+            border: 1px solid rgba(255, 255, 255, 0.3);
+            backdrop-filter: blur(10px);
+            animation: fadeInUp 0.8s ease-out both;
+        }
+
+        .story-card:nth-child(1) {
+            animation-delay: 0.1s;
+        }
+
+        .story-card:nth-child(2) {
+            animation-delay: 0.3s;
+        }
+
+        .story-card:nth-child(3) {
+            animation-delay: 0.5s;
+        }
+
+        .story-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 4px;
+            background: linear-gradient(90deg, var(--color5), var(--color1));
+            transform: scaleX(0);
+            transition: transform 0.4s ease;
+            z-index: 2;
+        }
+
+        .story-card:hover::before {
+            transform: scaleX(1);
+        }
+
+        .story-card:hover {
+            transform: translateY(-15px) rotateX(5deg);
+            box-shadow: 0 25px 50px rgba(0, 0, 0, 0.15);
+        }
+
+        .story-image {
+            width: 100%;
+            height: 250px;
+            overflow: hidden;
+            position: relative;
+        }
+
+        .story-image::after {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: linear-gradient(135deg,
+                    rgba(67, 104, 71, 0.1) 0%,
+                    rgba(231, 116, 9, 0.1) 100%);
+            opacity: 0;
+            transition: opacity 0.3s ease;
+        }
+
+        .story-card:hover .story-image::after {
+            opacity: 1;
+        }
+
+        .story-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.5s ease;
+        }
+
+        .story-card:hover .story-image img {
+            transform: scale(1.1);
+        }
+
+        .story-content {
+            padding: 2.5rem;
+            position: relative;
+        }
+
+        .story-content h3 {
+            color: var(--color1);
+            margin-bottom: 1.5rem;
+            font-weight: var(--font-weight-semibold);
+            letter-spacing: var(--letter-spacing-tight);
+            position: relative;
+        }
+
+        .story-content h3::after {
+            content: '';
+            position: absolute;
+            bottom: -8px;
+            left: 0;
+            width: 40px;
+            height: 3px;
+            background: linear-gradient(90deg, var(--color5), var(--color1));
+            border-radius: 2px;
+            transform: scaleX(0);
+            transition: transform 0.3s ease;
+        }
+
+        .story-card:hover .story-content h3::after {
+            transform: scaleX(1);
+        }
+
+        .story-content p {
+            line-height: var(--line-height-loose);
+            color: var(--color2);
+            font-size: var(--font-size-base);
+            margin-bottom: 1rem;
+            opacity: 0.9;
+        }
+
+        .top10-section {
+            background-color: var(--color3);
+            padding: 4rem 1rem;
+        }
+
+        .top10-container {
+            max-width: 95%;
+            margin: 0 auto;
+        }
+
+        .top10-container h2 {
+            text-align: center;
+            margin-bottom: 3rem;
+            color: var(--color1);
+        }
+
+        .recipe-list {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 1.5rem;
+        }
+
+        .recipe-card {
+            background-color: var(--color8);
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .recipe-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
+        }
+
+        .recipe-image {
+            width: 100%;
+            height: 200px;
+        }
+
+        .recipe-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .recipe-content {
+            padding: 1.5rem;
+            min-height: 120px;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .recipe-content h3 {
+            font-size: 1.2rem;
+            margin-bottom: 0.5rem;
+            color: var(--color1);
+            flex-shrink: 0;
+        }
+
+        .recipe-meta {
+            display: flex;
+            justify-content: space-between;
+            font-size: 0.9rem;
+            color: #666;
+            margin-bottom: 1rem;
+            flex-shrink: 0;
+        }
+
+        .recipe-description {
+            font-size: 0.95rem;
+            color: #555;
+            margin-bottom: 1rem;
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+            max-width: 100%;
+            flex-grow: 1;
+            display: block;
+            cursor: help;
+            position: relative;
+            line-height: 1.4;
+        }
+
+        /* 工具提示样式 */
+        .recipe-description:hover::after {
+            content: attr(title);
+            position: absolute;
+            bottom: 100%;
+            left: 50%;
+            transform: translateX(-50%);
+            background: rgba(0, 0, 0, 0.8);
+            color: white;
+            padding: 0.5rem;
+            border-radius: 5px;
+            font-size: 0.85rem;
+            white-space: normal;
+            max-width: 250px;
+            z-index: 1000;
+            pointer-events: none;
+            opacity: 0;
+            animation: fadeIn 0.3s ease forwards;
+        }
+
+        @keyframes fadeIn {
+            to {
+                opacity: 1;
+            }
+        }
+
+        .recipe-content h3 {
+            font-size: 1.2rem;
+            margin-bottom: 0.5rem;
+            color: var(--color1);
+        }
+
+        .recipe-meta {
+            display: flex;
+            justify-content: space-between;
+            font-size: 0.9rem;
+            color: #666;
+            margin-bottom: 1rem;
+        }
+
+        .recipe-description {
+            font-size: 0.95rem;
+            color: #555;
+            margin-bottom: 1rem;
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+            max-width: 100%;
+        }
+
+        /* 添加装饰性元素 */
+        .decorative-elements {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            z-index: -1;
+        }
+
+        .decorative-circle {
+            position: absolute;
+            border-radius: 50%;
+            background: radial-gradient(circle, rgba(231, 116, 9, 0.1) 0%, transparent 70%);
+            animation: float 8s ease-in-out infinite;
+        }
+
+        .decorative-circle:nth-child(1) {
+            width: 200px;
+            height: 200px;
+            top: 10%;
+            left: 5%;
+            animation-delay: 0s;
+        }
+
+        .decorative-circle:nth-child(2) {
+            width: 150px;
+            height: 150px;
+            top: 60%;
+            right: 10%;
+            animation-delay: 3s;
+        }
+
+        .decorative-circle:nth-child(3) {
+            width: 100px;
+            height: 100px;
+            bottom: 20%;
+            left: 15%;
+            animation-delay: 6s;
+        }
+
+        @keyframes float {
+
+            0%,
+            100% {
+                transform: translateY(0px) scale(1);
+            }
+
+            50% {
+                transform: translateY(-30px) scale(1.1);
+            }
+        }
+
+        /* 加载动画增强 */
+        .loading {
+            text-align: center;
+            padding: 3rem;
+            color: var(--color1);
+            position: relative;
+        }
+
+        .loading i {
+            margin-bottom: 1rem;
+            color: var(--color5);
+            animation: spin 2s linear infinite;
+        }
+
+        @keyframes spin {
+            from {
+                transform: rotate(0deg);
+            }
+
+            to {
+                transform: rotate(360deg);
+            }
+        }
+
+        .loading::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 100px;
+            height: 3px;
+            background: linear-gradient(90deg, var(--color5), var(--color1));
+            border-radius: 2px;
+            animation: loadingBar 2s ease-in-out infinite;
+        }
+
+        @keyframes loadingBar {
+
+            0%,
+            100% {
+                width: 100px;
+            }
+
+            50% {
+                width: 200px;
+            }
+        }
+
+        /* 响应式优化 */
+        @media (max-width: 768px) {
+            .page-header {
+                padding: 4rem 1rem;
+            }
+
+            .story-card {
+                margin-bottom: 2rem;
+            }
+
+            .decorative-circle {
+                display: none;
+            }
+
+            .stories-grid {
+                grid-template-columns: 1fr;
+                gap: 1.5rem;
+            }
+
+            .recipe-list {
+                grid-template-columns: 1fr;
+                gap: 1rem;
+            }
+
+            .map-regions {
+                grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+                gap: 1rem;
+            }
+
+            .photo-gallery {
+                grid-template-columns: 1fr;
+                gap: 1rem;
+            }
+
+            .documentary-grid {
+                grid-template-columns: 1fr;
+                gap: 1.5rem;
+            }
+        }
+
+        @media (max-width: 1200px) {
+            .stories-grid {
+                grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+                gap: 1.5rem;
+            }
+
+            .recipe-list {
+                grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+                gap: 1.5rem;
+            }
+        }
+
+        footer {
+            background-color: var(--color2);
+            color: var(--color8);
+            padding: 3rem 1rem 1rem;
+        }
+
+        .footer-container {
+            max-width: 95%;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+            margin-bottom: 2rem;
+        }
+
+        .footer-section h3 {
+            color: var(--color4);
+            margin-bottom: 1rem;
+            font-weight: var(--font-weight-semibold);
+            letter-spacing: var(--letter-spacing-wide);
+        }
+
+        .footer-section p {
+            line-height: var(--line-height-relaxed);
+            font-size: var(--font-size-sm);
+        }
+
+        .footer-links {
+            list-style: none;
+        }
+
+        .footer-links li {
+            margin-bottom: 0.5rem;
+        }
+
+        .footer-links a {
+            color: var(--color7);
+            text-decoration: none;
+            transition: color 0.3s ease;
+        }
+
+        .footer-links a:hover {
+            color: var(--color13);
+        }
+
+        .social-icons {
+            display: flex;
+            gap: 1rem;
+            margin-top: 1rem;
+        }
+
+        .social-icons a {
+            color: var(--color8);
+            background-color: var(--color1);
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: background-color 0.3s ease;
+        }
+
+        .social-icons a:hover {
+            background-color: var(--color13);
+        }
+
+        .copyright {
+            text-align: center;
+            padding-top: 1rem;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            font-size: 0.9rem;
+        }
+
+
+        /* 登录表单样式 - 与page1.html保持一致 */
+        .login-container {
+            position: fixed;
+            top: 0;
+            right: 0;
+            width: 350px;
+            height: 100vh;
+            background-color: var(--color8);
+            box-shadow: -5px 0 15px rgba(0, 0, 0, 0.1);
+            transform: translateX(100%);
+            transition: transform 0.3s ease;
+            z-index: 2000;
+            padding: 2rem;
+            overflow-y: auto;
+        }
+
+        .login-container.active {
+            transform: translateX(0);
+        }
+
+        .close-btn {
+            background: none;
+            border: none;
+            font-size: 1.5rem;
+            cursor: pointer;
+            position: absolute;
+            top: 1rem;
+            right: 1rem;
+            color: var(--color2);
+        }
+
+        .login-form {
+            margin-top: 2rem;
+        }
+
+        .form-group {
+            margin-bottom: 1.5rem;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 0.5rem;
+            font-weight: 500;
+        }
+
+        .form-group input {
+            width: 100%;
+            padding: 0.8rem;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            font-family: inherit;
+            font-size: 1rem;
+        }
+
+        .form-actions {
+            margin-top: 2rem;
+        }
+
+        .welcome-message {
+            text-align: center;
+            padding: 2rem;
+        }
+
+        /* 登录表单标题样式 */
+        .login-container h2 {
+            text-align: center;
+            margin-bottom: 2rem;
+            color: var(--color1);
+            font-size: var(--font-size-3xl);
+            font-weight: var(--font-weight-bold);
+            letter-spacing: var(--letter-spacing-tight);
+        }
+
+        /* 表单标签样式 */
+        .form-group label {
+            display: block;
+            margin-bottom: 0.5rem;
+            font-weight: var(--font-weight-medium);
+            color: var(--color2);
+            font-size: var(--font-size-sm);
+        }
+
+        /* 表单输入框样式 */
+        .form-group input {
+            width: 100%;
+            padding: 0.8rem;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            font-family: inherit;
+            font-size: var(--font-size-base);
+            transition: border-color 0.3s ease;
+        }
+
+        .form-group input:focus {
+            outline: none;
+            border-color: var(--color5);
+            box-shadow: 0 0 0 2px rgba(231, 116, 9, 0.1);
+        }
+
+        .story-tag {
+            background: rgba(231, 116, 9, 0.1);
+            color: var(--color5);
+            padding: 0.3rem 0.8rem;
+            border-radius: 15px;
+            font-size: 0.8rem;
+            border: 1px solid rgba(231, 116, 9, 0.3);
+        }
+
+        /* 美食历史时间线区域 */
+        .timeline-section {
+            padding: 6rem 1rem;
+            background: linear-gradient(135deg, var(--color3) 0%, var(--color8) 100%);
+        }
+
+        .timeline-container {
+            max-width: 95%;
+            margin: 0 auto;
+            text-align: center;
+        }
+
+        .timeline-header h2 {
+            font-size: var(--font-size-3xl);
+            color: var(--color1);
+            margin-bottom: 1rem;
+            font-weight: var(--font-weight-bold);
+        }
+
+        .timeline-header p {
+            font-size: var(--font-size-lg);
+            color: var(--color2);
+            margin-bottom: 4rem;
+        }
+
+        .timeline {
+            position: relative;
+            max-width: 95%;
+            margin: 0 auto;
+        }
+
+        .timeline::before {
+            content: '';
+            position: absolute;
+            left: 50%;
+            top: 0;
+            bottom: 0;
+            width: 4px;
+            background: linear-gradient(to bottom, var(--color5), var(--color1));
+            transform: translateX(-50%);
+        }
+
+        .timeline-item {
+            position: relative;
+            margin-bottom: 3rem;
+            width: 45%;
+        }
+
+        .timeline-item:nth-child(odd) {
+            left: 0;
+            text-align: right;
+        }
+
+        .timeline-item:nth-child(even) {
+            left: 55%;
+            text-align: left;
+        }
+
+        .timeline-content {
+            background: var(--color8);
+            padding: 2rem;
+            border-radius: 15px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+            position: relative;
+            border: 1px solid rgba(255, 255, 255, 0.3);
+        }
+
+        .timeline-item:nth-child(odd) .timeline-content::after {
+            content: '';
+            position: absolute;
+            right: -15px;
+            top: 50%;
+            transform: translateY(-50%);
+            width: 0;
+            height: 0;
+            border-left: 15px solid var(--color8);
+            border-top: 10px solid transparent;
+            border-bottom: 10px solid transparent;
+        }
+
+        .timeline-item:nth-child(even) .timeline-content::after {
+            content: '';
+            position: absolute;
+            left: -15px;
+            top: 50%;
+            transform: translateY(-50%);
+            width: 0;
+            height: 0;
+            border-right: 15px solid var(--color8);
+            border-top: 10px solid transparent;
+            border-bottom: 10px solid transparent;
+        }
+
+        .timeline-date {
+            background: var(--color5);
+            color: white;
+            padding: 0.5rem 1rem;
+            border-radius: 20px;
+            font-weight: var(--font-weight-bold);
+            font-size: 0.9rem;
+            display: inline-block;
+            margin-bottom: 1rem;
+        }
+
+        .timeline-title {
+            color: var(--color1);
+            margin-bottom: 1rem;
+            font-size: 1.3rem;
+            font-weight: var(--font-weight-semibold);
+        }
+
+        .timeline-description {
+            color: var(--color2);
+            line-height: 1.6;
+            font-size: var(--font-size-base);
+        }
+
+        /* 美食地图区域 */
+        .food-map-section {
+            padding: 6rem 1rem;
+            background: linear-gradient(135deg, var(--color8) 0%, var(--color2) 100%);
+        }
+
+        .food-map-container {
+            max-width: 95%;
+            margin: 0 auto;
+            text-align: center;
+        }
+
+        .food-map-header h2 {
+            font-size: var(--font-size-3xl);
+            color: var(--color1);
+            margin-bottom: 1rem;
+            font-weight: var(--font-weight-bold);
+        }
+
+        .food-map-header p {
+            font-size: var(--font-size-lg);
+            color: var(--color2);
+            margin-bottom: 3rem;
+        }
+
+        .map-container {
+            background: var(--color8);
+            border-radius: 20px;
+            padding: 2rem;
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .map-background {
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: linear-gradient(45deg,
+                    rgba(67, 104, 71, 0.05) 0%,
+                    rgba(231, 116, 9, 0.05) 100%);
+            z-index: 1;
+        }
+
+        .map-content {
+            position: relative;
+            z-index: 2;
+        }
+
+        .map-regions {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 1.5rem;
+            margin-top: 2rem;
+        }
+
+        .map-region {
+            background: rgba(255, 255, 255, 0.9);
+            border-radius: 15px;
+            padding: 2rem;
+            text-align: center;
+            transition: all 0.3s ease;
+            border: 2px solid transparent;
+            cursor: pointer;
+        }
+
+        .map-region:hover {
+            transform: translateY(-10px);
+            border-color: var(--color5);
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.15);
+        }
+
+        .region-icon {
+            font-size: 3rem;
+            color: var(--color5);
+            margin-bottom: 1rem;
+        }
+
+        .region-name {
+            color: var(--color1);
+            font-size: 1.3rem;
+            font-weight: var(--font-weight-semibold);
+            margin-bottom: 1rem;
+        }
+
+        .region-foods {
+            color: var(--color2);
+            font-size: var(--font-size-sm);
+            line-height: 1.5;
+        }
+
+        /* 美食文化问答区域 */
+        .quiz-section {
+            padding: 6rem 1rem;
+            background: linear-gradient(135deg, var(--color1) 0%, var(--color6) 100%);
+            color: var(--color8);
+        }
+
+        .quiz-container {
+            max-width: 95%;
+            margin: 0 auto;
+            text-align: center;
+        }
+
+        .quiz-header h2 {
+            font-size: var(--font-size-3xl);
+            color: var(--color3);
+            margin-bottom: 1rem;
+            font-weight: var(--font-weight-bold);
+        }
+
+        .quiz-header p {
+            font-size: var(--font-size-lg);
+            color: var(--color8);
+            margin-bottom: 3rem;
+            opacity: 0.9;
+        }
+
+        .quiz-card {
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(10px);
+            border-radius: 20px;
+            padding: 2rem;
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            max-width: 95%;
+            margin: 0 auto;
+        }
+
+        .quiz-question {
+            font-size: 1.4rem;
+            color: var(--color3);
+            margin-bottom: 2rem;
+            font-weight: var(--font-weight-semibold);
+        }
+
+        .quiz-options {
+            display: grid;
+            gap: 1rem;
+            margin-bottom: 2rem;
+        }
+
+        .quiz-option {
+            background: rgba(255, 255, 255, 0.2);
+            border: 2px solid transparent;
+            padding: 1rem 1.5rem;
+            border-radius: 10px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            font-size: var(--font-size-base);
+        }
+
+        .quiz-option:hover {
+            background: rgba(255, 255, 255, 0.3);
+            transform: translateX(10px);
+        }
+
+        .quiz-option.selected {
+            background: var(--color5);
+            color: white;
+            border-color: var(--color3);
+        }
+
+        .quiz-option.correct {
+            background: #4CAF50;
+            color: white;
+        }
+
+        .quiz-option.incorrect {
+            background: #f44336;
+            color: white;
+        }
+
+        .quiz-result {
+            display: none;
+            margin-top: 2rem;
+            padding: 1.5rem;
+            background: rgba(255, 255, 255, 0.2);
+            border-radius: 15px;
+        }
+
+        .quiz-result.show {
+            display: block;
+            animation: fadeInUp 0.5s ease-out;
+        }
+
+        .quiz-actions {
+            margin-top: 2rem;
+        }
+
+        .quiz-btn {
+            background: var(--color5);
+            color: white;
+            border: none;
+            padding: 1rem 2rem;
+            border-radius: 25px;
+            cursor: pointer;
+            font-size: var(--font-size-base);
+            font-weight: var(--font-weight-medium);
+            transition: all 0.3s ease;
+            margin: 0 0.5rem;
+        }
+
+        .quiz-btn:hover {
+            background: var(--color1);
+            transform: translateY(-2px);
+        }
+
+        /* 美食摄影展示区域 */
+        .photography-section {
+            padding: 6rem 1rem;
+            background: var(--color8);
+        }
+
+        .photography-container {
+            max-width: 95%;
+            margin: 0 auto;
+            text-align: center;
+        }
+
+        .photography-header h2 {
+            font-size: var(--font-size-3xl);
+            color: var(--color1);
+            margin-bottom: 1rem;
+            font-weight: var(--font-weight-bold);
+        }
+
+        .photography-header p {
+            font-size: var(--font-size-lg);
+            color: var(--color2);
+            margin-bottom: 3rem;
+        }
+
+        .photo-gallery {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 1.5rem;
+        }
+
+        .photo-item {
+            position: relative;
+            border-radius: 15px;
+            overflow: hidden;
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
+            transition: all 0.3s ease;
+        }
+
+        .photo-item:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.15);
+        }
+
+        .photo-image {
+            width: 100%;
+            height: 250px;
+            overflow: hidden;
+        }
+
+        .photo-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.5s ease;
+        }
+
+        .photo-item:hover .photo-image img {
+            transform: scale(1.1);
+        }
+
+        .photo-overlay {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            background: linear-gradient(transparent, rgba(0, 0, 0, 0.8));
+            color: white;
+            padding: 2rem 1.5rem 1.5rem;
+            transform: translateY(100%);
+            transition: transform 0.3s ease;
+        }
+
+        .photo-item:hover .photo-overlay {
+            transform: translateY(0);
+        }
+
+        .photo-title {
+            font-size: 1.2rem;
+            font-weight: var(--font-weight-semibold);
+            margin-bottom: 0.5rem;
+        }
+
+        .photo-description {
+            font-size: var(--font-size-sm);
+            opacity: 0.9;
+            line-height: 1.4;
+        }
+
+        /* 美食纪录片推荐区域 */
+        .documentary-section {
+            padding: 6rem 1rem;
+            background: linear-gradient(135deg, var(--color2) 0%, var(--color1) 100%);
+            color: var(--color8);
+        }
+
+        .documentary-container {
+            max-width: 95%;
+            margin: 0 auto;
+            text-align: center;
+        }
+
+        .documentary-header h2 {
+            font-size: var(--font-size-3xl);
+            color: var(--color3);
+            margin-bottom: 1rem;
+            font-weight: var(--font-weight-bold);
+        }
+
+        .documentary-header p {
+            font-size: var(--font-size-lg);
+            color: var(--color8);
+            margin-bottom: 3rem;
+            opacity: 0.9;
+        }
+
+        .documentary-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+        }
+
+        .documentary-card {
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(10px);
+            border-radius: 20px;
+            overflow: hidden;
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            transition: all 0.3s ease;
+        }
+
+        .documentary-card:hover {
+            transform: translateY(-10px);
+            background: rgba(255, 255, 255, 0.2);
+        }
+
+        .documentary-image {
+            width: 100%;
+            height: 200px;
+            overflow: hidden;
+        }
+
+        .documentary-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.5s ease;
+        }
+
+        .documentary-card:hover .documentary-image img {
+            transform: scale(1.1);
+        }
+
+        .documentary-content {
+            padding: 2rem;
+        }
+
+        .documentary-title {
+            color: var(--color3);
+            margin-bottom: 1rem;
+            font-size: 1.3rem;
+            font-weight: var(--font-weight-semibold);
+        }
+
+        .documentary-description {
+            color: var(--color8);
+            line-height: 1.6;
+            margin-bottom: 1.5rem;
+            opacity: 0.9;
+        }
+
+        .documentary-meta {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            font-size: 0.9rem;
+            color: var(--color3);
+        }
+
+        .documentary-rating {
+            display: flex;
+            gap: 0.2rem;
+        }
+
+        .documentary-star {
+            color: #FFD700;
+        }
+
+        .documentary-duration {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        /* 通知系统样式 */
+        .notification {
+            position: fixed;
+            top: 20px;
+            right: 20px;
+            background: var(--color8);
+            color: var(--color2);
+            padding: 1rem 1.5rem;
+            border-radius: 10px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+            z-index: 10000;
+            transform: translateX(400px);
+            transition: transform 0.3s ease;
+            max-width: 350px;
+            border-left: 4px solid var(--color5);
+        }
+
+        .notification.show {
+            transform: translateX(0);
+        }
+
+        .notification-message {
+            display: block;
+            margin-bottom: 0.5rem;
+            line-height: 1.4;
+        }
+
+        .notification-close {
+            position: absolute;
+            top: 0.5rem;
+            right: 0.5rem;
+            background: none;
+            border: none;
+            font-size: 1.2rem;
+            cursor: pointer;
+            color: var(--color2);
+            opacity: 0.7;
+            transition: opacity 0.3s ease;
+        }
+
+        .notification-close:hover {
+            opacity: 1;
+        }
+
+        .notification-info {
+            border-left-color: var(--color5);
+        }
+
+        .notification-success {
+            border-left-color: #4CAF50;
+        }
+
+        .notification-warning {
+            border-left-color: #FF9800;
+        }
+
+        .notification-error {
+            border-left-color: #f44336;
+        }
+
+        /* 地图区域点击效果 */
+        .map-region.clicked {
+            transform: translateY(-10px) scale(1.05);
+            border-color: var(--color5);
+            background: rgba(255, 255, 255, 0.95);
+        }
+
+        /* 响应式优化 */
+        @media (max-width: 768px) {
+            .timeline::before {
+                left: 20px;
+            }
+
+            .timeline-item {
+                width: calc(100% - 40px);
+                left: 40px !important;
+                text-align: left !important;
+            }
+
+            .timeline-item:nth-child(odd) .timeline-content::after,
+            .timeline-item:nth-child(even) .timeline-content::after {
+                left: -15px;
+                border-right: 15px solid var(--color8);
+                border-left: none;
+            }
+
+            .quiz-card {
+                padding: 2rem 1.5rem;
+            }
+
+            .notification {
+                right: 10px;
+                left: 10px;
+                max-width: none;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <!-- 装饰性背景元素 -->
+    <div class="decorative-elements">
+        <div class="decorative-circle"></div>
+        <div class="decorative-circle"></div>
+        <div class="decorative-circle"></div>
+    </div>
+
+    <!-- 导航栏 -->
+    <nav class="glass-nav">
+        <ul>
+
+            <li><a href="page1.html" class="active">Home</a></li>
+            <li><a href="page2.html">About us</a></li>
+            <li><a href="page3.html">Malaysia</a></li>
+            <li><a href="page4.html">World</a></li>
+            <li><a href="page5.html">Cultural Stories</a></li>
+            <li><a href="page6.html">Maps</a></li>
+            <li><a href="page7.html">Review</a></li>
+            <li><a href="page8.html">Contact us</a></li>
+        </ul>
+
+        
+    </nav>
+
+    <!-- 登录表单容器 -->
+    <div class="login-container" id="loginContainer">
+        <button class="close-btn" id="closeBtn">&times;</button>
+        <h2>Welcome</h2>
+        <div id="loginForm" class="login-form">
+            <div class="form-group">
+                <label for="name">Your Name</label>
+                <input type="text" id="name" required>
+            </div>
+            <div class="form-group">
+                <label for="email">Email</label>
+                <input type="email" id="email" required>
+            </div>
+            <div class="form-group">
+                <label for="password">Password</label>
+                <input type="password" id="password" required>
+            </div>
+            <div class="form-actions">
+                <button id="submitLogin">Sign In</button>
+            </div>
+        </div>
+        <div id="welcomeMessage" class="welcome-message" style="display: none;"></div>
+    </div>
+
+    <!-- 页面头部 -->
+    <header class="page-header">
+        <h1>Stories Behind the Street Food</h1>
+        <p>Discover the rich history and cultural significance of iconic street foods</p>
+    </header>
+
+    <!-- 介绍部分 -->
+    <section class="section-intro">
+        <p>Street food is more than just sustenance—it's a reflection of a country's history, traditions, and people.
+            Each dish tells a story of cultural exchange, local ingredients, and time-honored techniques passed down
+            through generations.</p>
+    </section>
+
+    <!-- 文化故事部分 -->
+    <section class="cultural-stories">
+        <div class="story-container">
+            <!-- 全球街头美食故事 -->
+            <div class="story-section">
+                <h2>Global Street Food Stories</h2>
+                <div class="stories-grid">
+                    <div class="story-card">
+                        <div class="story-image">
+                            <img src="../images/pizza.jpg" alt="Pizza from Italy">
+                        </div>
+                        <div class="story-content">
+                            <h3>Pizza (Italy)</h3>
+                            <p>Originating from Naples in the 18th century, pizza began as a simple flatbread for the
+                                working class. The iconic Margherita pizza, with its red, white, and green toppings, was
+                                created in 1889 to honor Queen Margherita of Savoy, representing the colors of the
+                                Italian flag.</p>
+                            <p>Italian immigrants brought pizza to America in the late 19th century, where it evolved
+                                into the diverse styles we know today, from New York's thin crust to Chicago's deep
+                                dish.</p>
+                        </div>
+                    </div>
+
+                    <div class="story-card">
+                        <div class="story-image">
+                            <img src="../images/泰式炒河粉.jpg" alt="Pad Thai from Thailand">
+                        </div>
+                        <div class="story-content">
+                            <h3>Pad Thai (Thailand)</h3>
+                            <p>Contrary to popular belief, Pad Thai is not an ancient dish but was created in the 1930s
+                                by Thailand's Prime Minister Plaek Phibunsongkhram as part of a national campaign to
+                                promote Thai identity.</p>
+                            <p>The dish combines Chinese-style rice noodles with Thai flavors like tamarind, palm sugar,
+                                and fish sauce, reflecting Thailand's history of cultural fusion. It was popularized as
+                                a street food during World War II when rice was scarce.</p>
+                        </div>
+                    </div>
+
+                    <div class="story-card">
+                        <div class="story-image">
+                            <img src="../images/墨西哥塔可.jpg" alt="Tacos from Mexico">
+                        </div>
+                        <div class="story-content">
+                            <h3>Tacos (Mexico)</h3>
+                            <p>The origins of tacos can be traced back to the indigenous people of Mexico, who wrapped
+                                food in corn tortillas long before the arrival of Europeans. The word "taco" originally
+                                referred to the charges used in silver mines, and later became associated with the small
+                                tortilla bundles.</p>
+                            <p>Different regions of Mexico developed their own styles, from the al pastor tacos of
+                                Mexico City (influenced by Lebanese immigrants) to the fish tacos of Baja California.
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- 马来西亚街头美食故事 -->
+            <div class="story-section">
+                <h2>Malaysian Street Food Stories</h2>
+                <div class="stories-grid">
+                    <div class="story-card">
+                        <div class="story-image">
+                            <img src="../images/马来西亚椰浆饭.jpg" alt="Nasi Lemak from Malaysia">
+                        </div>
+                        <div class="story-content">
+                            <h3>Nasi Lemak</h3>
+                            <p>Often called Malaysia's national dish, Nasi Lemak has its roots in Malay cuisine. The
+                                name means "fatty rice," referring to the coconut milk used to cook the rice.</p>
+                            <p>Originally a simple breakfast for farmers, it has evolved into a national favorite. The
+                                combination of coconut rice, sambal, anchovies, peanuts, and boiled egg reflects
+                                Malaysia's rich culinary heritage and is now enjoyed throughout the day at street stalls
+                                across the country.</p>
+                        </div>
+                    </div>
+
+                    <div class="story-card">
+                        <div class="story-image">
+                            <img src="../images/Roti Canai.jpg" alt="Roti Canai from Malaysia">
+                        </div>
+                        <div class="story-content">
+                            <h3>Roti Canai</h3>
+                            <p>Introduced by South Indian immigrants, Roti Canai (also known as Roti Prata in Singapore)
+                                has become a staple of Malaysian breakfast culture. The flaky flatbread is made by
+                                stretching and folding dough, then pan-frying until crispy.</p>
+                            <p>The dish reflects Malaysia's multiculturalism, with Indian-inspired bread served with
+                                Malay-style curry dipping sauce. It's commonly sold at mamak stalls, which are run by
+                                Malaysian Indians and serve as social hubs for all ethnic groups.</p>
+                        </div>
+                    </div>
+
+                    <div class="story-card">
+                        <div class="story-image">
+                            <img src="../images/CharKwayTeow.jpg" alt="Char Kway Teow from Malaysia">
+                        </div>
+                        <div class="story-content">
+                            <h3>Char Kway Teow</h3>
+                            <p>This stir-fried noodle dish has Chinese origins but has been embraced as a Malaysian
+                                favorite. The name means "stir-fried rice cake strips," referring to the flat rice
+                                noodles used.</p>
+                            <p>Traditionally cooked over high heat in a wok with lard for extra flavor, it combines
+                                Chinese sausage, shrimp, bean sprouts, and chives. Each region has its own variation,
+                                with Penang's version being particularly famous.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Top 10 食谱部分 -->
+    <section class="top10-section">
+        <div class="top10-container">
+            <h2>Top 10 Street Food Recipes from Around the World</h2>
+            <div class="loading" id="loading">
+                <i class="fas fa-circle-notch fa-spin fa-3x"></i>
+                <p>Loading delicious recipes...</p>
+            </div>
+            <div class="recipe-list" id="recipeList"></div>
+
+        </div>
+    </section>
+
+    <!-- 美食历史时间线区域 -->
+    <section class="timeline-section">
+        <div class="timeline-container">
+            <div class="timeline-header">
+                <h2>Street Food History Timeline</h2>
+                <p>Journey through the centuries to discover how street food evolved from ancient markets to modern food
+                    trucks</p>
+            </div>
+            <div class="timeline">
+                <div class="timeline-item">
+                    <div class="timeline-content">
+                        <div class="timeline-date">Ancient Times</div>
+                        <div class="timeline-title">Roman Thermopolia</div>
+                        <div class="timeline-description">The first street food establishments appeared in ancient Rome,
+                            serving hot food and drinks to workers and travelers.</div>
+                    </div>
+                </div>
+                <div class="timeline-item">
+                    <div class="timeline-content">
+                        <div class="timeline-date">Middle Ages</div>
+                        <div class="timeline-title">Medieval Food Stalls</div>
+                        <div class="timeline-description">Street vendors sold pies, pastries, and roasted meats in
+                            European market towns and during festivals.</div>
+                    </div>
+                </div>
+                <div class="timeline-item">
+                    <div class="timeline-content">
+                        <div class="timeline-date">18th Century</div>
+                        <div class="timeline-title">Industrial Revolution</div>
+                        <div class="timeline-description">Street food became essential for factory workers, leading to
+                            the rise of fish and chip shops in Britain.</div>
+                    </div>
+                </div>
+                <div class="timeline-item">
+                    <div class="timeline-content">
+                        <div class="timeline-date">19th Century</div>
+                        <div class="timeline-title">Immigration Waves</div>
+                        <div class="timeline-description">European immigrants brought their street food traditions to
+                            America, creating diverse food cultures.</div>
+                    </div>
+                </div>
+                <div class="timeline-item">
+                    <div class="timeline-content">
+                        <div class="timeline-date">20th Century</div>
+                        <div class="timeline-title">Food Trucks & Globalization</div>
+                        <div class="timeline-description">The rise of food trucks and international travel spread street
+                            food culture worldwide.</div>
+                    </div>
+                </div>
+                <div class="timeline-item">
+                    <div class="timeline-content">
+                        <div class="timeline-date">21st Century</div>
+                        <div class="timeline-title">Digital Age</div>
+                        <div class="timeline-description">Social media and food apps have made street food more
+                            accessible and popular than ever.</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 美食地图区域 -->
+    <section class="food-map-section">
+        <div class="food-map-container">
+            <div class="food-map-header">
+                <h2>Global Street Food Map</h2>
+                <p>Explore the world's most famous street food destinations and their signature dishes</p>
+            </div>
+            <div class="map-container">
+                <div class="map-background"></div>
+                <div class="map-content">
+                    <div class="map-regions">
+                        <div class="map-region" data-region="asia">
+                            <div class="region-icon">
+                                <i class="fas fa-utensils"></i>
+                            </div>
+                            <div class="region-name">Asia</div>
+                            <div class="region-foods">Pad Thai, Nasi Lemak, Dim Sum, Takoyaki, Pho, Satay</div>
+                        </div>
+                        <div class="map-region" data-region="europe">
+                            <div class="region-icon">
+                                <i class="fas fa-bread-slice"></i>
+                            </div>
+                            <div class="region-name">Europe</div>
+                            <div class="region-foods">Pizza, Crepes, Bratwurst, Fish & Chips, Gyros, Paella</div>
+                        </div>
+                        <div class="map-region" data-region="americas">
+                            <div class="region-icon">
+                                <i class="fas fa-hamburger"></i>
+                            </div>
+                            <div class="region-name">Americas</div>
+                            <div class="region-foods">Tacos, Hot Dogs, Arepas, Poutine, Churros, Empanadas</div>
+                        </div>
+                        <div class="map-region" data-region="africa">
+                            <div class="region-icon">
+                                <i class="fas fa-pepper-hot"></i>
+                            </div>
+                            <div class="region-name">Africa</div>
+                            <div class="region-foods">Shawarma, Falafel, Bunny Chow, Suya, Koshari, Injera</div>
+                        </div>
+                        <div class="map-region" data-region="oceania">
+                            <div class="region-icon">
+                                <i class="fas fa-fish"></i>
+                            </div>
+                            <div class="region-name">Oceania</div>
+                            <div class="region-foods">Meat Pies, Fish & Chips, Lamingtons, Pavlova, Tim Tams</div>
+                        </div>
+                        <div class="map-region" data-region="middle-east">
+                            <div class="region-icon">
+                                <i class="fas fa-drumstick-bite"></i>
+                            </div>
+                            <div class="region-name">Middle East</div>
+                            <div class="region-foods">Kebab, Hummus, Falafel, Shawarma, Baklava, Manakish</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 美食文化问答区域 -->
+    <section class="quiz-section">
+        <div class="quiz-container">
+            <div class="quiz-header">
+                <h2>Street Food Culture Quiz</h2>
+                <p>Test your knowledge about street food history, culture, and traditions from around the world</p>
+            </div>
+            <div class="quiz-card">
+                <div class="quiz-question" id="quizQuestion">
+                    Which country is credited with inventing the first street food establishments called "thermopolia"?
+                </div>
+                <div class="quiz-options" id="quizOptions">
+                    <div class="quiz-option" data-correct="true">Ancient Rome</div>
+                    <div class="quiz-option" data-correct="false">Ancient Greece</div>
+                    <div class="quiz-option" data-correct="false">Ancient Egypt</div>
+                    <div class="quiz-option" data-correct="false">Ancient China</div>
+                </div>
+                <div class="quiz-result" id="quizResult">
+                    <p>Correct! The Romans were the first to establish organized street food establishments called
+                        "thermopolia" that served hot food and drinks.</p>
+                </div>
+                <div class="quiz-actions">
+                    <button class="quiz-btn" id="submitQuiz">Submit Answer</button>
+                    <button class="quiz-btn" id="nextQuiz">Next Question</button>
+                    <button class="quiz-btn" id="restartQuiz">Restart Quiz</button>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 美食摄影展示区域 -->
+    <section class="photography-section">
+        <div class="photography-container">
+            <div class="photography-header">
+                <h2>Street Food Photography Gallery</h2>
+                <p>Capturing the beauty, culture, and stories behind street food through the lens of talented
+                    photographers</p>
+            </div>
+            <div class="photo-gallery">
+                <div class="photo-item">
+                    <div class="photo-image">
+                        <img src="../images/早市.jpg" alt="Street food photography">
+                    </div>
+                    <div class="photo-overlay">
+                        <div class="photo-title">Morning Market</div>
+                        <div class="photo-description">A bustling morning market in Bangkok where vendors prepare fresh
+                            Pad Thai for early risers.</div>
+                    </div>
+                </div>
+                <div class="photo-item">
+                    <div class="photo-image">
+                        <img src="../images/Taco Stand.jpg" alt="Street food photography">
+                    </div>
+                    <div class="photo-overlay">
+                        <div class="photo-title">Taco Stand</div>
+                        <div class="photo-description">A traditional taco stand in Mexico City serving authentic street
+                            tacos with homemade tortillas.</div>
+                    </div>
+                </div>
+                <div class="photo-item">
+                    <div class="photo-image">
+                        <img src="../images/夜市.jpg" alt="Street food photography">
+                    </div>
+                    <div class="photo-overlay">
+                        <div class="photo-title">Night Market</div>
+                        <div class="photo-description">Vibrant night market scene in Taipei with colorful food stalls
+                            and eager customers.</div>
+                    </div>
+                </div>
+                <div class="photo-item">
+                    <div class="photo-image">
+                        <img src="../images/foodtruckfestival.jpg" alt="Street food photography">
+                    </div>
+                    <div class="photo-overlay">
+                        <div class="photo-title">Food Truck Festival</div>
+                        <div class="photo-description">Modern food truck festival showcasing the evolution of street
+                            food culture in urban areas.</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 美食纪录片推荐区域 -->
+    <section class="documentary-section">
+        <div class="documentary-container">
+            <div class="documentary-header">
+                <h2>Food Documentary Recommendations</h2>
+                <p>Discover the world's best food documentaries that explore street food culture, history, and
+                    traditions</p>
+            </div>
+            <div class="documentary-grid">
+                <div class="documentary-card">
+                    <div class="documentary-image">
+                        <img src="../images/纪录片1.jpg" alt="Street Food: Asia">
+                    </div>
+                    <div class="documentary-content">
+                        <div class="documentary-title">Street Food: Asia</div>
+                        <div class="documentary-description">A Netflix series exploring the vibrant street food culture
+                            across Asia, from Bangkok to Osaka.</div>
+                        <div class="documentary-meta">
+                            <div class="documentary-rating">
+                                <i class="fas fa-star documentary-star"></i>
+                                <i class="fas fa-star documentary-star"></i>
+                                <i class="fas fa-star documentary-star"></i>
+                                <i class="fas fa-star documentary-star"></i>
+                                <i class="fas fa-star documentary-star"></i>
+                            </div>
+                            <div class="documentary-duration">
+                                <i class="fas fa-clock"></i>
+                                <span>6 Episodes</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="documentary-card">
+                    <div class="documentary-image">
+                        <img src="../images/纪录片2.jpg" alt="Food documentary">
+                    </div>
+                    <div class="documentary-content">
+                        <div class="documentary-title">Chef's Table: Street Food</div>
+                        <div class="documentary-description">Profiles of innovative street food chefs who are
+                            revolutionizing traditional street food culture.</div>
+                        <div class="documentary-meta">
+                            <div class="documentary-rating">
+                                <i class="fas fa-star documentary-star"></i>
+                                <i class="fas fa-star documentary-star"></i>
+                                <i class="fas fa-star documentary-star"></i>
+                                <i class="fas fa-star documentary-star"></i>
+                                <i class="far fa-star documentary-star"></i>
+                            </div>
+                            <div class="documentary-duration">
+                                <i class="fas fa-clock"></i>
+                                <span>4 Episodes</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="documentary-card">
+                    <div class="documentary-image">
+                        <img src="../images/纪录片3.jpg" alt="Food documentary">
+                    </div>
+                    <div class="documentary-content">
+                        <div class="documentary-title">The Search for General Tso</div>
+                        <div class="documentary-description">A fascinating journey exploring the origins and evolution
+                            of Chinese-American street food.</div>
+                        <div class="documentary-meta">
+                            <div class="documentary-rating">
+                                <i class="fas fa-star documentary-star"></i>
+                                <i class="fas fa-star documentary-star"></i>
+                                <i class="fas fa-star documentary-star"></i>
+                                <i class="fas fa-star documentary-star"></i>
+                                <i class="fas fa-star documentary-star"></i>
+                            </div>
+                            <div class="documentary-duration">
+                                <i class="fas fa-clock"></i>
+                                <span>1h 22m</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 页脚 -->
+    <footer>
+        <div class="footer-container">
+            <div class="footer-section">
+                <h3>Street Food Explorer</h3>
+                <p>Your guide to the world's most delicious street food and their cultural stories.</p>
+            </div>
+            <div class="footer-section">
+                <h3>Quick Links</h3>
+                <ul class="footer-links">
+                    <li><a href="page1.html">Home</a></li>
+                    <li><a href="page2.html">About us</a></li>
+                    <li><a href="page3.html">Malaysia</a></li>
+                    <li><a href="page4.html">Global</a></li>
+                    <li><a href="page5.html">Cultural Stories</a></li>
+                    <li><a href="page6.html">Maps</a></li>
+                    <li><a href="page7.html">Review</a></li>
+                    <li><a href="page8.html">Contact us</a></li>
+                </ul>
+                </ul>
+            </div>
+            <div class="footer-section">
+                <h3>Follow Us</h3>
+                <p>Stay updated with our latest discoveries and recipes.</p>
+                <div class="social-icons">
+                    <a href="https://www.facebook.com/"><i class="fab fa-facebook-f"></i></a>
+                    <a href="https://www.instagram.com/"><i class="fab fa-instagram"></i></a>
+                    <a href="https://twitter.com/"><i class="fab fa-twitter"></i></a>
+                    <a href="https://www.youtube.com/channel/"><i class="fab fa-youtube"></i></a>
+                </div>
+            </div>
+        </div>
+        <div class="copyright">
+            <p>&copy; 2025 Street Food Explorer. All rights reserved.</p>
+        </div>
+    </footer>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="js/page5.js"></script>
+</body>
+
+</html>

@@ -1,0 +1,475 @@
+/* =========================
+   Base & Typography
+   ========================= */
+body {
+  font-family: "Inter", "Noto Sans SC", sans-serif;
+  background: linear-gradient(135deg, var(--color3) 0%, var(--color7) 100%);
+  margin: 0;
+  color: var(--color2);
+  line-height: 1.7;
+}
+
+h1,
+h2,
+h3,
+h4 {
+  font-family: "Inter", sans-serif;
+  font-weight: 700;
+  color: var(--color1);
+  margin-bottom: 0.8rem;
+  position: relative;
+}
+
+h1.page-title {
+  text-align: center;
+  font-size: 2.2rem;
+  margin-bottom: 2rem;
+}
+
+h1.page-title::after {
+  content: "";
+  display: block;
+  width: 80px;
+  height: 4px;
+  background: var(--color5);
+  margin: 0.5rem auto 0;
+  border-radius: 2px;
+}
+
+.container {
+  max-width: 1100px;
+  margin: 2rem auto;
+  margin-left: 250px; /* Base margin for fixed sidebar */
+  padding: 1rem;
+  width: calc(100% - 250px);
+  box-sizing: border-box;
+  transition: margin-left 0.4s ease, width 0.4s ease;
+  min-height: calc(100vh - 500px); /* Add this line */
+  /* This ensures the container is tall enough to push the footer down */
+}
+
+.container.sidebar-closed {
+  margin-left: auto;
+  width: 95%;
+  /* Adjust width to take up more space */
+}
+
+/* =========================
+   Forms
+   ========================= */
+.review-form {
+  background: rgba(255, 255, 255, 0.85);
+  border-radius: 1rem;
+  padding: 2rem;
+  margin: 1.5rem 0 2.5rem;
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.08);
+  backdrop-filter: blur(12px);
+  transition: transform 0.3s ease;
+}
+
+.review-form:hover {
+  transform: translateY(-4px);
+}
+
+.review-form label {
+  font-weight: 600;
+  color: var(--color2);
+  display: block;
+  margin: 1rem 0 0.4rem;
+}
+
+.review-form input[type="text"],
+.review-form input[type="file"],
+.review-form textarea {
+  width: 100%;
+  border: 1.5px solid var(--color7);
+  border-radius: 0.6rem;
+  padding: 0.7rem 1rem;
+  font-size: 1rem;
+  outline: none;
+  transition: border 0.3s ease, box-shadow 0.3s ease;
+  box-sizing: border-box;
+}
+
+.review-form input:focus,
+.review-form textarea:focus {
+  border-color: var(--color5);
+  box-shadow: 0 0 6px rgba(231, 116, 9, 0.3);
+}
+
+/* =========================
+   Buttons
+   ========================= */
+.btn-submit {
+  border: 2px solid orange;
+  background: transparent;
+  color: orange;
+  border-radius: 999px;
+  cursor: pointer;
+  font-size: 1.15rem;
+  font-weight: 600;
+  padding: 0.9rem 2.2rem;
+  transition: all 0.35s ease;
+  display: inline-block;
+  margin-top: 1.2rem;
+  box-shadow: 0 6px 16px rgba(231, 116, 9, 0.25);
+}
+
+.btn-submit:hover {
+  background-color: orange;
+  /* 橙色背景 */
+  color: white;
+  /* 悬停时字体变白 */
+  transform: scale(1.05);
+  /* 放大效果 */
+}
+
+/* =========================
+   Star Ratings
+   ========================= */
+.star-rating {
+  display: flex;
+  flex-direction: row-reverse;
+  justify-content: flex-end;
+  gap: 0.3rem;
+  margin-top: 0.4rem;
+}
+
+.star-rating input {
+  display: none;
+}
+
+.star-rating label {
+  font-size: 2rem;
+  color: var(--color7);
+  cursor: pointer;
+  transition: transform 0.25s ease, color 0.3s ease;
+}
+
+.star-rating input:checked ~ label,
+.star-rating label:hover,
+.star-rating label:hover ~ label {
+  color: var(--color5);
+  transform: scale(1.2) rotate(-5deg);
+}
+
+.rating-text {
+  font-size: 1rem;
+  margin-top: 0.6rem;
+  font-weight: 500;
+  color: var(--color2);
+}
+
+/* =========================
+   Review Cards
+   ========================= */
+.reviews-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 1.8rem;
+  margin-top: 1.5rem;
+}
+
+.review-card {
+  background: rgba(255, 255, 255, 0.9);
+  border-radius: 1rem;
+  padding: 1.2rem;
+  box-shadow: 0 6px 16px rgba(0, 0, 0, 0.1);
+  transition: transform 0.35s ease, box-shadow 0.35s ease;
+  backdrop-filter: blur(10px);
+}
+
+.review-card:hover {
+  transform: translateY(-8px);
+  box-shadow: 0 12px 28px rgba(0, 0, 0, 0.18);
+}
+
+.review-card img {
+  width: 100%;
+  height: 190px;
+  object-fit: cover;
+  border-radius: 0.9rem;
+  margin-bottom: 0.9rem;
+}
+
+.review-card h4 {
+  margin-top: 0.3rem;
+  font-size: 1.25rem;
+  color: var(--color1);
+}
+
+.review-card p {
+  margin: 0.4rem 0;
+}
+
+/* =========================
+   Map Section
+   ========================= */
+#map-picker {
+  width: 100%;
+  height: 330px;
+  border-radius: 0.9rem;
+  margin: 1.2rem 0;
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+  border: 2px solid var(--color6);
+}
+
+.chosen-location {
+  font-size: 0.95rem;
+  margin-top: 0.4rem;
+  font-style: italic;
+  color: var(--color6);
+}
+
+/* =========================
+   Sidebar Styling
+   ========================= */
+.sidebar {
+  position: absolute; /* Keep this as fixed */
+  top: 50px;
+  left: 0;
+  width: 200px;
+  height: calc(100vh - 100px);
+  background: rgba(255, 255, 255, 0.85);
+  backdrop-filter: blur(14px);
+  padding: 1.5rem;
+  box-shadow: 4px 0 25px rgba(0, 0, 0, 0.15);
+  overflow-y: auto;
+  z-index: 1000;
+  margin-bottom: 250px; /* Add this line to create space for the footer */
+}
+
+.sidebar h2 {
+  font-size: 1.4rem;
+  margin-bottom: 1.2rem;
+  color: var(--color1);
+  border-bottom: 2px solid var(--color5);
+  padding-bottom: 0.5rem;
+}
+
+.sidebar h3 {
+  font-size: 1.1rem;
+  margin: 1.2rem 0 0.8rem;
+  color: var(--color1);
+}
+
+/* Sidebar inputs override for readability */
+.sidebar label {
+  color: var(--color2);
+  font-weight: 600;
+  display: block;
+  margin-bottom: 0.4rem;
+  margin-top: 0.8rem;
+  font-size: 0.9rem;
+}
+
+.sidebar input[type="text"],
+.sidebar select {
+  width: 100%;
+  margin-bottom: 0.8rem;
+  border: 1.5px solid var(--color7);
+  border-radius: 0.6rem;
+  padding: 0.6rem 0.8rem;
+  font-size: 0.9rem;
+  background: rgba(255, 255, 255, 0.9);
+  box-sizing: border-box;
+}
+
+.sidebar input:focus,
+.sidebar select:focus {
+  border-color: var(--color5);
+  box-shadow: 0 0 6px rgba(231, 116, 9, 0.3);
+}
+
+.rating-filters {
+  display: flex;
+  flex-direction: column;
+  gap: 0.4rem;
+  margin: 0.8rem 0;
+}
+
+.rating-filters label {
+  font-weight: normal;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  margin: 0;
+  font-size: 0.9rem;
+}
+
+/* FIXED: Reset button styling */
+.sidebar .reset-btn {
+  width: 100%;
+  margin-top: 1.5rem; /* This margin now solely creates the space */
+  border-radius: 0.6rem;
+  font-weight: 600;
+  padding: 0.5rem 0.8rem;
+  background: linear-gradient(135deg, var(--color5), var(--color4));
+  border: none;
+  color: var(--color8);
+  box-shadow: 0 4px 10px rgba(231, 116, 9, 0.25);
+  cursor: pointer;
+  transition: all 0.3s ease;
+  font-size: 0.8rem;
+}
+.sidebar .reset-btn:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 6px 14px rgba(231, 116, 9, 0.35);
+}
+
+/* Apply Filters button */
+.sidebar .apply-btn {
+  width: 100%;
+  margin-top: 0.8rem;
+  /* Removed: margin-bottom: 1.5rem; */
+  border-radius: 0.6rem;
+  font-weight: 600;
+  padding: 0.5rem 0.8rem;
+  background: transparent;
+  border: 2px solid var(--color5);
+  color: var(--color5);
+  box-shadow: 0 4px 10px rgba(231, 116, 9, 0.2);
+  cursor: pointer;
+  transition: all 0.3s ease;
+  font-size: 0.8rem;
+}
+.sidebar .apply-btn:hover {
+  background: var(--color5);
+  color: white;
+  transform: translateY(-2px);
+  box-shadow: 0 6px 14px rgba(231, 116, 9, 0.3);
+}
+
+/* Sidebar Toggle Button */
+.sidebar-toggle-btn {
+  position: absolute; /* This makes the button position relative to the sidebar. */
+  top: 40px; /* Positions the button 20px from the top of the sidebar. */
+  left: 20px;
+  z-index: 1001;
+  font-size: 2rem;
+  color: var(--color1);
+  border: none;
+  width: 25px;
+  height: 25px;
+  padding: 0.5rem;
+  background: transparent;
+  box-shadow: none;
+  cursor: pointer;
+  display: inline-block;
+}
+
+/* 1. Explicitly remove general button hover effects */
+.sidebar-toggle-btn:hover {
+  background-color: transparent;
+  color: var(--color1); /* Ensures the icon color stays the same */
+  transform: none;
+  opacity: 1;
+  box-shadow: none;
+}
+
+/* 2. Explicitly remove active click effect/transition */
+.sidebar-toggle-btn:active {
+  transform: none;
+}
+
+/* Sidebar closed state */
+.sidebar.closed {
+  transform: translateX(-100%);
+}
+
+   footer {
+    background-color: var(--color2);
+    color: var(--color8);
+    padding: 3rem 2rem 1rem;
+}
+
+.footer-container {
+    max-width: 1200px;
+    margin: 0 auto;
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 2rem;
+    margin-bottom: 2rem;
+}
+
+.footer-section h3 {
+    color: var(--color4);
+    margin-bottom: 1rem;
+    font-weight: var(--font-weight-semibold);
+    letter-spacing: var(--letter-spacing-wide);
+}
+
+.footer-section p {
+    line-height: var(--line-height-relaxed);
+    font-size: var(--font-size-sm);
+}
+
+.footer-links {
+    list-style: none;
+}
+
+.footer-links li {
+    margin-bottom: 0.5rem;
+}
+
+.footer-links a {
+    color: var(--color7);
+    text-decoration: none;
+    transition: color 0.3s ease;
+}
+
+.footer-links a:hover {
+    color: var(--color13);
+}
+
+.social-icons1 {
+    display: flex;
+    gap: 1rem;
+    margin-top: 1rem;
+}
+
+.social-icons1 a {
+    color: var(--color8);
+    background-color: var(--color1);
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: background-color 0.3s ease;
+}
+
+.social-icons1 a:hover {
+    background-color: var(--color13);
+}
+
+.copyright {
+    text-align: center;
+    padding-top: 1rem;
+    border-top: 1px solid rgba(255, 255, 255, 0.1);
+    font-size: 0.9rem;
+}
+
+.login-btn {
+    position: absolute;
+    right: 35px;
+    top: 10px;
+    color: #000000;
+    /* 默认黑色 */
+    text-decoration: none;
+    cursor: pointer;
+}
+
+/* 仅变色，不改大小 */
+.login-btn:hover {
+    color: orange;
+}
+
+/* B. 如果用 <svg>，用宽高控制大小（SVG 不吃 font-size） */
+.login-btn svg {
+    width: 28px;
+    height: 28px;
+    fill: currentColor;
+    /* 继承 color，hover 时会跟着变色 */
+}

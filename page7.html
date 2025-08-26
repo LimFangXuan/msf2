@@ -1,0 +1,283 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="css/colors.css" />
+    <link rel="stylesheet" href="css/common.css" />
+    <link rel="stylesheet" href="css/page7.css" />
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
+    />
+    <link
+      rel="stylesheet"
+      href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"
+    />
+    <link
+      rel="stylesheet"
+      href="https://unpkg.com/leaflet-control-geocoder/dist/Control.Geocoder.css"
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css"
+    />
+  </head>
+
+  <body>
+    <header>
+      <nav class="glass-nav">
+            <ul>
+
+                <li><a href="page1.html">Home</a></li>
+                <li><a href="page2.html">About us</a></li>
+                <li><a href="page3.html">Malaysia</a></li>
+                <li><a href="page4.html">World</a></li>
+                <li><a href="page5.html">Cultural Stories</a></li>
+                <li><a href="page6.html">Maps</a></li>
+                <li><a href="page7.html">Review</a></li>
+                <li><a href="page8.html">Contact us</a></li>
+            </ul>
+
+           
+        </nav>
+    </header>
+
+    <!-- Main Content -->
+    <main class="container">
+      <button id="toggleSidebar" class="sidebar-toggle-btn">☰</button>
+      <h1 class="page-title">Reviews & Feedback</h1>
+
+      <!-- Street Food Review Form -->
+      <section class="review-form-section">
+        <h2>Share Your Street Food Experience</h2>
+        <form id="foodReviewForm" class="review-form">
+          <label for="foodName">Food Name</label>
+          <input type="text" id="foodName" required />
+
+          <label for="restaurantName">Restaurant/Stall Name</label>
+          <input type="text" id="restaurantName" required />
+
+          <label for="foodLocation">Location</label>
+          <input
+            type="text"
+            id="foodLocation"
+            placeholder="Click on map or search below"
+            required
+          />
+
+          <div class="location-hint">
+            Select a location on the map or search for an address
+          </div>
+
+          <!-- Hidden coordinates -->
+          <input type="hidden" id="lat" />
+          <input type="hidden" id="lng" />
+          <div id="chosenLocation" class="chosen-location">
+            No location selected yet.
+          </div>
+
+          <!-- Map Picker -->
+          <div id="map-picker"></div>
+          <div id="geocoder" class="geocoder-control"></div>
+
+          <label for="foodDescription">Description</label>
+          <textarea id="foodDescription" rows="3" required></textarea>
+
+          <label for="foodImage">Upload Image</label>
+          <input type="file" id="foodImage" accept="image/*" />
+
+          <div class="form-group">
+            <label><i class="fas fa-star"></i> Rating</label>
+            <div class="star-rating-container">
+              <div class="star-rating">
+                <input
+                  type="radio"
+                  id="food-star5"
+                  name="foodRating"
+                  value="5"
+                  required
+                />
+                <label for="food-star5" title="5 stars">★</label>
+                <input
+                  type="radio"
+                  id="food-star4"
+                  name="foodRating"
+                  value="4"
+                />
+                <label for="food-star4" title="4 stars">★</label>
+                <input
+                  type="radio"
+                  id="food-star3"
+                  name="foodRating"
+                  value="3"
+                />
+                <label for="food-star3" title="3 stars">★</label>
+                <input
+                  type="radio"
+                  id="food-star2"
+                  name="foodRating"
+                  value="2"
+                />
+                <label for="food-star2" title="2 stars">★</label>
+                <input
+                  type="radio"
+                  id="food-star1"
+                  name="foodRating"
+                  value="1"
+                />
+                <label for="food-star1" title="1 star">★</label>
+              </div>
+              <div class="rating-text" id="foodRatingText">Select a rating</div>
+            </div>
+          </div>
+
+          <button type="submit" class="btn-submit">Submit Food Review</button>
+        </form>
+      </section>
+
+      <!-- Sidebar Filter -->
+      <aside class="sidebar" id="filterSidebar">
+        <h3>Filter Food Reviews</h3>
+
+        <label for="filterKeyword">Search by Keyword</label>
+        <input type="text" id="filterKeyword" placeholder="e.g. Nasi Lemak" />
+
+        <label for="filterRestaurant">Restaurant</label>
+        <input
+          type="text"
+          id="filterRestaurant"
+          placeholder="Restaurant name"
+        />
+
+        <label for="filterRating">Filter by Rating:</label>
+        <select id="filterRating">
+          <option value="all">All</option>
+          <option value="5">⭐⭐⭐⭐⭐</option>
+          <option value="4">⭐⭐⭐⭐</option>
+          <option value="3">⭐⭐⭐</option>
+          <option value="2">⭐⭐</option>
+          <option value="1">⭐</option>
+        </select>
+
+        <button id="applyFilter">Apply Filters</button>
+        <button id="resetFilter">Reset</button>
+      </aside>
+
+      <!-- Food Reviews Display -->
+      <section class="review-list-section">
+        <h3>Community Street Food Reviews</h3>
+        <div id="foodReviewsList" class="reviews-grid"></div>
+      </section>
+
+      <!-- Website Feedback Form -->
+      <section class="feedback-form-section">
+        <h2>Share Your Feedback About Our Website</h2>
+        <form id="siteReviewForm" class="review-form">
+          <label for="userName">Your Name</label>
+          <input type="text" id="userName" required />
+
+          <label for="siteFeedback">Feedback</label>
+          <textarea id="siteFeedback" rows="3" required></textarea>
+
+          <div class="form-group">
+            <label><i class="fas fa-star"></i> Website Rating</label>
+            <div class="star-rating-container">
+              <div class="star-rating">
+                <input
+                  type="radio"
+                  id="site-star5"
+                  name="siteRating"
+                  value="5"
+                  required
+                />
+                <label for="site-star5" title="5 stars">★</label>
+                <input
+                  type="radio"
+                  id="site-star4"
+                  name="siteRating"
+                  value="4"
+                />
+                <label for="site-star4" title="4 stars">★</label>
+                <input
+                  type="radio"
+                  id="site-star3"
+                  name="siteRating"
+                  value="3"
+                />
+                <label for="site-star3" title="3 stars">★</label>
+                <input
+                  type="radio"
+                  id="site-star2"
+                  name="siteRating"
+                  value="2"
+                />
+                <label for="site-star2" title="2 stars">★</label>
+                <input
+                  type="radio"
+                  id="site-star1"
+                  name="siteRating"
+                  value="1"
+                />
+                <label for="site-star1" title="1 star">★</label>
+              </div>
+              <div class="rating-text" id="siteRatingText">Select a rating</div>
+            </div>
+          </div>
+
+          <button type="submit" class="btn-submit">
+            Submit Website Feedback
+          </button>
+        </form>
+      </section>
+
+      <!-- Website Reviews Display -->
+      <section class="review-list-section">
+        <h3>User Feedback on Our Website</h3>
+        <div id="siteReviewsList" class="reviews-grid"></div>
+      </section>
+    </main>
+    <footer>
+        <div class="footer-container">
+            <div class="footer-section">
+                <h3>Street Food Explorer</h3>
+                <p>Your guide to the world's most delicious street food and their cultural stories.</p>
+            </div>
+            <div class="footer-section">
+                <h3>Quick Links</h3>
+                <ul class="footer-links">
+                    <li><a href="page1.html">Home</a></li>
+                    <li><a href="page2.html">About us</a></li>
+                    <li><a href="page3.html">Malaysia</a></li>
+                    <li><a href="page4.html">Global</a></li>
+                    <li><a href="page5.html">Cultural Stories</a></li>
+                    <li><a href="page6.html">Maps</a></li>
+                    <li><a href="page7.html">Review</a></li>
+                    <li><a href="page8.html">Contact us</a></li>
+                </ul>
+                </ul>
+            </div>
+            <div class="footer-section">
+                <h3>Follow Us</h3>
+                <p>Stay updated with our latest discoveries and recipes.</p>
+                <div class="social-icons">
+                    <a href="https://www.facebook.com/"><i class="fab fa-facebook-f"></i></a>
+                    <a href="https://www.instagram.com/"><i class="fab fa-instagram"></i></a>
+                    <a href="https://twitter.com/"><i class="fab fa-twitter"></i></a>
+                    <a href="https://www.youtube.com/channel/"><i class="fab fa-youtube"></i></a>
+                </div>
+            </div>
+        </div>
+        <div class="copyright">
+            <p>&copy; 2025 Street Food Explorer. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <!-- Scripts -->
+    <script src="https://unpkg.com/leaflet/dist/leaflet.js"></script>
+    <script src="https://unpkg.com/leaflet-control-geocoder/dist/Control.Geocoder.js"></script>
+    <script src="js/page7.js"></script>
+  </body>
+</html>

@@ -1,0 +1,15 @@
+:root {
+    --color1: #436847;
+    --color2: #1c2f20;
+    --color3: #f7f2d8;
+    --color4: #DDA15E;
+    --color5: #e77409;
+    --color6: #6da071;/*主要颜色*/
+    --color7: #A9B388;
+    --color8: #ffffff;/* 背景统一用白色 */
+    --color13: orange;/*按钮统一用橙色*/
+
+    --font-family: 'Times New Roman', Times, serif;
+    --font-size-base: 12px;
+    --spacing-base: 1rem;
+}

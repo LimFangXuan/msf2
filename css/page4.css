@@ -1,0 +1,431 @@
+/* 全局字体和背景 */
+body {
+    margin: 0;
+    font-family: 'Noto Sans SC', 'Inter', sans-serif;
+    background: url("../images/background1.jpg") no-repeat center center/cover;
+    background-attachment: fixed;
+}
+
+
+/* 主布局 */
+.page-container {
+    display: flex;
+    transition: all 0.3s ease;
+    padding-top: 1px;
+    /* 给导航留空间 */
+}
+
+.menu-btn {
+    font-size: 14px;
+    background: none;
+    color: black;
+    cursor: pointer;
+    border: 1px solid #ccc;
+    border-style: groove;
+
+    /* 关键调整 */
+    height: 40px;
+
+    padding: 0px 20px;
+    margin-top: 8px;
+    margin-bottom: 8px;
+
+    /* 上下 6px，左右 18px → 横向长 */
+    border-radius: 20px;
+    /* 圆角一点更好看 */
+    align-items: center;
+    /* 图标 + 文字垂直居中 */
+}
+
+.middle-nav h3 {
+    margin: 0;
+    /* 去掉默认 margin */
+}
+
+.menu-btn:hover {
+    transform: scale(1.1);
+    background: none;
+    border: none;
+    color: orange;
+    cursor: pointer;
+    border: 1px solid #ccc;
+}
+
+@media (max-width: 480px) {
+    .food-grid {
+        grid-template-columns: 1fr !important;
+    }
+}
+
+/* 左侧筛选面板 */
+.filter-panel {
+    width: 25%;
+    max-width: 40%;
+    background-color: rgba(255, 255, 255, 0.8);
+    backdrop-filter: blur(6px);
+    padding: 10px;
+    box-shadow: 2px 0 5px rgba(0, 0, 0, 0.1);
+    transition: width 0.3s ease, opacity 0.3s ease;
+}
+
+.filter-panel h4 {
+    margin-top: -5px;
+    margin-left: 5px;
+}
+
+.filter-panel select {
+    width: 95%;
+    padding: 8px;
+    margin-bottom: 20px;
+    border-radius: 20px;
+    border: 1px solid #ccc;
+    margin-left: 5px;
+    color: #4d4d4d;
+
+}
+
+.page-container.collapsed .filter-panel {
+    width: 0;
+    padding: 0;
+    opacity: 0;
+    overflow: hidden;
+}
+
+.content-area {
+    flex: 1;
+    padding: 20px;
+}
+
+
+/* 右侧内容区 */
+.content-area {
+    flex: 1;
+    padding: 20px;
+}
+
+/* 搜索栏 */
+.search-bar {
+    flex: 1;
+    height: 60px;
+    position: relative;
+    margin-top: 20px;
+    margin-bottom: 20px;
+    display: flex;
+    align-items: center;
+    padding: 0 10px;
+}
+
+.search-bar input {
+    width: 100%;
+    padding: 10px;
+    border-radius: 20px;
+    border: 1px solid #ccc;
+    font-size: 16px;
+}
+
+/* 食物网格布局 */
+.food-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 20px;
+}
+
+.page-container.collapsed .food-grid {
+    grid-template-columns: repeat(4, 1fr);
+}
+
+.food-card {
+    position: relative;
+    background: rgba(255, 255, 255, 0.427);
+    backdrop-filter: blur(10px);
+    border-radius: 20px;
+    overflow: hidden;
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.2);
+    text-align: left;
+    transition: transform 0.3s ease;
+    display: block;
+    perspective: 1000px;
+    /* 开启3D空间 */
+}
+
+.food-card:hover {
+    transform: scale(1.03);
+    background: #6da071;
+    transition: background 0.5s ease;
+
+}
+
+.food-card:hover * {
+    color: white;
+}
+
+/* 图片外框留白 */
+.food-img-wrapper {
+    padding: 10px;
+    border-radius: 16px;
+    overflow: hidden;
+}
+
+.food-card img {
+    width: 100%;
+    height: 200px;
+    transition: transform 0.5s ease;
+    /* 平滑缩放 */
+    border-radius: 12px;
+    object-fit: cover;
+
+}
+
+.food-card:hover img {
+    transform: scale(1.0999);
+    /* 图片放大，框不动 */
+}
+
+.food-card-inner {
+    position: relative;
+    width: 100%;
+    height: 100%;
+    transition: transform 0.8s;
+    transform-style: preserve-3d;
+}
+
+
+/* 内容部分 */
+.food-content {
+    padding: 10px 20px 20px;
+}
+
+/* 标题 + 星星 */
+.food-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.food-card h4 {
+    margin: 0;
+    font-size: 18px;
+    font-weight: bold;
+}
+
+/* 描述 */
+.food-card p {
+    margin: 8px 0;
+    font-size: 14px;
+    color: #4d4d4d;
+}
+
+.login-btn {
+    position: absolute;
+    right: 35px;
+    top: 10px;
+    color: #000000;
+    /* 默认黑色 */
+    text-decoration: none;
+    cursor: pointer;
+}
+
+/* 仅变色，不改大小 */
+.login-btn:hover {
+    color: orange;
+}
+
+/* B. 如果用 <svg>，用宽高控制大小（SVG 不吃 font-size） */
+.login-btn svg {
+    width: 28px;
+    height: 28px;
+    fill: currentColor;
+    /* 继承 color，hover 时会跟着变色 */
+}
+
+.top-nav {
+    background: #ffffff;
+    display: flex;
+    align-items: center;
+    padding: 0px 10px;
+    border-bottom: 1px solid #eee;
+}
+
+footer {
+    background-color: var(--color2);
+    color: var(--color8);
+    padding: 3rem 2rem 1rem;
+}
+
+.footer-container {
+    max-width: 1200px;
+    margin: 0 auto;
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 2rem;
+    margin-bottom: 2rem;
+}
+
+.footer-section h3 {
+    color: var(--color4);
+    margin-bottom: 1rem;
+    font-weight: var(--font-weight-semibold);
+    letter-spacing: var(--letter-spacing-wide);
+}
+
+.footer-section p {
+    line-height: var(--line-height-relaxed);
+    font-size: var(--font-size-sm);
+}
+
+.footer-links {
+    list-style: none;
+}
+
+.footer-links li {
+    margin-bottom: 0.5rem;
+}
+
+.footer-links a {
+    color: var(--color7);
+    text-decoration: none;
+    transition: color 0.3s ease;
+}
+
+.footer-links a:hover {
+    color: var(--color13);
+}
+
+.social-icons {
+    display: flex;
+    gap: 1rem;
+    margin-top: 1rem;
+}
+
+.social-icons a {
+    color: var(--color8);
+    background-color: var(--color1);
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: background-color 0.3s ease;
+}
+
+.social-icons a:hover {
+    background-color: var(--color13);
+}
+
+.copyright {
+    text-align: center;
+    padding-top: 1rem;
+    border-top: 1px solid rgba(255, 255, 255, 0.1);
+    font-size: 0.9rem;
+}
+
+.filter-panel h4 {
+    margin-top: 20px;
+}
+
+.banner {
+    position: relative;
+    width: 100%;
+    overflow: hidden;
+    border-radius: 20px;
+    padding: 60px 10px;
+    display: flex;
+    max-height: 250px;
+    margin-top: 10px;
+    justify-content: center;
+    align-items: center;
+    
+}
+
+.part2 {
+    padding: 0px 50px;
+    background:#ffffff;
+    margin-top: 43px;
+    justify-content: center;
+    align-items: center;
+}
+
+.section{
+    background:#ffffff;
+    justify-content: center;
+    align-items: center;
+}
+
+/* 背景轮播容器 */
+.banner-slides {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 200%;
+    /* 两张图并排 */
+    height: 100%;
+    display: flex;
+    animation: slide 10s infinite;
+}
+
+.banner-slides img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+/* 文字内容层 */
+.hero-content {
+    position: relative;
+    z-index: 2;
+    justify-content: center;
+    text-align: center;
+    color: white;
+    margin-top: 10px;
+    top: 40%;
+    transform: translateY(-50%);
+    padding: 20px;
+    border-radius: 10px;
+    animation: fadeUp 1.5s ease forwards;
+
+}
+
+/* 轮播动画 */
+@keyframes slide {
+    0% {
+        transform: translateX(0);
+    }
+
+    40% {
+        transform: translateX(0);
+    }
+
+    50% {
+        transform: translateX(-50%);
+    }
+
+    90% {
+        transform: translateX(-50%);
+    }
+
+    100% {
+        transform: translateX(0);
+    }
+
+
+}
+
+.banner .hero-content h1,
+.banner .hero-content p {
+    opacity: 0;
+    transform: translateY(30px);
+    animation: fadeUp 1.2s ease forwards;
+}
+
+/* p 比 h1 慢一点出现 */
+.banner .hero-content p {
+    animation-delay: 0.5s;
+}
+
+@keyframes fadeUp {
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
