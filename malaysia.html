@@ -76,20 +76,138 @@
 
 <script>
     const malaysiaStates = [
-        { id: "johor", name: "Johor", capital: "Johor Bahru", video: "Vv--jcD85nU", intro: "Johor, the southern gateway to Malaysia, offers a unique culinary landscape influenced by its history and proximity to Singapore, featuring iconic dishes like Laksa Johor and Mee Rebus.", foods: [{img:"johor_food1.jpg", name:"Laksa Johor"}, {img:"johor_food2.jpg", name:"Mee Rebus"}, {img:"kacang-pool-3.jpg", name:"Kacang Pool"}, {img:"otak-otak.jpg", name:"Otak-Otak"}] },
-        { id: "kedah", name: "Kedah", capital: "Alor Setar", video: "KycQtJxaSCA", intro: "Known as the 'Rice Bowl of Malaysia,' Kedah's cuisine is heavily based on rice products, featuring savory and sweet dishes that are beloved throughout the country.", foods: [{img:"kedah_food1.jpg", name:"Nasi Ulam"}, {img:"kedah_food2.jpg", name:"Laksa Kedah"}, {img:"Gulai_Nangka.jpg", name:"Gulai Nangka"}, {img:"Pek_Nga.jpg", name:"Pek Nga"}] },
-        { id: "kelantan", name: "Kelantan", capital: "Kota Bharu", video: "CAo3l-5etN0", intro: "Kelantanese cuisine is known for its distinctively sweet and savory flavors, with popular dishes like Nasi Kerabu and Ayam Percik showcasing the state's rich culinary traditions.", foods: [{img:"nasi kerabu.jpg", name:"Nasi Kerabu"}, {img:"Ayam Percik.jpg", name:"Ayam Percik"}, {img:"Laksam.jpg", name:"Laksam"}, {img:"nasi tumpang.jpg", name:"Nasi Tumpang"}] },
-        { id: "kuala-lumpur", name: "Kuala Lumpur", capital: "Kuala Lumpur", video: "77tk7eaCVCE", intro: "As the vibrant capital, Kuala Lumpur is a melting pot of flavors, offering everything from traditional Malay dishes to Chinese and Indian street food in bustling areas like Jalan Alor.", foods: [{img:"kl_food1.jpg", name:"Hokkien Mee"}, {img:"kl_food2.jpg", name:"Satay"}, {img:"nasilemak.jpg", name:"Nasi Lemak"}, {img:"ikan bakar.jpg", name:"Ikan Bakar"}] },
-        { id: "malacca", name: "Malacca", capital: "Malacca City", video: "A5JZHAoLzb4", intro: "The historic state of Malacca offers a rich Peranakan (Baba-Nyonya) culinary heritage, with unique dishes like Chicken Rice Balls and Nyonya Laksa.", foods: [{img:"malacca_food1.jpg", name:"Chicken Rice Balls"}, {img:"malacca_food2.jpg", name:"Nyonya Laksa"}, {img:"cendol.jpg", name:"Cendol"}, {img:"satay celup.jpg", name:"Satay Celup"}] },
-        { id: "negeri-sembilan", name: "Negeri Sembilan", capital: "Seremban", video: "_hCVd9yV2oM", intro: "Famous for its Minangkabau-influenced cuisine, Negeri Sembilan is known for spicy and savory dishes, particularly 'masak lemak cili api,' a rich, coconut-based curry.", foods: [{img:"Masak Lemak Cili Api.jpg", name:"Masak Lemak Cili Api"}, {img:"Siew Pau.jpg", name:"Siew Pau"}, {img:"Rendang Minang.jpg", name:"Rendang Minang"}, {img:"Apam Johol.jpg", name:"Apam Johol"}] },
-        { id: "pahang", name: "Pahang", capital: "Kuantan", video: "sWtRPKb4tSQ", intro: "The largest state in Peninsular Malaysia, Pahang offers a diverse culinary landscape with specialties like Patin Tempoyak and traditional Malay dishes.", foods: [{img:"pahang_food1.jpg", name:"Patin Tempoyak"}, {img:"pahang_food2.jpg", name:"Gulai Kawah"}, {img:"Keropok Lekor.jpg", name:"Keropok Lekor"}, {img:"Ikan Bakar_pahang.jpg", name:"Ikan Bakar"}] },
-        { id: "penang", name: "Penang", capital: "George Town", video: "iVsn8X5K7pw", intro: "Often hailed as the food capital of Malaysia, Penang is a paradise for food lovers, offering iconic dishes like Char Kway Teow, Assam Laksa, and Hokkien Mee.", foods: [{img:"penang_food1.jpg", name:"Char Kway Teow"}, {img:"penang_food2.jpg", name:"Assam Laksa"}, {img:"Hokkien Mee.jpg", name:"Hokkien Mee"}, {img:"Cendol_penang.jpg", name:"Cendol"}] },
-        { id: "perak", name: "Perak", capital: "Ipoh", video: "EYou7CsjHKc", intro: "Perak, particularly its capital Ipoh, is famous for its white coffee and noodle dishes like Hor Hee and Kai Si Hor Fun, drawing foodies from all over the country.", foods: [{img:"perak_food1.jpg", name:"Ipoh Hor Fun"}, {img:"perak_food2.jpg", name:"Nga Choi Kai"}, {img:"Salted Chicken.jpg", name:"Salted Chicken"}, {img:"White Coffee.jpg", name:"White Coffee"}] },
-        { id: "perlis", name: "Perlis", capital: "Kangar", video: "VsknE7A3K_4", intro: "As the smallest state in Malaysia, Perlis has a culinary scene influenced by its northern neighbors, offering unique local delights and a taste of traditional Malay village cuisine.", foods: [{img:"perlis_food1.jpg", name:"Ikan Bakar"}, {img:"perlis_food2.jpg", name:"Laksa Perlis"}, {img:"Harum Manis Mango.jpg", name:"Harum Manis Mango"}, {img:"Sira Pulut.jpg", name:"Sira Pulut"}] },
-        { id: "sabah", name: "Sabah", capital: "Kota Kinabalu", video: "35hkj9dZ2XE", intro: "Located on the island of Borneo, Sabah's cuisine is unique, with a strong emphasis on fresh seafood and indigenous ingredients, offering exotic dishes you won't find in the peninsula.", foods: [{img:"sabah_food1.jpg", name:"Hinava"}, {img:"sabah_food2.jpg", name:"Tuaran Mee"}, {img:"Sang Nyuk Mian.jpg", name:"Sang Nyuk Mian"}, {img:"Pinjaram.jpg", name:"Pinjaram"}] },
-        { id: "sarawak", name: "Sarawak", capital: "Kuching", video: "5oj6OQw546g", intro: "Home to the iconic Sarawak Laksa and Kolo Mee, Sarawak offers a distinct culinary experience with flavors and dishes that are unique to this large Bornean state.", foods: [{img:"sarawak_food1.jpg", name:"Sarawak Laksa"}, {img:"sarawak_food2.jpg", name:"Kolo Mee"}, {img:"Manok Pansuh.jpg", name:"Manok Pansuh"}, {img:"Kek-lapis-Sarawak1-1.jpg", name:"Kek Lapis"}] },
-        { id: "selangor", name: "Selangor", capital: "Shah Alam", video: "ZGKes--_V00", intro: "As Malaysia's most developed state surrounding Kuala Lumpur, Selangor offers a diverse range of street food, from bustling night markets to iconic local eateries.", foods: [{img:"selangor_food1.jpg", name:"Bak Kut Teh"}, {img:"selangor_food2.jpg", name:"Satay Kajang"}, {img:"Rojak.jpg", name:"Rojak"}, {img:"Cendol_selangor.jpg", name:"Cendol"}] }
-    ];
+  { 
+    id: "johor", name: "Johor", capital: "Johor Bahru", video: "Vv--jcD85nU", 
+    intro: "Johor, the southern gateway to Malaysia, offers a unique culinary landscape influenced by its history and proximity to Singapore, featuring iconic dishes like Laksa Johor and Mee Rebus.", 
+    foods: [
+      {img:"images/johor_food1.jpg", name:"Laksa Johor"}, 
+      {img:"images/johor_food2.jpg", name:"Mee Rebus"}, 
+      {img:"images/kacang-pool-3.jpg", name:"Kacang Pool"}, 
+      {img:"images/otak-otak.jpg", name:"Otak-Otak"}
+    ] 
+  },
+  { 
+    id: "kedah", name: "Kedah", capital: "Alor Setar", video: "KycQtJxaSCA", 
+    intro: "Known as the 'Rice Bowl of Malaysia,' Kedah's cuisine is heavily based on rice products, featuring savory and sweet dishes that are beloved throughout the country.", 
+    foods: [
+      {img:"images/kedah_food1.jpg", name:"Nasi Ulam"}, 
+      {img:"images/kedah_food2.jpg", name:"Laksa Kedah"}, 
+      {img:"images/Gulai_Nangka.jpg", name:"Gulai Nangka"}, 
+      {img:"images/Pek_Nga.jpg", name:"Pek Nga"}
+    ] 
+  },
+  { 
+    id: "kelantan", name: "Kelantan", capital: "Kota Bharu", video: "CAo3l-5etN0", 
+    intro: "Kelantanese cuisine is known for its distinctively sweet and savory flavors, with popular dishes like Nasi Kerabu and Ayam Percik showcasing the state's rich culinary traditions.", 
+    foods: [
+      {img:"images/nasi kerabu.jpg", name:"Nasi Kerabu"}, 
+      {img:"images/Ayam Percik.jpg", name:"Ayam Percik"}, 
+      {img:"images/Laksam.jpg", name:"Laksam"}, 
+      {img:"images/nasi tumpang.jpg", name:"Nasi Tumpang"}
+    ] 
+  },
+  { 
+    id: "kuala-lumpur", name: "Kuala Lumpur", capital: "Kuala Lumpur", video: "77tk7eaCVCE", 
+    intro: "As the vibrant capital, Kuala Lumpur is a melting pot of flavors, offering everything from traditional Malay dishes to Chinese and Indian street food in bustling areas like Jalan Alor.", 
+    foods: [
+      {img:"images/kl_food1.jpg", name:"Hokkien Mee"}, 
+      {img:"images/kl_food2.jpg", name:"Satay"}, 
+      {img:"images/nasilemak.jpg", name:"Nasi Lemak"}, 
+      {img:"images/ikan bakar.jpg", name:"Ikan Bakar"}
+    ] 
+  },
+  { 
+    id: "malacca", name: "Malacca", capital: "Malacca City", video: "A5JZHAoLzb4", 
+    intro: "The historic state of Malacca offers a rich Peranakan (Baba-Nyonya) culinary heritage, with unique dishes like Chicken Rice Balls and Nyonya Laksa.", 
+    foods: [
+      {img:"images/malacca_food1.jpg", name:"Chicken Rice Balls"}, 
+      {img:"images/malacca_food2.jpg", name:"Nyonya Laksa"}, 
+      {img:"images/cendol.jpg", name:"Cendol"}, 
+      {img:"images/satay celup.jpg", name:"Satay Celup"}
+    ] 
+  },
+  { 
+    id: "negeri-sembilan", name: "Negeri Sembilan", capital: "Seremban", video: "_hCVd9yV2oM", 
+    intro: "Famous for its Minangkabau-influenced cuisine, Negeri Sembilan is known for spicy and savory dishes, particularly 'masak lemak cili api,' a rich, coconut-based curry.", 
+    foods: [
+      {img:"images/Masak Lemak Cili Api.jpg", name:"Masak Lemak Cili Api"}, 
+      {img:"images/Siew Pau.jpg", name:"Siew Pau"}, 
+      {img:"images/Rendang Minang.jpg", name:"Rendang Minang"}, 
+      {img:"images/Apam Johol.jpg", name:"Apam Johol"}
+    ] 
+  },
+  { 
+    id: "pahang", name: "Pahang", capital: "Kuantan", video: "sWtRPKb4tSQ", 
+    intro: "The largest state in Peninsular Malaysia, Pahang offers a diverse culinary landscape with specialties like Patin Tempoyak and traditional Malay dishes.", 
+    foods: [
+      {img:"images/pahang_food1.jpg", name:"Patin Tempoyak"}, 
+      {img:"images/pahang_food2.jpg", name:"Gulai Kawah"}, 
+      {img:"images/Keropok Lekor.jpg", name:"Keropok Lekor"}, 
+      {img:"images/Ikan Bakar_pahang.jpg", name:"Ikan Bakar"}
+    ] 
+  },
+  { 
+    id: "penang", name: "Penang", capital: "George Town", video: "iVsn8X5K7pw", 
+    intro: "Often hailed as the food capital of Malaysia, Penang is a paradise for food lovers, offering iconic dishes like Char Kway Teow, Assam Laksa, and Hokkien Mee.", 
+    foods: [
+      {img:"images/penang_food1.jpg", name:"Char Kway Teow"}, 
+      {img:"images/penang_food2.jpg", name:"Assam Laksa"}, 
+      {img:"images/Hokkien Mee.jpg", name:"Hokkien Mee"}, 
+      {img:"images/Cendol_penang.jpg", name:"Cendol"}
+    ] 
+  },
+  { 
+    id: "perak", name: "Perak", capital: "Ipoh", video: "EYou7CsjHKc", 
+    intro: "Perak, particularly its capital Ipoh, is famous for its white coffee and noodle dishes like Hor Hee and Kai Si Hor Fun, drawing foodies from all over the country.", 
+    foods: [
+      {img:"images/perak_food1.jpg", name:"Ipoh Hor Fun"}, 
+      {img:"images/perak_food2.jpg", name:"Nga Choi Kai"}, 
+      {img:"images/Salted Chicken.jpg", name:"Salted Chicken"}, 
+      {img:"images/White Coffee.jpg", name:"White Coffee"}
+    ] 
+  },
+  { 
+    id: "perlis", name: "Perlis", capital: "Kangar", video: "VsknE7A3K_4", 
+    intro: "As the smallest state in Malaysia, Perlis has a culinary scene influenced by its northern neighbors, offering unique local delights and a taste of traditional Malay village cuisine.", 
+    foods: [
+      {img:"images/perlis_food1.jpg", name:"Ikan Bakar"}, 
+      {img:"images/perlis_food2.jpg", name:"Laksa Perlis"}, 
+      {img:"images/Harum Manis Mango.jpg", name:"Harum Manis Mango"}, 
+      {img:"images/Sira Pulut.jpg", name:"Sira Pulut"}
+    ] 
+  },
+  { 
+    id: "sabah", name: "Sabah", capital: "Kota Kinabalu", video: "35hkj9dZ2XE", 
+    intro: "Located on the island of Borneo, Sabah's cuisine is unique, with a strong emphasis on fresh seafood and indigenous ingredients, offering exotic dishes you won't find in the peninsula.", 
+    foods: [
+      {img:"images/sabah_food1.jpg", name:"Hinava"}, 
+      {img:"images/sabah_food2.jpg", name:"Tuaran Mee"}, 
+      {img:"images/Sang Nyuk Mian.jpg", name:"Sang Nyuk Mian"}, 
+      {img:"images/Pinjaram.jpg", name:"Pinjaram"}
+    ] 
+  },
+  { 
+    id: "sarawak", name: "Sarawak", capital: "Kuching", video: "5oj6OQw546g", 
+    intro: "Home to the iconic Sarawak Laksa and Kolo Mee, Sarawak offers a distinct culinary experience with flavors and dishes that are unique to this large Bornean state.", 
+    foods: [
+      {img:"images/sarawak_food1.jpg", name:"Sarawak Laksa"}, 
+      {img:"images/sarawak_food2.jpg", name:"Kolo Mee"}, 
+      {img:"images/Manok Pansuh.jpg", name:"Manok Pansuh"}, 
+      {img:"images/Kek-lapis-Sarawak1-1.jpg", name:"Kek Lapis"}
+    ] 
+  },
+  { 
+    id: "selangor", name: "Selangor", capital: "Shah Alam", video: "ZGKes--_V00", 
+    intro: "As Malaysia's most developed state surrounding Kuala Lumpur, Selangor offers a diverse range of street food, from bustling night markets to iconic local eateries.", 
+    foods: [
+      {img:"images/selangor_food1.jpg", name:"Bak Kut Teh"}, 
+      {img:"images/selangor_food2.jpg", name:"Satay Kajang"}, 
+      {img:"images/Rojak.jpg", name:"Rojak"}, 
+      {img:"images/Cendol_selangor.jpg", name:"Cendol"}
+    ] 
+  }
+];
+
 
     function showStateContent(stateId) {
         const wrapper = document.getElementById('state-content-wrapper');

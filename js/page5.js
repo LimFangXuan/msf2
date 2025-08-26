@@ -257,7 +257,7 @@ function fetchRecipes() {
     const mockRecipes = [
         {
             label: "Pad Thai",
-            image: "../images/Pad Thai.jpg",
+            image: "images/Pad Thai.jpg",
             source: "Thai Street Food",
             calories: 450,
             ingredients: ["rice noodles", "shrimp", "tofu", "peanuts", "bean sprouts"],
@@ -265,7 +265,7 @@ function fetchRecipes() {
         },
         {
             label: "Nasi Lemak",
-            image: "../images/Nasi Lemak.jpg",
+            image: "images/Nasi Lemak.jpg",
             source: "Malaysian Cuisine",
             calories: 520,
             ingredients: ["coconut rice", "sambal", "anchovies", "peanuts", "boiled egg"],
@@ -273,7 +273,7 @@ function fetchRecipes() {
         },
         {
             label: "Tacos al Pastor",
-            image: "../images/Tacos al Pastor.jpg",
+            image: "images/Tacos al Pastor.jpg",
             source: "Mexican Street Food",
             calories: 380,
             ingredients: ["pork", "pineapple", "tortillas", "onions", "cilantro"],
@@ -281,7 +281,7 @@ function fetchRecipes() {
         },
         {
             label: "Roti Canai",
-            image: "../images/Roti Canai2.jpg",
+            image: "images/Roti Canai2.jpg",
             source: "Malaysian-Indian",
             calories: 420,
             ingredients: ["flour", "water", "oil", "curry sauce"],
@@ -289,7 +289,7 @@ function fetchRecipes() {
         },
         {
             label: "Pizza Margherita",
-            image: "../images/Pizza Margherita.jpg",
+            image: "images/Pizza Margherita.jpg",
             source: "Italian Classic",
             calories: 650,
             ingredients: ["pizza dough", "tomatoes", "mozzarella", "basil", "olive oil"],
@@ -297,7 +297,7 @@ function fetchRecipes() {
         },
         {
             label: "Char Kway Teow",
-            image: "../images/CharKwayTeow2.jpg",
+            image: "images/CharKwayTeow2.jpg",
             source: "Malaysian-Chinese",
             calories: 580,
             ingredients: ["rice noodles", "shrimp", "chinese sausage", "bean sprouts", "eggs"],
@@ -305,7 +305,7 @@ function fetchRecipes() {
         },
         {
             label: "Banh Mi",
-            image: "../images/Banh Mi.jpg",
+            image: "images/Banh Mi.jpg",
             source: "Vietnamese Street Food",
             calories: 490,
             ingredients: ["baguette", "pork", "pickled vegetables", "cilantro", "chili"],
@@ -313,7 +313,7 @@ function fetchRecipes() {
         },
         {
             label: "Churros",
-            image: "../images/Churros.jpg",
+            image: "images/Churros.jpg",
             source: "Spanish Dessert",
             calories: 320,
             ingredients: ["flour", "water", "butter", "sugar", "cinnamon"],
@@ -321,7 +321,7 @@ function fetchRecipes() {
         },
         {
             label: "Samosa",
-            image: "../images/Samosa.jpg",
+            image: "images/Samosa.jpg",
             source: "Indian Street Food",
             calories: 280,
             ingredients: ["pastry", "potato", "peas", "spices", "oil"],
@@ -329,7 +329,7 @@ function fetchRecipes() {
         },
         {
             label: "Arepas",
-            image: "../images/Arepas.jpg",
+            image: "images/Arepas.jpg",
             source: "Venezuelan/Colombian",
             calories: 350,
             ingredients: ["cornmeal", "cheese", "meat", "avocado", "salsa"],
