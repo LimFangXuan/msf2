@@ -251,98 +251,144 @@ function showWelcomeMessage(name) {
     });
 }
 
-// 获取食谱数据
+// 从API获取食谱数据
 function fetchRecipes() {
+    // 
+    const apiKey = "4fb42653e3da430c9b7b5f1e53d1d89d";
+    // API请求URL（获取全球街头美食相关食谱）
+    const apiUrl = `https://api.spoonacular.com/recipes/complexSearch?query=street food&cuisine=global&number=10&apiKey=${apiKey}`;
 
-    const mockRecipes = [
-        {
-            label: "Pad Thai",
-            image: "images/Pad Thai.jpg",
-            source: "Thai Street Food",
-            calories: 450,
-            ingredients: ["rice noodles", "shrimp", "tofu", "peanuts", "bean sprouts"],
-            url: "https://www.recipetineats.com/chicken-pad-thai/"
-        },
-        {
-            label: "Nasi Lemak",
-            image: "images/Nasi Lemak.jpg",
-            source: "Malaysian Cuisine",
-            calories: 520,
-            ingredients: ["coconut rice", "sambal", "anchovies", "peanuts", "boiled egg"],
-            url: "https://www.marionskitchen.com/nasi-lemak/"
-        },
-        {
-            label: "Tacos al Pastor",
-            image: "images/Tacos al Pastor.jpg",
-            source: "Mexican Street Food",
-            calories: 380,
-            ingredients: ["pork", "pineapple", "tortillas", "onions", "cilantro"],
-            url: "https://tastesbetterfromscratch.com/tacos-al-pastor"
-        },
-        {
-            label: "Roti Canai",
-            image: "images/Roti Canai2.jpg",
-            source: "Malaysian-Indian",
-            calories: 420,
-            ingredients: ["flour", "water", "oil", "curry sauce"],
-            url: "https://www.elmundoeats.com/homemade-roti-canai/"
-        },
-        {
-            label: "Pizza Margherita",
-            image: "images/Pizza Margherita.jpg",
-            source: "Italian Classic",
-            calories: 650,
-            ingredients: ["pizza dough", "tomatoes", "mozzarella", "basil", "olive oil"],
-            url: "https://www.abeautifulplate.com/the-best-homemade-margherita-pizza/"
-        },
-        {
-            label: "Char Kway Teow",
-            image: "images/CharKwayTeow2.jpg",
-            source: "Malaysian-Chinese",
-            calories: 580,
-            ingredients: ["rice noodles", "shrimp", "chinese sausage", "bean sprouts", "eggs"],
-            url: "https://www.recipetineats.com/char-kway-teow/"
-        },
-        {
-            label: "Banh Mi",
-            image: "images/Banh Mi.jpg",
-            source: "Vietnamese Street Food",
-            calories: 490,
-            ingredients: ["baguette", "pork", "pickled vegetables", "cilantro", "chili"],
-            url: "https://www.recipetineats.com/banh-mi-vietnamese-sandwich/"
-        },
-        {
-            label: "Churros",
-            image: "images/Churros.jpg",
-            source: "Spanish Dessert",
-            calories: 320,
-            ingredients: ["flour", "water", "butter", "sugar", "cinnamon"],
-            url: "https://www.recipetineats.com/spanish-churros-recipe/"
-        },
-        {
-            label: "Samosa",
-            image: "images/Samosa.jpg",
-            source: "Indian Street Food",
-            calories: 280,
-            ingredients: ["pastry", "potato", "peas", "spices", "oil"],
-            url: "https://www.recipetineats.com/samosa-recipe/"
-        },
-        {
-            label: "Arepas",
-            image: "images/Arepas.jpg",
-            source: "Venezuelan/Colombian",
-            calories: 350,
-            ingredients: ["cornmeal", "cheese", "meat", "avocado", "salsa"],
-            url: "https://www.allrecipes.com/recipe/238510/homemade-arepas/"
-        }
-    ];
+    // 显示加载状态
+    $('#loading').show();
 
-    // 模拟API延迟
-    setTimeout(function () {
-        displayRecipes(mockRecipes);
-        $('#loading').hide();
-    }, 1500);
+    // 发起API请求
+    fetch(apiUrl)
+        .then(response => {
+            if (!response.ok) {
+                throw new Error(`API请求失败: ${response.status}`);
+            }
+            return response.json();
+        })
 
+        .then(async data => {
+            const recipes = [];
+            for (const item of data.results) {
+                // 获取食材详情
+                const ingredients = await fetchRecipeIngredients(item.id, apiKey);
+                recipes.push({
+                    label: item.title,
+                    image: item.image,
+                    source: "Global Street Food",
+                    calories: Math.round(item.nutrition?.nutrients?.find(n => n.name === "Calories")?.amount || 0),
+                    ingredients: ingredients,
+                    url: `https://spoonacular.com/recipes/${item.title.replace(/\s+/g, '-')}-${item.id}`
+                });
+            }
+            displayRecipes(recipes);
+            $('#loading').hide();
+        })
+        .catch(error => {
+            console.error("获取食谱失败:", error);
+            $('#loading').hide();
+            // 失败时显示模拟数据作为备用
+            const mockRecipes = [{
+                label: "Pad Thai",
+                image: "images/Pad Thai.jpg",
+                source: "Thai Street Food",
+                calories: 450,
+                ingredients: ["rice noodles", "shrimp", "tofu", "peanuts", "bean sprouts"],
+                url: "https://www.recipetineats.com/chicken-pad-thai/"
+            },
+            {
+                label: "Nasi Lemak",
+                image: "images/Nasi Lemak.jpg",
+                source: "Malaysian Cuisine",
+                calories: 520,
+                ingredients: ["coconut rice", "sambal", "anchovies", "peanuts", "boiled egg"],
+                url: "https://www.marionskitchen.com/nasi-lemak/"
+            },
+            {
+                label: "Tacos al Pastor",
+                image: "images/Tacos al Pastor.jpg",
+                source: "Mexican Street Food",
+                calories: 380,
+                ingredients: ["pork", "pineapple", "tortillas", "onions", "cilantro"],
+                url: "https://tastesbetterfromscratch.com/tacos-al-pastor/"
+            },
+            {
+                label: "Roti Canai",
+                image: "images/Roti Canai2.jpg",
+                source: "Malaysian-Indian",
+                calories: 420,
+                ingredients: ["flour", "water", "oil", "curry sauce"],
+                url: "https://www.elmundoeats.com/homemade-roti-canai/"
+            },
+            {
+                label: "Pizza Margherita",
+                image: "images/Pizza Margherita.jpg",
+                source: "Italian Classic",
+                calories: 650,
+                ingredients: ["pizza dough", "tomatoes", "mozzarella", "basil", "olive oil"],
+                url: "https://www.abeautifulplate.com/the-best-homemade-margherita-pizza/"
+            },
+            {
+                label: "Char Kway Teow",
+                image: "images/CharKwayTeow2.jpg",
+                source: "Malaysian-Chinese",
+                calories: 580,
+                ingredients: ["rice noodles", "shrimp", "chinese sausage", "bean sprouts", "eggs"],
+                url: "https://www.recipetineats.com/char-kway-teow/"
+            },
+            {
+                label: "Banh Mi",
+                image: "images/Banh Mi.jpg",
+                source: "Vietnamese Street Food",
+                calories: 490,
+                ingredients: ["baguette", "pork", "pickled vegetables", "cilantro", "chili"],
+                url: "https://www.recipetineats.com/banh-mi-vietnamese-sandwich/"
+            },
+            {
+                label: "Churros",
+                image: "images/Churros.jpg",
+                source: "Spanish Dessert",
+                calories: 320,
+                ingredients: ["flour", "water", "butter", "sugar", "cinnamon"],
+                url: "https://www.recipetineats.com/spanish-churros-recipe/"
+            },
+            {
+                label: "Samosa",
+                image: "images/Samosa.jpg",
+                source: "Indian Street Food",
+                calories: 280,
+                ingredients: ["pastry", "potato", "peas", "spices", "oil"],
+                url: "https://www.recipetineats.com/samosa-recipe/#"
+            },
+            {
+                label: "Arepas",
+                image: "images/Arepas.jpg",
+                source: "Venezuelan/Colombian",
+                calories: 350,
+                ingredients: ["cornmeal", "cheese", "meat", "avocado", "salsa"],
+                url: "https://www.allrecipes.com/recipe/238510/homemade-arepas/"
+            }];
+            displayRecipes(mockRecipes);
+            showNotification("Failed to load recipes. Showing sample data.", "warning");
+        });
+
+
+}
+
+// 为每个食谱获取食材详情
+async function fetchRecipeIngredients(recipeId, apiKey) {
+    const url = `https://api.spoonacular.com/recipes/${recipeId}/ingredientWidget.json?apiKey=${apiKey}`;
+    try {
+        const response = await fetch(url);
+        const data = await response.json();
+        return data.ingredients.map(ing => ing.name);
+    } catch (error) {
+        console.error("获取食材失败:", error);
+        return [];
+    }
 }
 
 // 显示食谱列表
