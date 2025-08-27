@@ -39,7 +39,6 @@
       pointer-events: none;
     }
 
-    /* hover 时彩色效果 */
     .share-icons a:nth-child(1):hover {
       background: #1877f2;
     }
@@ -62,15 +61,15 @@
       padding: 8px 14px;
       border: none;
       border-radius: 20px;
-      background: #ff7043;
-      color: white;
-      font-weight: bold;
+      background: rgb(255, 255, 255);
+      color: rgb(81, 81, 81);
       cursor: pointer;
       transition: 0.3s;
     }
 
     #streetfood-btn:hover {
-      background: #e64a19;
+      background: orange;
+      color: white;
       transform: scale(1.05);
     }
 
@@ -91,6 +90,12 @@
       padding: 20px;
       width: 70%;
       border-radius: 10px;
+
+      /* 👇 新增这些 */
+      max-height: 80vh;
+      /* 限制最大高度为屏幕的80% */
+      overflow-y: auto;
+      /* 超出部分可以滚动 */
     }
 
     .close {
@@ -141,13 +146,10 @@
 
   <div class="part2">
     <div class="banner">
-      <!-- 背景轮播 -->
       <div class="banner-slides">
         <img src="../images/p4cover1.jpg" alt="Slide 1">
         <img src="../images/p4cover2.jpg" alt="Slide 2">
       </div>
-
-      <!-- 保持不变的文字 -->
       <div class="hero-content">
         <h1>Welcome to World Street Food</h1>
         <p>Embark on a journey of taste and culture with flavors from every corner of the globe.</p>
@@ -170,9 +172,7 @@
   </div>
 
   <section class="section1">
-    <!-- 页面主体 -->
     <div class="page-container">
-      <!-- 左侧筛选栏 -->
       <div class="filter-panel">
         <h4>Country</h4>
         <select id="country-select"></select>
@@ -183,12 +183,16 @@
         <h4>Ingredient</h4>
         <select id="ingredient-select"></select>
       </div>
-
-      <!-- 右侧内容 -->
       <div class="content-area">
         <div id="food-container" class="food-grid"></div>
       </div>
     </div>
+    <!-- Street Food 筛选栏（默认隐藏） -->
+    <div class="filter-panel" id="street-filter-panel" style="display:none;">
+      <h4>Country</h4>
+      <select id="street-country-select"></select>
+    </div>
+
   </section>
 
   <!-- 页脚 -->
@@ -216,8 +220,8 @@
         <p>Stay updated with our latest discoveries and recipes.</p>
         <div class="social-icons">
           <a href="https://www.facebook.com/"><i class="fab fa-facebook-f"></i></a>
-          <a href="https://www.instagram.com/"><i class="fab fa-instagram"></i></a>
-          <a href="https://twitter.com/"><i class="fab fa-twitter"></i></a>
+          <a href="https://www.instagram.com/_foodiesreview_/"><i class="fab fa-instagram"></i></a>
+          <a href="https://x.com/home"><i class="fab fa-twitter"></i></a>
           <a href="https://www.youtube.com/channel/"><i class="fab fa-youtube"></i></a>
         </div>
       </div>
@@ -241,17 +245,56 @@
 
       // ====== 自建街头美食数据 ======
       const streetFoods = [
-        { name: "Satay", country: "Malaysia", image: "images/satay.jpg" },
-        { name: "Takoyaki", country: "Japan", image: "images/takoyaki.jpg" },
-        { name: "Tacos", country: "Mexico", image: "images/tacos.jpg" },
-        { name: "Shawarma", country: "Middle East", image: "images/shawarma.jpg" },
-        { name: "Pad Thai", country: "Thailand", image: "images/padthai.jpg" },
-        { name: "Pani Puri", country: "India", image: "images/panipuri.jpg" },
-        { name: "Hot Dog", country: "USA", image: "images/hotdog.jpg" },
-        { name: "Arepa", country: "Venezuela", image: "images/arepa.jpg" },
-        { name: "Empanada", country: "Argentina", image: "images/empanada.jpg" },
-        { name: "Croissant", country: "France", image: "images/croissant.jpg" }
+        { name: "Satay", country: "Malaysian", image: "images/satay.jpg" },
+        { name: "Takoyaki", country: "Japanese", image: "images/takoyaki.jpg" },
+        { name: "Tacos", country: "Mexican", image: "images/tacos.jpg" },
+        { name: "Shawarma", country: "Middle Eastern", image: "images/shawarma.jpg" },
+        { name: "Pad Thai", country: "Thai", image: "images/padthai.jpg" },
+        { name: "Pani Puri", country: "Indian", image: "images/panipuri.jpg" },
+        { name: "Hot Dog", country: "American", image: "images/hotdog.jpg" },
+        { name: "Arepa", country: "Venezuelan", image: "images/arepa.jpg" },
+        { name: "Empanada", country: "Argentinian", image: "images/empanada.jpg" },
+        { name: "Croissant", country: "French", image: "images/croissant.jpg" },
+        { name: "Banh Mi", country: "Vietnamese", image: "images/banhmi.jpg" },
+        { name: "Churros", country: "Spanish", image: "images/churros.jpg" },
+        { name: "Poutine", country: "Canadian", image: "images/poutine.jpg" },
+        { name: "Bratwurst", country: "German", image: "images/bratwurst.jpg" },
+        { name: "Falafel", country: "Israeli", image: "images/falafel.jpg" },
+        { name: "Pierogi", country: "Polish", image: "images/pierogi.jpg" },
+        { name: "Gelato", country: "Italian", image: "images/gelato.jpg" },
+        { name: "Doner Kebab", country: "Turkish", image: "images/doner.jpg" },
+        { name: "Kebab Koobideh", country: "Persian", image: "images/koobideh.jpg" },
+        { name: "Kimchi Pancake", country: "Korean", image: "images/kimchipancake.jpg" },
+        { name: "Jerk Chicken", country: "Jamaican", image: "images/jerkchicken.jpg" },
+        { name: "Ceviche", country: "Peruvian", image: "images/ceviche.jpg" },
+        { name: "Pretzel", country: "German", image: "images/pretzel.jpg" },
+        { name: "Baozi", country: "Chinese", image: "images/baozi.jpg" },
+        { name: "Tamales", country: "Mexican", image: "images/tamales.jpg" },
+        { name: "Baklava", country: "Greek", image: "images/baklava.jpg" },
+        { name: "Fish and Chips", country: "British", image: "images/fishchips.jpg" },
+        { name: "Halo-Halo", country: "Filipino", image: "images/halohalo.jpg" },
+        { name: "Samosa", country: "Indian", image: "images/samosa.jpg" },
+        { name: "Goulash", country: "Hungarian", image: "images/goulash.jpg" },
+        { name: "Borscht", country: "Russian", image: "images/borscht.jpg" },
+        { name: "Fufu", country: "Ghanaian", image: "images/fufu.jpg" },
+        { name: "Feijoada", country: "Brazilian", image: "images/feijoada.jpg" },
+        { name: "Pho", country: "Vietnamese", image: "images/pho.jpg" },
+        { name: "Okonomiyaki", country: "Japanese", image: "images/okonomiyaki.jpg" },
+        { name: "Currywurst", country: "German", image: "images/currywurst.jpg" },
+        { name: "Arequipe", country: "Colombian", image: "images/arequipe.jpg" },
+        { name: "Papusas", country: "Salvadoran", image: "images/papusas.jpg" },
+        { name: "Dolma", country: "Armenian", image: "images/dolma.jpg" },
+        { name: "Tagine", country: "Moroccan", image: "images/tagine.jpg" },
+        { name: "Schnitzel", country: "Austrian", image: "images/schnitzel.jpg" },
+        { name: "Tom Yum Soup", country: "Thai", image: "images/tomyum.jpg" },
+        { name: "Nasi Goreng", country: "Indonesian", image: "images/nasigoreng.jpg" },
+        { name: "Bunny Chow", country: "South African", image: "images/bunnychow.jpg" },
+        { name: "Khachapuri", country: "Georgian", image: "images/khachapuri.jpg" },
+        { name: "Laksa", country: "Singaporean", image: "images/laksa.jpg" },
+        { name: "Corn Dog", country: "American", image: "images/corndog.jpg" },
+        { name: "Pljeskavica", country: "Serbian", image: "images/pljeskavica.jpg" }
       ];
+
 
       // ====== 渲染街头美食 ======
       function renderStreetFoods() {
@@ -265,36 +308,32 @@
             const shareUrl = encodeURIComponent(item.image);
 
             const card = $(`
-  <div class="food-card" style="cursor:pointer;">
-    <div class="food-img-wrapper">
-      <img src="${detail.strMealThumb}" alt="${detail.strMeal}">
-    </div>
-    <div class="food-content">
-      <div class="food-header">
-        <h4>${detail.strMeal}</h4>
-      </div>
-      <p><strong>Category:</strong> ${detail.strCategory}</p>
-      <p><strong>Area:</strong> ${detail.strArea}</p>
-      <div class="share-icons">
-        <a href="https://www.facebook.com/sharer/sharer.php?u=${shareUrl}" target="_blank">
-          <i class="fab fa-facebook-f"></i>
-        </a>
-        <a href="https://twitter.com/intent/tweet?text=${shareText}&url=${shareUrl}" target="_blank">
-          <i class="fab fa-twitter"></i>
-        </a>
-        <a href="https://wa.me/?text=${shareText} ${shareUrl}" target="_blank">
-          <i class="fab fa-whatsapp"></i>
-        </a>
-      </div>
-    </div>
-  </div>
-`);
+              <div class="food-card" style="cursor:pointer;">
+                <div class="food-img-wrapper">
+                  <img src="${item.image}" alt="${item.name}">
+                </div>
+                <div class="food-content">
+                  <div class="food-header">
+                    <h4>${item.name}</h4>
+                  </div>
+                  <p><strong>Area:</strong> ${item.country}</p>
+                  <div class="share-icons">
+                    <a href="https://www.facebook.com/sharer/sharer.php?u=${shareUrl}" target="_blank">
+                      <i class="fab fa-facebook-f"></i>
+                    </a>
+                    <a href="https://twitter.com/intent/tweet?text=${shareText}&url=${shareUrl}" target="_blank">
+                      <i class="fab fa-twitter"></i>
+                    </a>
+                    <a href="https://wa.me/?text=${shareText} ${shareUrl}" target="_blank">
+                      <i class="fab fa-whatsapp"></i>
+                    </a>
+                  </div>
+                </div>
+              </div>
+            `);
 
-            // 绑定点击事件
-            card.click(() => openModal(detail.strMeal));
-
+            card.click(() => openModal(item.name));
             $foodContainer.append(card);
-
           });
       }
 
@@ -312,7 +351,7 @@
 
       // ====== API 获取 ======
       function fetchFoods() {
-        if (isStreetFoodMode) return; // 避免 Street Food 被覆盖
+        if (isStreetFoodMode) return;
         $foodContainer.html("<p>Loading...</p>");
         const country = $countrySelect.val();
         const category = $categorySelect.val();
@@ -387,6 +426,7 @@
                   </div>
                 </div>
               `);
+              card.click(() => openModal(detail.strMeal));
               $foodContainer.append(card);
             });
           });
@@ -438,65 +478,78 @@
     function openModal(foodName) {
       $("#foodModal").show();
       $("#modalTitle").text(foodName);
+      $("#modalImage").attr("src", "");
+      $("#modalInstructions").text("");
       $("#modalIngredients").empty();
       $("#relatedFoods").empty();
       $("#nutritionInfo").empty();
 
-      // ====== 1. 从 TheMealDB 获取食谱 ======
+      // 从 TheMealDB 获取食谱详情
       $.getJSON(`https://www.themealdb.com/api/json/v1/1/search.php?s=${foodName}`, function (data) {
         if (data.meals) {
           const meal = data.meals[0];
           $("#modalImage").attr("src", meal.strMealThumb);
           $("#modalInstructions").text(meal.strInstructions);
 
-          // 食材列表
+          // 食材
           for (let i = 1; i <= 20; i++) {
             const ingredient = meal[`strIngredient${i}`];
             const measure = meal[`strMeasure${i}`];
-            if (ingredient && ingredient.trim() !== "") {
+            if (ingredient && ingredient.trim()) {
               $("#modalIngredients").append(`<li>${ingredient} - ${measure}</li>`);
             }
           }
 
-          // ====== 2. 推荐相关食物（同类别） ======
+          // 推荐相关食物（同类别）
           $.getJSON(`https://www.themealdb.com/api/json/v1/1/filter.php?c=${meal.strCategory}`, function (relData) {
-            relData.meals.slice(0, 5).forEach(r => {
-              const relCard = $(`
-            <div class="related-card" style="display:inline-block; margin:5px; cursor:pointer;">
-              <img src="${r.strMealThumb}" width="100"><br>
-              <span>${r.strMeal}</span>
-            </div>
-          `);
-              relCard.click(() => openModal(r.strMeal));
-              $("#relatedFoods").append(relCard);
-            });
-          });
-
-          // ====== 3. 营养信息 (CalorieNinjas API，需要API key) ======
-          $.ajax({
-            method: "GET",
-            url: `https://api.calorieninjas.com/v1/nutrition?query=${meal.strMeal}`,
-            headers: { "X-Api-Key": "YOUR_API_KEY" },
-            success: function (nutriData) {
-              if (nutriData.items && nutriData.items.length > 0) {
-                const n = nutriData.items[0];
-                $("#nutritionInfo").html(`
-              <p>Calories: ${n.calories}</p>
-              <p>Protein: ${n.protein_g} g</p>
-              <p>Fat: ${n.fat_total_g} g</p>
-              <p>Carbohydrates: ${n.carbohydrates_total_g} g</p>
-            `);
-              }
+            if (relData.meals) {
+              relData.meals.slice(0, 6).forEach(rel => {
+                if (rel.strMeal !== meal.strMeal) {
+                  $("#relatedFoods").append(`
+                  <div class="related-card" style="display:inline-block; margin:5px; cursor:pointer;">
+                    <img src="${rel.strMealThumb}" width="100" alt="${rel.strMeal}">
+                    <p>${rel.strMeal}</p>
+                  </div>
+                `);
+                  // 点击相关食物 => 打开新的模态框
+                  $("#relatedFoods .related-card:last").click(() => openModal(rel.strMeal));
+                }
+              });
             }
           });
+        } else {
+          $("#modalInstructions").text("not found");
+        }
+      });
+
+      // 营养信息 (使用 openfoodfacts API 示例)
+      $.getJSON(`https://world.openfoodfacts.org/cgi/search.pl?search_terms=${foodName}&search_simple=1&action=process&json=1`, function (nutriData) {
+        if (nutriData.products && nutriData.products.length > 0) {
+          const product = nutriData.products[0];
+          const nutriments = product.nutriments;
+          $("#nutritionInfo").html(`
+          <p><strong>Calories:</strong> ${nutriments["energy-kcal_100g"] || "N/A"} kcal</p>
+          <p><strong>Protein:</strong> ${nutriments.proteins_100g || "N/A"} g</p>
+          <p><strong>Fat:</strong> ${nutriments.fat_100g || "N/A"} g</p>
+          <p><strong>Carbs:</strong> ${nutriments.carbohydrates_100g || "N/A"} g</p>
+        `);
+        } else {
+          $("#nutritionInfo").html("<p>No nutrition info found.</p>");
         }
       });
     }
 
     // 关闭模态框
-    $(".close").click(function () {
+    $(document).on("click", ".close", function () {
       $("#foodModal").hide();
     });
+
+    $(window).click(function (e) {
+      if ($(e.target).is("#foodModal")) {
+        $("#foodModal").hide();
+      }
+    });
+
 
   </script>
 
