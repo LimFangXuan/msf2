@@ -1067,6 +1067,7 @@ main {
     /* 动画初始 */
     opacity: 0;
     transform: translateY(20px);
+    z-index: index 100;
 }
 
 .shoes-card:active {
@@ -1201,19 +1202,19 @@ main {
 .reveal.active .shoes3 .shoes-card:nth-child(1) {
     opacity: 1;
     transform: translateY(0);
-    transition-delay: 0.2s;
+    transition-delay: 0.3s;
 }
 
 .reveal.active .shoes3 .shoes-card:nth-child(2) {
     opacity: 1;
     transform: translateY(0);
-    transition-delay: 0.4s;
+    transition-delay: 0.6s;
 }
 
 .reveal.active .shoes3 .shoes-card:nth-child(3) {
     opacity: 1;
     transform: translateY(0);
-    transition-delay: 0.6s;
+    transition-delay: 0.9s;
 }
 
 .text-section {

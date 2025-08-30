@@ -65,6 +65,12 @@
       color: rgb(81, 81, 81);
       cursor: pointer;
       transition: 0.3s;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      font-weight: 500;
+      margin-left: auto;
+      margin-right: auto;
     }
 
     #streetfood-btn:hover {
@@ -73,6 +79,153 @@
       transform: scale(1.05);
     }
 
+    /* 确保hero-content中的按钮居中 */
+    .hero-content {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+    }
+
+    .hero-content h1,
+    .hero-content p,
+    .hero-content button {
+      margin-left: auto;
+      margin-right: auto;
+    }
+
+    /* 搜索栏图标 */
+    .search-bar {
+      position: relative;
+      display: flex;
+      align-items: center;
+    }
+
+    .search-bar i {
+      position: absolute;
+      left: 12px;
+      color: #3e3e3e;
+      font-size: 16px;
+    }
+
+    .search-bar input {
+      padding-left: 40px;
+    }
+
+    /* 筛选面板图标 */
+    .filter-panel h4 {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      color: #3e3f3e;
+      font-weight: 600;
+    }
+
+    .filter-panel h4 i {
+      font-size: 18px;
+      color: #3c3c3c;
+    }
+
+    /* 食物卡片图标 */
+    .food-header h4 {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .food-content p {
+      display: flex;
+      align-items: center;
+      gap: 6px;
+    }
+
+    .food-content p i {
+      color: #666;
+      font-size: 14px;
+      width: 16px;
+    }
+
+    /* 模态框图标 */
+    .modal-section h3 {
+      color: #2c5530;
+      font-size: 1.4em;
+      margin-bottom: 15px;
+      font-weight: 600;
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+
+    .modal-section h3 i {
+      font-size: 20px;
+      color: #b2ccaf;
+    }
+
+    .modal-section h3::before {
+      content: '';
+      width: 4px;
+      height: 20px;
+      background: #b2ccaf;
+      border-radius: 2px;
+    }
+
+    /* 页脚图标 */
+    .footer-section h3 {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .footer-section h3 i {
+      color: #b2ccaf;
+      font-size: 20px;
+    }
+
+    .footer-links li {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .footer-links li i {
+      color: #b2ccaf;
+      font-size: 12px;
+    }
+
+    /* 加载状态图标 */
+    .loading {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 10px;
+      font-size: 18px;
+      color: #666;
+    }
+
+    .loading i {
+      animation: spin 1s linear infinite;
+    }
+
+    @keyframes spin {
+      0% { transform: rotate(0deg); }
+      100% { transform: rotate(360deg); }
+    }
+
+    /* 无结果状态图标 */
+    .no-results {
+      text-align: center;
+      padding: 40px;
+      color: #666;
+    }
+
+    .no-results i {
+      font-size: 48px;
+      color: #ddd;
+      margin-bottom: 15px;
+    }
+
+    /* 模态框图标 */
     .modal {
       display: none;
       position: fixed;
@@ -81,27 +234,247 @@
       top: 0;
       width: 100%;
       height: 100%;
-      background: rgba(0, 0, 0, 0.7);
+      background: rgba(0, 0, 0, 0.8);
+      backdrop-filter: blur(5px);
+      animation: fadeIn 0.3s ease-out;
+    }
+
+    @keyframes fadeIn {
+      from { opacity: 0; }
+      to { opacity: 1; }
     }
 
     .modal-content {
-      background: white;
-      margin: 5% auto;
-      padding: 20px;
-      width: 70%;
-      border-radius: 10px;
-
-      /* 👇 新增这些 */
-      max-height: 80vh;
-      /* 限制最大高度为屏幕的80% */
+      background: linear-gradient(135deg, #ffffff 0%, #f8f9fa 100%);
+      margin: 3% auto;
+      padding: 0;
+      width: 85%;
+      max-width: 900px;
+      border-radius: 20px;
+      box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+      max-height: 90vh;
       overflow-y: auto;
-      /* 超出部分可以滚动 */
+      animation: slideIn 0.4s ease-out;
+      position: relative;
+    }
+
+    @keyframes slideIn {
+      from { 
+        transform: translateY(-50px);
+        opacity: 0;
+      }
+      to { 
+        transform: translateY(0);
+        opacity: 1;
+      }
+    }
+
+    .modal-header {
+      background: linear-gradient(135deg, #b2ccaf 0%, #8fb996 100%);
+      padding: 25px 30px;
+      border-radius: 20px 20px 0 0;
+      position: relative;
+    }
+
+    .modal-header h2 {
+      color: white;
+      margin: 0;
+      font-size: 2.2em;
+      font-weight: 600;
+      text-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+
+    .modal-header h2 i {
+      font-size: 28px;
     }
 
     .close {
-      float: right;
+      position: absolute;
+      top: 20px;
+      right: 25px;
       cursor: pointer;
-      font-size: 22px;
+      font-size: 28px;
+      color: white;
+      background: rgba(255, 255, 255, 0.2);
+      width: 40px;
+      height: 40px;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      transition: all 0.3s ease;
+    }
+
+    .close:hover {
+      background: rgba(255, 255, 255, 0.3);
+      transform: scale(1.1);
+    }
+
+    .modal-body {
+      padding: 30px;
+    }
+
+    .modal-image-section {
+      text-align: center;
+      margin-bottom: 30px;
+    }
+
+    .modal-image-section img {
+      max-width: 100%;
+      height: 300px;
+      object-fit: cover;
+      border-radius: 15px;
+      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+      transition: transform 0.3s ease;
+    }
+
+    .modal-image-section img:hover {
+      transform: scale(1.02);
+    }
+
+    .modal-section {
+      margin-bottom: 30px;
+      background: white;
+      padding: 25px;
+      border-radius: 15px;
+      box-shadow: 0 5px 15px rgba(0, 0, 0, 0.08);
+      border-left: 4px solid #b2ccaf;
+    }
+
+    .modal-section p {
+      line-height: 1.8;
+      color: #555;
+      font-size: 1.1em;
+    }
+
+    .modal-section ul {
+      list-style: none;
+      padding: 0;
+    }
+
+    .modal-section li {
+      padding: 12px 15px;
+      margin: 8px 0;
+      background: #f8f9fa;
+      border-radius: 8px;
+      border-left: 3px solid #b2ccaf;
+      font-size: 1.05em;
+      color: #444;
+      transition: all 0.3s ease;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .modal-section li i {
+      color: #b2ccaf;
+      font-size: 14px;
+    }
+
+    .modal-section li:hover {
+      background: #e8f5e8;
+      transform: translateX(5px);
+    }
+
+    .related-container {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+      gap: 15px;
+      margin-top: 15px;
+    }
+
+    .related-card {
+      background: white;
+      border-radius: 12px;
+      padding: 15px;
+      text-align: center;
+      box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+      transition: all 0.3s ease;
+      border: 2px solid transparent;
+    }
+
+    .related-card:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 10px 25px rgba(0, 0, 0, 0.15);
+      border-color: #b2ccaf;
+    }
+
+    .related-card img {
+      width: 100%;
+      height: 100px;
+      object-fit: cover;
+      border-radius: 8px;
+      margin-bottom: 10px;
+    }
+
+    .related-card p {
+      font-size: 0.9em;
+      color: #555;
+      margin: 0;
+      font-weight: 500;
+    }
+
+    .nutrition-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      gap: 15px;
+      margin-top: 15px;
+    }
+
+    .nutrition-item {
+      background: linear-gradient(135deg, #f8f9fa 0%, #e9ecef 100%);
+      padding: 15px;
+      border-radius: 10px;
+      text-align: center;
+      border: 1px solid #dee2e6;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .nutrition-item i {
+      font-size: 24px;
+      color: #b2ccaf;
+    }
+
+    .nutrition-item strong {
+      color: #2c5530;
+      font-size: 1.1em;
+    }
+
+    .nutrition-item p {
+      margin: 0;
+      font-size: 1.2em;
+      color: #495057;
+      font-weight: 600;
+    }
+
+    /* 响应式设计 */
+    @media (max-width: 768px) {
+      .modal-content {
+        width: 95%;
+        margin: 5% auto;
+      }
+      
+      .modal-header {
+        padding: 20px;
+      }
+      
+      .modal-header h2 {
+        font-size: 1.8em;
+      }
+      
+      .modal-body {
+        padding: 20px;
+      }
+      
+      .related-container {
+        grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
+      }
     }
   </style>
 </head>
@@ -126,20 +499,31 @@
   <!-- 模态框 -->
   <div id="foodModal" class="modal">
     <div class="modal-content">
-      <span class="close">&times;</span>
-      <h2 id="modalTitle"></h2>
-      <img id="modalImage" src="" alt="">
-      <h3>Recipe</h3>
-      <p id="modalInstructions"></p>
-
-      <h3>Ingredients</h3>
-      <ul id="modalIngredients"></ul>
-
-      <h3>Related Foods</h3>
-      <div id="relatedFoods" class="related-container"></div>
-
-      <h3>Nutrition Info</h3>
-      <div id="nutritionInfo"></div>
+      <div class="modal-header">
+        <h2><i class="fas fa-utensils"></i> <span id="modalTitle"></span></h2>
+        <span class="close">&times;</span>
+      </div>
+      <div class="modal-body">
+        <div class="modal-image-section">
+          <img id="modalImage" src="" alt="Food Image">
+        </div>
+        <div class="modal-section">
+          <h3><i class="fas fa-info-circle"></i> Recipe</h3>
+          <p id="modalInstructions"></p>
+        </div>
+        <div class="modal-section">
+          <h3><i class="fas fa-list-ul"></i> Ingredients</h3>
+          <ul id="modalIngredients"></ul>
+        </div>
+        <div class="modal-section">
+          <h3><i class="fas fa-tags"></i> Related Foods</h3>
+          <div id="relatedFoods" class="related-container"></div>
+        </div>
+        <div class="modal-section">
+          <h3><i class="fas fa-chart-bar"></i> Nutrition Info</h3>
+          <div id="nutritionInfo" class="nutrition-grid"></div>
+        </div>
+      </div>
     </div>
   </div>
 
@@ -153,7 +537,7 @@
       <div class="hero-content">
         <h1>Welcome to World Street Food</h1>
         <p>Embark on a journey of taste and culture with flavors from every corner of the globe.</p>
-        <button id="streetfood-btn">Street Food Mode</button>
+        <button id="streetfood-btn"><i class="fas fa-utensils"></i> Street Food Mode</button>
       </div>
     </div>
   </div>
@@ -166,32 +550,38 @@
           d="M1.5 1.5A.5.5 0 0 1 2 1h12a.5.5 0 0 1 .5.5v2a.5.5 0 0 1-.128.334L10 8.692V13.5a.5.5 0 0 1-.342.474l-3 1A.5.5 0 0 1 6 14.5V8.692L1.628 3.834A.5.5 0 0 1 1.5 3.5z" />
       </svg>
     </button>
-    <div class="search-bar">
-      <input type="text" id="search-input" placeholder="Search food...">
-    </div>
+          <div class="search-bar">
+        <i class="fas fa-search"></i>
+        <input type="text" id="search-input" placeholder="Search food...">
+      </div>
   </div>
 
   <section class="section1">
     <div class="page-container">
       <div class="filter-panel">
-        <h4>Country</h4>
+        <h4><i class="fas fa-globe-americas"></i> Country</h4>
         <select id="country-select"></select>
 
-        <h4>Category</h4>
+        <h4><i class="fas fa-tags"></i> Category</h4>
         <select id="category-select"></select>
 
-        <h4>Ingredient</h4>
+        <h4><i class="fas fa-leaf"></i> Ingredient</h4>
         <select id="ingredient-select"></select>
       </div>
       <div class="content-area">
         <div id="food-container" class="food-grid"></div>
       </div>
     </div>
-    <!-- Street Food 筛选栏（默认隐藏） -->
-    <div class="filter-panel" id="street-filter-panel" style="display:none;">
-      <h4>Country</h4>
-      <select id="street-country-select"></select>
-    </div>
+         <!-- Street Food 筛选栏（默认隐藏） -->
+     <div class="page-container" id="street-filter-panel" style="display:none;">
+       <div class="filter-panel">
+         <h4><i class="fas fa-globe-americas"></i> Country</h4>
+         <select id="street-country-select"></select>
+       </div>
+       <div class="content-area">
+         <div id="street-food-container" class="food-grid"></div>
+       </div>
+     </div>
 
   </section>
 
@@ -199,24 +589,24 @@
   <footer>
     <div class="footer-container">
       <div class="footer-section">
-        <h3>Street Food Explorer</h3>
-        <p>Your guide to the world's most delicious street food and their cultural stories.</p>
-      </div>
-      <div class="footer-section">
-        <h3>Quick Links</h3>
-        <ul class="footer-links">
-          <li><a href="page1.html">Home</a></li>
-          <li><a href="page2.html">About us</a></li>
-          <li><a href="page3.html">Malaysia</a></li>
-          <li><a href="page4.html">Global</a></li>
-          <li><a href="page5.html">Cultural Stories</a></li>
-          <li><a href="page6.html">Maps</a></li>
-          <li><a href="page7.html">Review</a></li>
-          <li><a href="page8.html">Contact us</a></li>
-        </ul>
-      </div>
-      <div class="footer-section">
-        <h3>Follow Us</h3>
+                 <h3><i class="fas fa-map-marker-alt"></i> Street Food Explorer</h3>
+         <p>Your guide to the world's most delicious street food and their cultural stories.</p>
+       </div>
+       <div class="footer-section">
+         <h3><i class="fas fa-link"></i> Quick Links</h3>
+         <ul class="footer-links">
+           <li><i class="fas fa-home"></i><a href="page1.html">Home</a></li>
+           <li><i class="fas fa-info-circle"></i><a href="page2.html">About us</a></li>
+           <li><i class="fas fa-flag"></i><a href="page3.html">Malaysia</a></li>
+           <li><i class="fas fa-globe"></i><a href="page4.html">Global</a></li>
+           <li><i class="fas fa-book"></i><a href="page5.html">Cultural Stories</a></li>
+           <li><i class="fas fa-map"></i><a href="page6.html">Maps</a></li>
+           <li><i class="fas fa-comments"></i><a href="page7.html">Review</a></li>
+           <li><i class="fas fa-envelope"></i><a href="page8.html">Contact us</a></li>
+         </ul>
+       </div>
+       <div class="footer-section">
+         <h3><i class="fas fa-share-alt"></i> Follow Us</h3>
         <p>Stay updated with our latest discoveries and recipes.</p>
         <div class="social-icons">
           <a href="https://www.facebook.com/"><i class="fab fa-facebook-f"></i></a>
@@ -243,114 +633,163 @@
       let currentMeals = [];
       let isStreetFoodMode = false;
 
-      // ====== 自建街头美食数据 ======
-      const streetFoods = [
-        { name: "Satay", country: "Malaysian", image: "images/satay.jpg" },
-        { name: "Takoyaki", country: "Japanese", image: "images/takoyaki1.jpg" },
-        { name: "Tacos", country: "Mexican", image: "images/tacos.jpg" },
-        { name: "Shawarma", country: "Middle Eastern", image: "images/shawarma.jpg" },
-        { name: "Pad Thai", country: "Thai", image: "images/padthai.jpg" },
-        { name: "Pani Puri", country: "Indian", image: "images/panipuri.jpg" },
-        { name: "Hot Dog", country: "American", image: "images/hotdog.jpg" },
-        { name: "Arepa", country: "Venezuelan", image: "images/arepa.jpg" },
-        { name: "Empanada", country: "Argentinian", image: "images/empanada.jpg" },
-        { name: "Croissant", country: "French", image: "images/croissant.jpg" },
-        { name: "Banh Mi", country: "Vietnamese", image: "images/banhmi.jpg" },
-        { name: "Poutine", country: "Canadian", image: "images/poutine.jpg" },
-        { name: "Bratwurst", country: "German", image: "images/bratwurst.jpg" },
-        { name: "Falafel", country: "Israeli", image: "images/falafel.jpg" },
-        { name: "Pierogi", country: "Polish", image: "images/pierogi.jpg" },
-        { name: "Gelato", country: "Italian", image: "images/gelato.jpg" },
-        { name: "Doner Kebab", country: "Turkish", image: "images/doner.jpg" },
-        { name: "Kebab Koobideh", country: "Persian", image: "images/koobideh.jpg" },
-        { name: "Kimchi Pancake", country: "Korean", image: "images/kimchipancake.jpg" },
-        { name: "Jerk Chicken", country: "Jamaican", image: "images/jerkchicken.jpg" },
-        { name: "Ceviche", country: "Peruvian", image: "images/ceviche.jpg" },
-        { name: "Pretzel", country: "German", image: "images/pretzel.jpg" },
-        { name: "Baozi", country: "Chinese", image: "images/baozi.jpg" },
-        { name: "Tamales", country: "Mexican", image: "images/tamales.jpg" },
-        { name: "Baklava", country: "Greek", image: "images/baklava.jpg" },
-        { name: "Fish and Chips", country: "British", image: "images/fishchips.jpg" },
-        { name: "Halo-Halo", country: "Filipino", image: "images/halohalo.jpg" },
-        { name: "Goulash", country: "Hungarian", image: "images/goulash.jpg" },
-        { name: "Borscht", country: "Russian", image: "images/borscht.jpg" },
-        { name: "Fufu", country: "Ghanaian", image: "images/fufu.jpg" },
-        { name: "Feijoada", country: "Brazilian", image: "images/feijoada.jpg" },
-        { name: "Pho", country: "Vietnamese", image: "images/pho.jpg" },
-        { name: "Okonomiyaki", country: "Japanese", image: "images/okonomiyaki.jpg" },
-        { name: "Currywurst", country: "German", image: "images/currywurst.jpg" },
-        { name: "Arequipe", country: "Colombian", image: "images/arequipe.jpg" },
-        { name: "Papusas", country: "Salvadoran", image: "images/papusas.jpg" },
-        { name: "Dolma", country: "Armenian", image: "images/dolma.jpg" },
-        { name: "Tagine", country: "Moroccan", image: "images/tagine.jpg" },
-        { name: "Schnitzel", country: "Austrian", image: "images/schnitzel.jpg" },
-        { name: "Tom Yum Soup", country: "Thai", image: "images/tomyum.jpg" },
-        { name: "Nasi Goreng", country: "Indonesian", image: "images/nasigoreng.jpg" },
-        { name: "Bunny Chow", country: "South African", image: "images/bunnychow.jpg" },
-        { name: "Khachapuri", country: "Georgian", image: "images/khachapuri.jpg" },
-        { name: "Laksa", country: "Singaporean", image: "images/laksa.jpg" },
-        { name: "Corn Dog", country: "American", image: "images/corndog.jpg" },
-        { name: "Pljeskavica", country: "Serbian", image: "images/pljeskavica.jpg" }
-      ];
+             // ====== 自建街头美食数据 ======
+       const streetFoods = [
+         { name: "Satay", country: "Malaysian", image: "images/satay.jpg" },
+         { name: "Takoyaki", country: "Japanese", image: "images/takoyaki1.jpg" },
+         { name: "Tacos", country: "Mexican", image: "images/tacos.jpg" },
+         { name: "Shawarma", country: "Middle Eastern", image: "images/shawarma.jpg" },
+         { name: "Pad Thai", country: "Thai", image: "images/padthai.jpg" },
+         { name: "Pani Puri", country: "Indian", image: "images/panipuri.jpg" },
+         { name: "Hot Dog", country: "American", image: "images/hotdog.jpg" },
+         { name: "Arepa", country: "Venezuelan", image: "images/arepa.jpg" },
+         { name: "Empanada", country: "Argentinian", image: "images/empanada.jpg" },
+         { name: "Croissant", country: "French", image: "images/croissant.jpg" },
+         { name: "Banh Mi", country: "Vietnamese", image: "images/banhmi.jpg" },
+         { name: "Poutine", country: "Canadian", image: "images/poutine.jpg" },
+         { name: "Bratwurst", country: "German", image: "images/bratwurst.jpg" },
+         { name: "Falafel", country: "Israeli", image: "images/falafel.jpg" },
+         { name: "Pierogi", country: "Polish", image: "images/pierogi.jpg" },
+         { name: "Gelato", country: "Italian", image: "images/gelato.jpg" },
+         { name: "Doner Kebab", country: "Turkish", image: "images/doner.jpg" },
+         { name: "Kebab Koobideh", country: "Persian", image: "images/koobideh.jpg" },
+         { name: "Kimchi Pancake", country: "Korean", image: "images/kimchipancake.jpg" },
+         { name: "Jerk Chicken", country: "Jamaican", image: "images/jerkchicken.jpg" },
+         { name: "Ceviche", country: "Peruvian", image: "images/ceviche.jpg" },
+         { name: "Pretzel", country: "German", image: "images/pretzel.jpg" },
+         { name: "Baozi", country: "Chinese", image: "images/baozi.jpg" },
+         { name: "Tamales", country: "Mexican", image: "images/tamales.jpg" },
+         { name: "Baklava", country: "Greek", image: "images/baklava.jpg" },
+         { name: "Fish and Chips", country: "British", image: "images/fishchips.jpg" },
+         { name: "Halo-Halo", country: "Filipino", image: "images/halohalo.jpg" },
+         { name: "Goulash", country: "Hungarian", image: "images/goulash.jpg" },
+         { name: "Borscht", country: "Russian", image: "images/borscht.jpg" },
+         { name: "Fufu", country: "Ghanaian", image: "images/fufu.jpg" },
+         { name: "Feijoada", country: "Brazilian", image: "images/feijoada.jpg" },
+         { name: "Pho", country: "Vietnamese", image: "images/pho.jpg" },
+         { name: "Okonomiyaki", country: "Japanese", image: "images/okonomiyaki.jpg" },
+         { name: "Currywurst", country: "German", image: "images/currywurst.jpg" },
+         { name: "Arequipe", country: "Colombian", image: "images/arequipe.jpg" },
+         { name: "Papusas", country: "Salvadoran", image: "images/papusas.jpg" },
+         { name: "Dolma", country: "Armenian", image: "images/dolma.jpg" },
+         { name: "Tagine", country: "Moroccan", image: "images/tagine.jpg" },
+         { name: "Schnitzel", country: "Austrian", image: "images/schnitzel.jpg" },
+         { name: "Tom Yum Soup", country: "Thai", image: "images/tomyum.jpg" },
+         { name: "Nasi Goreng", country: "Indonesian", image: "images/nasigoreng.jpg" },
+         { name: "Bunny Chow", country: "South African", image: "images/bunnychow.jpg" },
+         { name: "Khachapuri", country: "Georgian", image: "images/khachapuri.jpg" },
+         { name: "Laksa", country: "Singaporean", image: "images/laksa.jpg" },
+         { name: "Corn Dog", country: "American", image: "images/corndog.jpg" },
+         { name: "Pljeskavica", country: "Serbian", image: "images/pljeskavica.jpg" },
+         // 新增的全球街头美食
+         { name: "Churros", country: "Spanish", image: "images/churros.jpg" },
+         { name: "Kebab", country: "Lebanese", image: "images/kebab.jpg" },
+         { name: "Samosa", country: "Indian", image: "images/samosa.jpg" },
+         { name: "Bubble Tea", country: "Taiwanese", image: "images/bubbletea.jpg" },
+         { name: "Dim Sum", country: "Chinese", image: "images/dimsum.jpg" },
+         { name: "Gyro", country: "Greek", image: "images/gyro.jpg" },
+         { name: "Kimbap", country: "Korean", image: "images/kimbap.jpg" },
+         { name: "Murtabak", country: "Malaysian", image: "images/murtabak.jpg" },
+         { name: "Som Tam", country: "Thai", image: "images/somtam.jpg" },
+         { name: "Gado Gado", country: "Indonesian", image: "images/gadogado.jpg" },
+         { name: "Char Kway Teow", country: "Malaysian", image: "images/charkwayteow5.jpg" },
+         { name: "Chili Crab", country: "Singaporean", image: "images/chilicrab.jpg" },
+         { name: "Kaya Toast", country: "Singaporean", image: "images/kayatoast.jpg" },
+         { name: "Tteokbokki", country: "Korean", image: "images/tteokbokki.jpg" },
+         { name: "Japchae", country: "Korean", image: "images/japchae.jpg" },
+         { name: "Ramen", country: "Japanese", image: "images/ramen.jpg" },
+         { name: "Sushi", country: "Japanese", image: "images/sushi.jpg" },
+         { name: "Tempura", country: "Japanese", image: "images/tempura.jpg" },
+         { name: "Yakitori", country: "Japanese", image: "images/yakitori.jpg" },
+         { name: "Dumplings", country: "Chinese", image: "images/dumplings.jpg" },
+         { name: "Peking Duck", country: "Chinese", image: "images/pekingduck.jpg" },
+         { name: "Kung Pao Chicken", country: "Chinese", image: "images/kungpao.jpg" },
+         { name: "Mapo Tofu", country: "Chinese", image: "images/mapotofu.jpg" },
+         { name: "Xiaolongbao", country: "Chinese", image: "images/xiaolongbao.jpg" },
+         { name: "Hot Pot", country: "Chinese", image: "images/hotpot.jpg" },
+         { name: "Banh Cuon", country: "Vietnamese", image: "images/banhcuon.jpg" },
+         { name: "Goi Cuon", country: "Vietnamese", image: "images/goicuon.jpg" },
+         { name: "Bun Bo Hue", country: "Vietnamese", image: "images/bunbohue.jpg" },
+         { name: "Pad See Ew", country: "Thai", image: "images/padseeew.jpg" },
+         { name: "Som Tum", country: "Thai", image: "images/somtum.jpg" },
+         { name: "Larb", country: "Thai", image: "images/larb.jpg" },
+         { name: "Massaman Curry", country: "Thai", image: "images/massaman.jpg" },
+         { name: "Green Curry", country: "Thai", image: "images/greencurry.jpg" },
+         { name: "Yum Woon Sen", country: "Thai", image: "images/yumwoonsen.jpg" },
+         { name: "Nam Tok", country: "Thai", image: "images/namtok.jpg" },
+         { name: "Som Tam", country: "Thai", image: "images/somtam.jpg" },
+        
+       ];
 
 
-      // ====== 渲染街头美食 ======
-      function renderStreetFoods() {
-        $foodContainer.empty();
-        const searchVal = $searchInput.val().toLowerCase();
+                    // ====== 渲染街头美食 ======
+       function renderStreetFoods() {
+         const $streetFoodContainer = $("#street-food-container");
+         $streetFoodContainer.empty();
+         const searchVal = $searchInput.val().toLowerCase();
+         const selectedCountry = $("#street-country-select").val();
 
-        streetFoods
-          .filter(item => item.name.toLowerCase().includes(searchVal))
-          .forEach(item => {
-            const shareText = encodeURIComponent(item.name);
-            const shareUrl = encodeURIComponent(item.image);
+         streetFoods
+           .filter(item => {
+             const matchesSearch = item.name.toLowerCase().includes(searchVal);
+             const matchesCountry = !selectedCountry || item.country === selectedCountry;
+             return matchesSearch && matchesCountry;
+           })
+           .forEach(item => {
+             const shareText = encodeURIComponent(item.name);
+             const shareUrl = encodeURIComponent(item.image);
 
-            const card = $(`
-              <div class="food-card" style="cursor:pointer;">
-                <div class="food-img-wrapper">
-                  <img src="${item.image}" alt="${item.name}">
-                </div>
-                <div class="food-content">
-                  <div class="food-header">
-                    <h4>${item.name}</h4>
+                          const card = $(`
+                <div class="food-card" style="cursor:pointer;">
+                  <div class="food-img-wrapper">
+                    <img src="${item.image}" alt="${item.name}">
                   </div>
-                  <p><strong>Area:</strong> ${item.country}</p>
-                  <div class="share-icons">
-                    <a href="https://www.facebook.com/sharer/sharer.php?u=${shareUrl}" target="_blank">
-                      <i class="fab fa-facebook-f"></i>
-                    </a>
-                    <a href="https://twitter.com/intent/tweet?text=${shareText}&url=${shareUrl}" target="_blank">
-                      <i class="fab fa-twitter"></i>
-                    </a>
-                    <a href="https://wa.me/?text=${shareText} ${shareUrl}" target="_blank">
-                      <i class="fab fa-whatsapp"></i>
-                    </a>
+                  <div class="food-content">
+                      <h4> ${item.name}</h4>
+                    
+                    <p><i class="fas fa-globe-americas"></i> <strong>Area:</strong> ${item.country}</p>
+                    <div class="share-icons">
+                      <a href="https://www.facebook.com/sharer/sharer.php?u=${shareUrl}" target="_blank">
+                        <i class="fab fa-facebook-f"></i>
+                      </a>
+                      <a href="https://twitter.com/intent/tweet?text=${shareText}&url=${shareUrl}" target="_blank">
+                        <i class="fab fa-twitter"></i>
+                      </a>
+                      <a href="https://wa.me/?text=${shareText} ${shareUrl}" target="_blank">
+                        <i class="fab fa-whatsapp"></i>
+                      </a>
+                    </div>
                   </div>
                 </div>
-              </div>
-            `);
+              `);
 
-            card.click(() => openModal(item.name));
-            $foodContainer.append(card);
-          });
-      }
+             card.click(() => openModal(item.name));
+             $streetFoodContainer.append(card);
+           });
+       }
 
-      // ====== Street Food 按钮切换 ======
-      $("#streetfood-btn").click(function () {
-        isStreetFoodMode = !isStreetFoodMode;
-        if (isStreetFoodMode) {
-          $(this).text("Back to Global Mode");
-          renderStreetFoods();
-        } else {
-          $(this).text("Street Food Mode");
-          fetchFoods();
-        }
-      });
+             // ====== Street Food 按钮切换 ======
+       $("#streetfood-btn").click(function () {
+         isStreetFoodMode = !isStreetFoodMode;
+                  if (isStreetFoodMode) {
+            $(this).html('<i class="fas fa-globe"></i> Back to Global Mode');
+            // 隐藏普通内容，显示Street Food内容
+            $(".page-container").hide();
+            $("#street-filter-panel").show();
+            renderStreetFoods();
+          } else {
+            $(this).html('<i class="fas fa-utensils"></i> Street Food Mode');
+            // 显示普通内容，隐藏Street Food内容
+            $(".page-container").show();
+            $("#street-filter-panel").hide();
+            fetchFoods();
+          }
+       });
 
       // ====== API 获取 ======
       function fetchFoods() {
         if (isStreetFoodMode) return;
-        $foodContainer.html("<p>Loading...</p>");
+                 $foodContainer.html('<div class="loading"><i class="fas fa-spinner"></i> Loading...</div>');
         const country = $countrySelect.val();
         const category = $categorySelect.val();
         const ingredient = $ingredientSelect.val();
@@ -382,9 +821,9 @@
         if (data.meals) {
           currentMeals = data.meals;
           renderFood();
-        } else {
-          $foodContainer.html("<p>No meals found.</p>");
-        }
+                 } else {
+           $foodContainer.html('<div class="no-results"><i class="fas fa-search"></i><p>No meals found.</p></div>');
+         }
       }
 
       function renderFood() {
@@ -399,31 +838,31 @@
               const shareText = encodeURIComponent(detail.strMeal);
               const shareUrl = encodeURIComponent(detail.strMealThumb);
 
-              const card = $(`
-                <div class="food-card">
-                  <div class="food-img-wrapper">
-                    <img src="${detail.strMealThumb}" alt="${detail.strMeal}">
-                  </div>
-                  <div class="food-content">
-                    <div class="food-header">
-                      <h4>${detail.strMeal}</h4>
-                    </div>
-                    <p><strong>Category:</strong> ${detail.strCategory}</p>
-                    <p><strong>Area:</strong> ${detail.strArea}</p>
-                    <div class="share-icons">
-                      <a href="https://www.facebook.com/sharer/sharer.php?u=${shareUrl}" target="_blank">
-                        <i class="fab fa-facebook-f"></i>
-                      </a>
-                      <a href="https://twitter.com/intent/tweet?text=${shareText}&url=${shareUrl}" target="_blank">
-                        <i class="fab fa-twitter"></i>
-                      </a>
-                      <a href="https://wa.me/?text=${shareText} ${shareUrl}" target="_blank">
-                        <i class="fab fa-whatsapp"></i>
-                      </a>
-                    </div>
-                  </div>
-                </div>
-              `);
+                             const card = $(`
+                 <div class="food-card">
+                   <div class="food-img-wrapper">
+                     <img src="${detail.strMealThumb}" alt="${detail.strMeal}">
+                   </div>
+                   <div class="food-content">
+                     <div class="food-header">
+                       <h4> ${detail.strMeal}</h4>
+                     </div>
+                     <p><i class="fas fa-tags"></i> <strong>Category:</strong> ${detail.strCategory}</p>
+                     <p><i class="fas fa-globe-americas"></i> <strong>Area:</strong> ${detail.strArea}</p>
+                     <div class="share-icons">
+                       <a href="https://www.facebook.com/sharer/sharer.php?u=${shareUrl}" target="_blank">
+                         <i class="fab fa-facebook-f"></i>
+                       </a>
+                       <a href="https://twitter.com/intent/tweet?text=${shareText}&url=${shareUrl}" target="_blank">
+                         <i class="fab fa-twitter"></i>
+                       </a>
+                       <a href="https://wa.me/?text=${shareText} ${shareUrl}" target="_blank">
+                         <i class="fab fa-whatsapp"></i>
+                       </a>
+                     </div>
+                   </div>
+                 </div>
+               `);
               card.click(() => openModal(detail.strMeal));
               $foodContainer.append(card);
             });
@@ -449,18 +888,27 @@
         }
       });
 
-      $.get("https://www.themealdb.com/api/json/v1/1/list.php?i=list", function (data) {
-        if (data.meals) {
-          $ingredientSelect.append(`<option value="">All</option>`);
-          data.meals.slice(0, 50).forEach(item => {
-            $ingredientSelect.append(`<option value="${item.strIngredient}">${item.strIngredient}</option>`);
-          });
-        }
-      });
+             $.get("https://www.themealdb.com/api/json/v1/1/list.php?i=list", function (data) {
+         if (data.meals) {
+           $ingredientSelect.append(`<option value="">All</option>`);
+           data.meals.slice(0, 50).forEach(item => {
+             $ingredientSelect.append(`<option value="${item.strIngredient}">${item.strIngredient}</option>`);
+           });
+         }
+       });
 
-      $countrySelect.change(fetchFoods);
-      $categorySelect.change(fetchFoods);
-      $ingredientSelect.change(fetchFoods);
+       // 加载Street Food国家选项
+       const streetCountries = [...new Set(streetFoods.map(item => item.country))].sort();
+       const $streetCountrySelect = $("#street-country-select");
+       $streetCountrySelect.append(`<option value="">All Countries</option>`);
+       streetCountries.forEach(country => {
+         $streetCountrySelect.append(`<option value="${country}">${country}</option>`);
+       });
+
+       $countrySelect.change(fetchFoods);
+       $categorySelect.change(fetchFoods);
+       $ingredientSelect.change(fetchFoods);
+       $streetCountrySelect.change(renderStreetFoods);
       $searchInput.on("input", function () {
         if (isStreetFoodMode) {
           renderStreetFoods();
@@ -489,14 +937,14 @@
           $("#modalImage").attr("src", meal.strMealThumb);
           $("#modalInstructions").text(meal.strInstructions);
 
-          // 食材
-          for (let i = 1; i <= 20; i++) {
-            const ingredient = meal[`strIngredient${i}`];
-            const measure = meal[`strMeasure${i}`];
-            if (ingredient && ingredient.trim()) {
-              $("#modalIngredients").append(`<li>${ingredient} - ${measure}</li>`);
-            }
-          }
+                     // 食材
+           for (let i = 1; i <= 20; i++) {
+             const ingredient = meal[`strIngredient${i}`];
+             const measure = meal[`strMeasure${i}`];
+             if (ingredient && ingredient.trim()) {
+               $("#modalIngredients").append(`<li><i class="fas fa-circle"></i> ${ingredient} - ${measure}</li>`);
+             }
+           }
 
           // 推荐相关食物（同类别）
           $.getJSON(`https://www.themealdb.com/api/json/v1/1/filter.php?c=${meal.strCategory}`, function (relData) {
@@ -515,9 +963,9 @@
               });
             }
           });
-        } else {
-          $("#modalInstructions").text("not found");
-        }
+                 } else {
+           $("#modalInstructions").text("Recipe information not available");
+         }
       });
 
       // 营养信息 (使用 openfoodfacts API 示例)
@@ -525,15 +973,27 @@
         if (nutriData.products && nutriData.products.length > 0) {
           const product = nutriData.products[0];
           const nutriments = product.nutriments;
-          $("#nutritionInfo").html(`
-          <p><strong>Calories:</strong> ${nutriments["energy-kcal_100g"] || "N/A"} kcal</p>
-          <p><strong>Protein:</strong> ${nutriments.proteins_100g || "N/A"} g</p>
-          <p><strong>Fat:</strong> ${nutriments.fat_100g || "N/A"} g</p>
-          <p><strong>Carbs:</strong> ${nutriments.carbohydrates_100g || "N/A"} g</p>
-        `);
-        } else {
-          $("#nutritionInfo").html("<p>No nutrition info found.</p>");
-        }
+                     $("#nutritionInfo").html(`
+           <div class="nutrition-item">
+             <i class="fas fa-fire"></i>
+             <strong>Calories:</strong> ${nutriments["energy-kcal_100g"] || "N/A"} kcal
+           </div>
+           <div class="nutrition-item">
+             <i class="fas fa-dumbbell"></i>
+             <strong>Protein:</strong> ${nutriments.proteins_100g || "N/A"} g
+           </div>
+           <div class="nutrition-item">
+             <i class="fas fa-pepper-hot"></i>
+             <strong>Fat:</strong> ${nutriments.fat_100g || "N/A"} g
+           </div>
+           <div class="nutrition-item">
+             <i class="fas fa-carrot"></i>
+             <strong>Carbs:</strong> ${nutriments.carbohydrates_100g || "N/A"} g
+           </div>
+         `);
+         } else {
+           $("#nutritionInfo").html('<div class="no-results"><i class="fas fa-exclamation-triangle"></i><p>No nutrition info found.</p></div>');
+         }
       });
     }
 
