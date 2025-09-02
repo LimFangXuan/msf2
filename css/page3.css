@@ -891,7 +891,7 @@ body {
 #stats {
     height: 14%;
     width: 100%;
-    background: white;
+    background: rgb(255, 255, 255);
     display: flex;
     align-items: center;
     justify-content: space-between;
@@ -913,6 +913,10 @@ body {
     /* 英文标题用Playfair Display */
     font-size: 28px;
     font-weight: bold;
+}
+
+.normal{
+    border-bottom: 1px solid #eee;
 }
 
 /* Banner */
@@ -970,7 +974,7 @@ body {
 }
 
 .middle-nav {
-    border-top: 1px solid #eee;
+    border-top: 1px solid #ffffff;
     padding-bottom: 20px;
     padding-left: 25px;
     display: flex;
@@ -982,9 +986,10 @@ body {
 .hero,
 .hero1,
 .allhero {
-    background: white;
+    background: rgb(255, 255, 255);
     justify-content: center;
 }
+
 
 main {
     min-height: 100vh;
@@ -994,7 +999,7 @@ main {
 
 /* hero1 Section */
 .hero1 {
-    background: white;
+    background: rgb(255, 255, 255);
     width: 100%;
     min-height: 100vh;
 }
@@ -1494,3 +1499,4 @@ footer {
 .share-icons a:hover {
   color: #e74c3c; /* hover 变红 */
 }
+
